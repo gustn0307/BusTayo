@@ -3,10 +3,16 @@ import UserSidebar from "../components/UserSidebar";
 
 function UserLayout() {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="d-flex">
       <UserSidebar />
 
-      <div style={{ flex: 1, padding: "20px" }}>
+      <div
+        className="flex-grow-1 bg-light"
+        style={{
+          minHeight: "100vh",
+          padding: "30px",
+        }}
+      >
         <Outlet />
       </div>
     </div>

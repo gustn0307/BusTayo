@@ -17,16 +17,16 @@ import MyPage from "../Pages/MyPage";
 import UserManagement from "../Pages/admin/UserManagement";
 import NoticeManagement from "../Pages/admin/NoticeManagement";
 import Statistics from "../Pages/admin/Statistics";
+import BusHistory from "../Pages/BusHistory";
 
 function Router() {
   return (
     <Routes>
-
       {/* 사용자 */}
 
       <Route element={<UserLayout />}>
-
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
@@ -34,25 +34,24 @@ function Router() {
         <Route path="/lostfound" element={<LostFound />} />
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
-
+        <Route path="/history" element={<BusHistory />} />
       </Route>
 
       {/* 관리자 */}
 
-     <Route
-  path="/admin"
-  element={
-    <AdminRoute>
-      <AdminLayout />
-    </AdminRoute>
-  }
->
-  <Route index element={<UserManagement />} />
-  <Route path="users" element={<UserManagement />} />
-  <Route path="notices" element={<NoticeManagement />} />
-  <Route path="statistics" element={<Statistics />} />
-</Route>
-
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
+        <Route index element={<UserManagement />} />
+        <Route path="users" element={<UserManagement />} />
+        <Route path="notices" element={<NoticeManagement />} />
+        <Route path="statistics" element={<Statistics />} />
+      </Route>
     </Routes>
   );
 }
