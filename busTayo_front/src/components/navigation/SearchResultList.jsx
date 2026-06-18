@@ -7,7 +7,6 @@ function SearchResultList({ routes, setSelectedRoute }) {
     <>
       {busRoutes.map((route, index) => {
         // ★ 수정 : 현재 route의 버스 구간 찾기
-        const busPath = route.subPath.find((path) => path.trafficType === 2);
         const busPaths = route.subPath.filter((path) => path.trafficType === 2);
 
         return (
@@ -29,7 +28,7 @@ function SearchResultList({ routes, setSelectedRoute }) {
               </div>
 
               {/* ★ 승차 정류장 */}
-              <div>{busPath?.startName}</div>
+              <div>{busPaths[0]?.startName}</div>
 
               {/* ★ 버스 번호 */}
               <div className="my-2">
@@ -41,7 +40,7 @@ function SearchResultList({ routes, setSelectedRoute }) {
               </div>
 
               {/* ★ 하차 정류장 */}
-              <div>{busPath?.endName}</div>
+              <div>{busPaths[busPaths.length - 1]?.endName}</div>
             </Card.Body>
           </Card>
         );

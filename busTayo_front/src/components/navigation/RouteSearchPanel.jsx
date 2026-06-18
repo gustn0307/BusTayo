@@ -14,6 +14,8 @@ function RouteSearchPanel({
   setRoutes,
   selectedRoute,
   setSelectedRoute,
+  selectedStation,
+  setSelectedStation,
 }) {
   const searchRoute = async () => {
     if (!startPlace || !endPlace) {
@@ -37,23 +39,6 @@ function RouteSearchPanel({
       );
 
       const paths = response.data.result.path;
-
-      // console.log("전체 경로");
-      // console.log(paths);
-
-      // console.log("첫 번째 경로");
-      // console.log(paths[0]);
-
-      // console.log("첫 번째 경로 subPath");
-      // console.log(paths[0].subPath);
-
-      // const busPath = paths[0].subPath.find((item) => item.trafficType === 2);
-
-      // console.log(busPath);
-
-      // console.log(paths[0].subPath[1].lane[0]);
-
-      // console.log(paths[0].subPath[1].passStopList);
 
       setRoutes(response.data.result.path);
     } catch (error) {
@@ -89,8 +74,15 @@ function RouteSearchPanel({
         </Card>
       )}
 
-      <SearchResultList routes={routes} setSelectedRoute={setSelectedRoute} />
-      <RouteDetail route={selectedRoute} />
+      {!selectedRoute ? (
+        <SearchResultList routes={routes} setSelectedRoute={setSelectedRoute} />
+      ) : (
+        <RouteDetail
+          route={selectedRoute}
+          setSelectedRoute={setSelectedRoute}
+          setSelectedStation={setSelectedStation}
+        />
+      )}
 
       {/* 이후 구현해야 할 부분 */}
       <h5 className="mt-4 mb-3">최근 길찾기</h5>

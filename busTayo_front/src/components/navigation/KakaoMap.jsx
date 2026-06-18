@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import { loadKakaoMap } from "../../util/loadKakaoMap";
 
-function KakaoMap({ currentLocation, setCurrentLocation }) {
+function KakaoMap({ currentLocation, setCurrentLocation, selectedStation }) {
   const mapRef = useRef(null);
+  const mapContainerRef = useRef(null);
+  const mapInstanceRef = useRef(null);
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -21,10 +23,12 @@ function KakaoMap({ currentLocation, setCurrentLocation }) {
         });
 
         loadKakaoMap().then((kakao) => {
-          const map = new kakao.maps.Map(mapRef.current, {
+          const map = new kakao.maps.Map(mapContainerRef.current, {
             center: new kakao.maps.LatLng(lat, lng),
             level: 3,
           });
+
+          mapInstanceRef.current = map;
 
           new kakao.maps.Marker({
             map,
@@ -52,7 +56,25 @@ function KakaoMap({ currentLocation, setCurrentLocation }) {
     );
   }, []);
 
-  return <div ref={mapRef} className="w-100 h-100" />;
+  useEffect(() => {
+  if (
+    !selectedStation ||
+    !mapInstanceRef.current
+  ) {
+    return;
+  }
+
+  const kakao = window.kakao;
+
+  mapInstanceRef.current.setCenter(
+    new kakao.maps.LatLng(
+      selectedStation.lat,
+      selectedStation.lng
+    )
+  );
+}, [selectedStation]);
+
+  return <div ref={mapContainerRef} className="w-100 h-100" />;
 }
 
 export default KakaoMap;

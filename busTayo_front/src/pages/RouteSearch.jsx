@@ -17,12 +17,15 @@ function RouteSearch() {
 
   const [selectedRoute, setSelectedRoute] = useState(null);
 
+  const [selectedStation, setSelectedStation] = useState(null);
+
   return (
     <Row className="g-0 h-100">
       <Col>
         <KakaoMap
           currentLocation={currentLocation}
           setCurrentLocation={setCurrentLocation}
+          selectedStation={selectedStation}
         />
       </Col>
 
@@ -37,6 +40,8 @@ function RouteSearch() {
           setRoutes={setRoutes}
           selectedRoute={selectedRoute}
           setSelectedRoute={setSelectedRoute}
+          selectedStation={selectedStation}
+          setSelectedStation={setSelectedStation}
         />
       </Col>
     </Row>
