@@ -1,5 +1,7 @@
 import { Row, Col, Card, Button, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import api from "../api";
 
 import {
   BsGeoAlt,
@@ -11,6 +13,18 @@ import {
 } from "react-icons/bs";
 
 function Home() {
+  const [recentNotices, setRecentNotices] = useState([]);
+
+  useEffect(() => {
+    api.get("/notice")
+      .then(r => r.data)
+      .then(data => {
+        const sorted = [...data].reverse();
+        setRecentNotices(sorted.slice(0, 3));
+      })
+      .catch(err => console.error("공지사항 조회 실패:", err));
+  }, []);
+
   return (
     <div>
       {/* 인사말 */}
@@ -135,17 +149,32 @@ function Home() {
       <Row className="g-3">
         <Col lg={6}>
           <Card className="border-0 shadow-sm">
-            <Card.Header className="bg-white fw-bold">
-              <BsMegaphone className="me-2" />
-              공지사항
+            <Card.Header className="bg-white fw-bold d-flex align-items-center">
+              <div>
+                <BsMegaphone className="me-2" />
+                공지사항
+              </div>
+              <Button as={Link} to="/notice" variant="primary" 
+              size="sm" className="ms-auto">이동</Button>
             </Card.Header>
 
             <ListGroup variant="flush">
-              <ListGroup.Item>버스타요 서비스 오픈 안내</ListGroup.Item>
-
-              <ListGroup.Item>서버 점검 예정 공지</ListGroup.Item>
-
-              <ListGroup.Item>신규 기능 업데이트 안내</ListGroup.Item>
+                {recentNotices.length === 0 ? (
+                <ListGroup.Item className="text-secondary">
+                등록된 공지사항이 없습니다.
+                </ListGroup.Item>
+              ) : (
+                recentNotices.map((notice) => (
+                  <ListGroup.Item
+                    key={notice.noticeId}
+                    action
+                    as={Link}
+                    to={`/notice/${notice.noticeId}`}
+                  >
+                    {notice.noticeTitle}
+                  </ListGroup.Item>
+                ))
+              )}
             </ListGroup>
           </Card>
         </Col>
