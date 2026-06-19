@@ -1,0 +1,28 @@
+package com.busTajo.busTayo.board.dto;
+
+import com.busTajo.busTayo.board.entity.Board;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class BoardResponseDto {
+    private Long id;
+    private String userId;
+    private String title;
+    private String content;
+
+    // 게시글 상세 조회
+    public static BoardResponseDto toDto(Board board) {
+        BoardResponseDto boardResponseDto = new BoardResponseDto();
+        boardResponseDto.setId(board.getId());
+        boardResponseDto.setUserId(board.getUser().getUserId());
+        boardResponseDto.setTitle(board.getTitle());
+        boardResponseDto.setContent(board.getContent());
+        return boardResponseDto;
+    }
+}
