@@ -48,6 +48,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   {openStops[index] ? "▲" : "▼"}
                 </Button>
 
+                {/* 정류장 목록 보여주기  */}
                 {openStops[index] && (
                   <div className="mt-2 ms-3 border-start ps-3">
                     {path.passStopList?.stations?.map(
@@ -60,8 +61,8 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                           }}
                           onClick={() =>
                             setSelectedStation({
-                              lat: station.y,
-                              lng: station.x,
+                              lat: Number(station.y),
+                              lng: Number(station.x),
                               name: station.stationName,
                             })
                           }

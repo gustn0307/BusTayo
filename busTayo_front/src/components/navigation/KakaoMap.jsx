@@ -3,8 +3,12 @@ import { loadKakaoMap } from "../../util/loadKakaoMap";
 
 function KakaoMap({ currentLocation, setCurrentLocation, selectedStation }) {
   const mapRef = useRef(null);
+
   const mapContainerRef = useRef(null);
+
   const mapInstanceRef = useRef(null);
+
+  const stationMarkerRef = useRef(null);
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -57,22 +61,16 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation }) {
   }, []);
 
   useEffect(() => {
-  if (
-    !selectedStation ||
-    !mapInstanceRef.current
-  ) {
-    return;
-  }
+    if (!selectedStation || !mapInstanceRef.current) {
+      return;
+    }
 
-  const kakao = window.kakao;
+    const kakao = window.kakao;
 
-  mapInstanceRef.current.setCenter(
-    new kakao.maps.LatLng(
-      selectedStation.lat,
-      selectedStation.lng
-    )
-  );
-}, [selectedStation]);
+    mapInstanceRef.current.setCenter(
+      new kakao.maps.LatLng(selectedStation.lat, selectedStation.lng),
+    );
+  }, [selectedStation]);
 
   return <div ref={mapContainerRef} className="w-100 h-100" />;
 }
