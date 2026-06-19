@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { Nav, Card, Button } from "react-bootstrap";
+import { MdAnnouncement } from "react-icons/md";
+import { LuMegaphone } from "react-icons/lu";
+import { PiMegaphoneSimpleThin } from "react-icons/pi";
 
 import {
   BsBusFront,
@@ -121,6 +124,15 @@ function UserSidebar() {
         >
           <BsBriefcase className="text-primary me-2" />
           분실물 찾기
+        </Nav.Link>
+
+        <Nav.Link
+          as={Link}
+          to="/notice"
+          className="bg-light rounded-4 py-3 px-3"
+        >
+          <PiMegaphoneSimpleThin className="text-primary me-2" />
+          공지사항
         </Nav.Link>
 
         {role === "ADMIN" && (
