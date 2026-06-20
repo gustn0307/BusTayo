@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { loadKakaoMap } from "../../util/loadKakaoMap";
 
-function KakaoMap({ currentLocation, setCurrentLocation, selectedStation }) {
+function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, selectedRoute }) {
   const mapRef = useRef(null);
 
   const mapContainerRef = useRef(null);
@@ -10,6 +10,15 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation }) {
 
   const stationMarkerRef = useRef(null);
 
+  const routePolylineRef = useRef(null);
+
+  const stopMarkersRef = useRef([]);
+
+  const stopOverlaysRef = useRef([]);
+
+  const mapLevelListenerRef = useRef(null)
+
+  // 현재 위치 좌표로 카카오맵 지도 불러오기
   useEffect(() => {
     if (!navigator.geolocation) {
       console.error("Geolocation을 지원하지 않는 브라우저입니다.");
@@ -61,16 +70,228 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation }) {
   }, []);
 
   useEffect(() => {
-    if (!selectedStation || !mapInstanceRef.current) {
+    console.log(selectedStation)
+    if (
+      !selectedStation ||
+      !mapInstanceRef.current
+    ) {
       return;
     }
 
     const kakao = window.kakao;
 
-    mapInstanceRef.current.setCenter(
-      new kakao.maps.LatLng(selectedStation.lat, selectedStation.lng),
+    const position = new kakao.maps.LatLng(
+      selectedStation.lat,
+      selectedStation.lng
     );
+
+    mapInstanceRef.current.setCenter(position);
+
+    if (stationMarkerRef.current) {
+      stationMarkerRef.current.setMap(null);
+    }
+
+    stationMarkerRef.current =
+      new kakao.maps.Marker({
+        map: mapInstanceRef.current,
+        position,
+      });
   }, [selectedStation]);
+
+  // 경로 선택 시 경로 그리기(Polyline)
+  useEffect(() => {
+    if (!mapInstanceRef.current) {
+        return;
+      }
+
+    if (!selectedRoute) {
+      if (routePolylineRef.current) {
+        routePolylineRef.current.setMap(null);
+        routePolylineRef.current = null;
+      }
+
+      stopMarkersRef.current.forEach((marker) => {
+        marker.setMap(null);
+      });
+
+      stopMarkersRef.current = [];
+
+      stopOverlaysRef.current.forEach((overlay) => {
+        overlay.setMap(null);
+      });
+
+      stopOverlaysRef.current = [];
+
+      return;
+    }
+
+    const kakao = window.kakao;
+
+    const linePath = [];
+
+    stopMarkersRef.current.forEach((marker) => {
+      marker.setMap(null);
+    });
+
+    stopMarkersRef.current = [];
+
+    stopOverlaysRef.current.forEach((overlay) => {
+      overlay.setMap(null);
+    });
+
+    stopOverlaysRef.current = [];
+
+    selectedRoute.subPath.forEach((path) => {
+      if (path.trafficType !== 2) {
+        return;
+      }
+
+      path.passStopList?.stations?.forEach(
+        (station, stationIndex) => {
+
+          const position =
+            new kakao.maps.LatLng(
+              Number(station.y),
+              Number(station.x)
+            );
+
+          linePath.push(position);
+
+          let color = "#0d6efd"
+          let size = 12;
+
+          // 승차 정류장 색상, 크기 지정
+          if (stationIndex === 0) {
+            color = "#28a745";
+            size = 18;
+          }
+
+          // 하차 정류장 색상, 크기 지정
+          if (
+            stationIndex ===
+            path.passStopList.stations.length - 1
+          ) {
+            color = "#dc3545";
+            size = 18;
+          }
+
+          const marker =
+            new kakao.maps.CustomOverlay({
+              position,
+
+              content: `
+                <div
+                  style="
+                    width:${size}px;
+                    height:${size}px;
+                    border-radius:50%;
+                    background:${color};
+                    border:3px solid white;
+                    box-shadow:0 1px 4px rgba(0,0,0,0.35);
+                  "
+                ></div>
+                `,
+            });
+
+          marker.setMap(mapInstanceRef.current);
+
+          const label =
+            new kakao.maps.CustomOverlay({
+              position,
+
+              yAnchor: 1.3,
+
+              content: `
+                <div
+                  style="
+                    background:white;
+                    border:1px solid #ddd;
+                    border-radius:4px;
+                    padding:2px 6px;
+                    font-size:11px;
+                    white-space:nowrap;
+                  "
+                >
+                  ${station.stationName}
+                </div>
+              `,
+            });
+
+          stopOverlaysRef.current.push(label);
+
+          stopMarkersRef.current.push(marker);
+
+        }
+      );
+    });
+
+    if (routePolylineRef.current) {
+      routePolylineRef.current.setMap(null);
+    }
+
+    routePolylineRef.current =
+      new kakao.maps.Polyline({
+        path: linePath,
+
+        strokeWeight: 6,
+
+        strokeColor: "#007bff",
+
+        strokeOpacity: 0.8,
+
+        strokeStyle: "solid",
+      });
+
+    routePolylineRef.current.setMap(
+      mapInstanceRef.current
+    );
+
+    const bounds =
+      new kakao.maps.LatLngBounds();
+
+    linePath.forEach((point) => {
+      bounds.extend(point);
+    });
+
+    mapInstanceRef.current.setBounds(bounds);
+
+    const level =
+      mapInstanceRef.current.getLevel();
+
+    stopOverlaysRef.current.forEach(
+      (overlay) => {
+        overlay.setMap(
+          level <= 5
+            ? mapInstanceRef.current
+            : null
+        );
+      }
+    );
+
+    if (!mapLevelListenerRef.current) {
+      mapLevelListenerRef.current = () => {
+        const level =
+          mapInstanceRef.current.getLevel();
+
+        stopOverlaysRef.current.forEach(
+          (overlay) => {
+            overlay.setMap(
+              level <= 5
+                ? mapInstanceRef.current
+                : null
+            );
+          }
+        );
+      };
+
+      kakao.maps.event.addListener(
+        mapInstanceRef.current,
+        "zoom_changed",
+        mapLevelListenerRef.current
+      );
+    }
+
+  }, [selectedRoute]);
 
   return <div ref={mapContainerRef} className="w-100 h-100" />;
 }

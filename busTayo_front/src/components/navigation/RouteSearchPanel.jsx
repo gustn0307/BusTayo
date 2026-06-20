@@ -75,7 +75,11 @@ function RouteSearchPanel({
       )}
 
       {!selectedRoute ? (
-        <SearchResultList routes={routes} setSelectedRoute={setSelectedRoute} />
+        <SearchResultList 
+          routes={routes} 
+          setSelectedRoute={setSelectedRoute}
+          setSelectedStation={setSelectedStation}
+        />
       ) : (
         <RouteDetail
           route={selectedRoute}

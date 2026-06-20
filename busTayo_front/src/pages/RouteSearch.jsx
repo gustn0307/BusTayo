@@ -26,6 +26,7 @@ function RouteSearch() {
           currentLocation={currentLocation}
           setCurrentLocation={setCurrentLocation}
           selectedStation={selectedStation}
+          selectedRoute={selectedRoute}
         />
       </Col>
 

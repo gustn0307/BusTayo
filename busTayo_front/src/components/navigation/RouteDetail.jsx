@@ -2,9 +2,10 @@ import { Card, Badge, Button } from "react-bootstrap";
 import { useState } from "react";
 
 function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
-  if (!route) return null;
 
   const [openStops, setOpenStops] = useState({});
+
+  if (!route) return null;
 
   return (
     <Card className="mt-3">
@@ -21,18 +22,34 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
         <hr />
 
         {route.subPath.map((path, index) => {
+
+          
+
           if (path.trafficType === 3) {
             return <div key={index}>🚶 도보 {path.distance}m</div>;
           }
 
           if (path.trafficType === 2) {
-            console.log("첫번째 정류장", path.passStopList.stations[0]);
-            console.log(path.passStopList.stations);
             return (
               <div key={index}>
                 <Badge bg="primary">{path.lane[0].busNo}번</Badge>
 
-                <div className="mt-2">승차 : {path.startName}</div>
+                <div
+                  className="mt-2"
+                  style={{
+                    cursor: "pointer",
+                    color: "#0d6efd",
+                  }}
+                  onClick={() =>
+                    setSelectedStation({
+                      lat: Number(path.startY),
+                      lng: Number(path.startX),
+                      name: path.startName,
+                    })
+                  }
+                >
+                  승차 : {path.startName}
+                </div>
 
                 <Button
                   variant="link"
@@ -74,7 +91,21 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   </div>
                 )}
 
-                <div>하차 : {path.endName}</div>
+                <div
+                  style={{
+                    cursor: "pointer",
+                    color: "#dc3545",
+                  }}
+                  onClick={() =>
+                    setSelectedStation({
+                      lat: Number(path.endY),
+                      lng: Number(path.endX),
+                      name: path.endName,
+                    })
+                  }
+                >
+                  하차 : {path.endName}
+                </div>
               </div>
             );
           }
