@@ -10,7 +10,7 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
 
   const stationMarkerRef = useRef(null);
 
-  const routePolylineRef = useRef(null);
+  const routePolylinesRef = useRef([]);
 
   const stopMarkersRef = useRef([]);
 
@@ -70,7 +70,7 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
   }, []);
 
   useEffect(() => {
-    console.log(selectedStation)
+
     if (
       !selectedStation ||
       !mapInstanceRef.current
@@ -87,6 +87,12 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
 
     mapInstanceRef.current.setCenter(position);
 
+    mapInstanceRef.current.setLevel(
+      3,
+      { animate: true }
+    );
+
+
     if (stationMarkerRef.current) {
       stationMarkerRef.current.setMap(null);
     }
@@ -101,14 +107,18 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
   // 경로 선택 시 경로 그리기(Polyline)
   useEffect(() => {
     if (!mapInstanceRef.current) {
-        return;
-      }
+      return;
+    }
 
     if (!selectedRoute) {
-      if (routePolylineRef.current) {
-        routePolylineRef.current.setMap(null);
-        routePolylineRef.current = null;
-      }
+
+      routePolylinesRef.current.forEach(
+        (line) => {
+          line.setMap(null);
+        }
+      );
+
+      routePolylinesRef.current = [];
 
       stopMarkersRef.current.forEach((marker) => {
         marker.setMap(null);
@@ -127,6 +137,14 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
 
     const kakao = window.kakao;
 
+    routePolylinesRef.current.forEach(
+      (line) => {
+        line.setMap(null);
+      }
+    );
+
+    routePolylinesRef.current = [];
+
     const linePath = [];
 
     stopMarkersRef.current.forEach((marker) => {
@@ -141,7 +159,93 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
 
     stopOverlaysRef.current = [];
 
-    selectedRoute.subPath.forEach((path) => {
+    selectedRoute.subPath.forEach((path, index) => {
+      if (path.trafficType === 2) {
+
+        const busLinePath = [];
+
+        path.passStopList?.stations?.forEach(
+          (station) => {
+            busLinePath.push(
+              new kakao.maps.LatLng(
+                Number(station.y),
+                Number(station.x)
+              )
+            );
+          }
+        );
+
+        const busLine =
+          new kakao.maps.Polyline({
+            path: busLinePath,
+
+            strokeWeight: 6,
+
+            strokeColor: "#007bff",
+
+            strokeOpacity: 0.8,
+
+            strokeStyle: "solid",
+          });
+
+        busLine.setMap(
+          mapInstanceRef.current
+        );
+
+        routePolylinesRef.current.push(
+          busLine
+        );
+      }
+
+      if (path.trafficType === 3) {
+
+        const walkStart =
+          selectedRoute.subPath[index - 1];
+
+        const walkEnd =
+          selectedRoute.subPath[index + 1];
+
+        if (
+          walkStart?.endX &&
+          walkStart?.endY &&
+          walkEnd?.startX &&
+          walkEnd?.startY
+        ) {
+
+          const walkLine =
+            new kakao.maps.Polyline({
+              path: [
+                new kakao.maps.LatLng(
+                  walkStart.endY,
+                  walkStart.endX
+                ),
+
+                new kakao.maps.LatLng(
+                  walkEnd.startY,
+                  walkEnd.startX
+                ),
+              ],
+
+              strokeWeight: 5,
+
+              strokeColor: "#9b59b6",
+
+              strokeOpacity: 0.9,
+
+              strokeStyle: "dash",
+            });
+
+          walkLine.setMap(
+            mapInstanceRef.current
+          );
+
+          routePolylinesRef.current.push(
+            walkLine
+          );
+        }
+      }
+
+
       if (path.trafficType !== 2) {
         return;
       }
@@ -224,27 +328,6 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
         }
       );
     });
-
-    if (routePolylineRef.current) {
-      routePolylineRef.current.setMap(null);
-    }
-
-    routePolylineRef.current =
-      new kakao.maps.Polyline({
-        path: linePath,
-
-        strokeWeight: 6,
-
-        strokeColor: "#007bff",
-
-        strokeOpacity: 0.8,
-
-        strokeStyle: "solid",
-      });
-
-    routePolylineRef.current.setMap(
-      mapInstanceRef.current
-    );
 
     const bounds =
       new kakao.maps.LatLngBounds();

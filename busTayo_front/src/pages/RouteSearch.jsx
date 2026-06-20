@@ -18,6 +18,7 @@ function RouteSearch() {
   const [selectedRoute, setSelectedRoute] = useState(null);
 
   const [selectedStation, setSelectedStation] = useState(null);
+  console.log(selectedStation)
 
   return (
     <Row className="g-0 h-100">

@@ -23,7 +23,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
         {route.subPath.map((path, index) => {
 
-          
+
 
           if (path.trafficType === 3) {
             return <div key={index}>🚶 도보 {path.distance}m</div>;
@@ -38,15 +38,16 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   className="mt-2"
                   style={{
                     cursor: "pointer",
-                    color: "#0d6efd",
+                    color: "#28a745",
                   }}
-                  onClick={() =>
+                  onClick={() => {
                     setSelectedStation({
                       lat: Number(path.startY),
                       lng: Number(path.startX),
                       name: path.startName,
+                      zoomLevel: 2,
                     })
-                  }
+                  }}
                 >
                   승차 : {path.startName}
                 </div>
@@ -78,6 +79,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                           }}
                           onClick={() =>
                             setSelectedStation({
+                              ...station,
                               lat: Number(station.y),
                               lng: Number(station.x),
                               name: station.stationName,
@@ -96,13 +98,16 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                     cursor: "pointer",
                     color: "#dc3545",
                   }}
-                  onClick={() =>
+                  onClick={() => {
                     setSelectedStation({
                       lat: Number(path.endY),
                       lng: Number(path.endX),
                       name: path.endName,
+                      zoomLevel: 2,
                     })
                   }
+                  }
+
                 >
                   하차 : {path.endName}
                 </div>
