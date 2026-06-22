@@ -1,5 +1,6 @@
 package com.busTajo.busTayo.board.controller;
 
+import com.busTajo.busTayo.board.dto.CommentsRequestDto;
 import com.busTajo.busTayo.board.entity.Comments;
 import com.busTajo.busTayo.board.service.CommentsService;
 import lombok.RequiredArgsConstructor;
@@ -20,4 +21,10 @@ public class CommentsController {
     }
 
     // 댓글 작성
+    @PostMapping()
+    public String writeComments(@PathVariable("id") Long id,
+                                @RequestBody CommentsRequestDto commentsRequestDto){
+        commentsService.writeComments(id, commentsRequestDto);
+        return "댓글이 작성되었습니다.";
+    }
 }

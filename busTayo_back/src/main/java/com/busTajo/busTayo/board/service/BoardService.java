@@ -40,9 +40,9 @@ public class BoardService {
 
     // 게시글 작성
     public void writeBoard(BoardRequestDto boardRequestDto) {
-        Users currentUser = userRepository.findByUserId(boardRequestDto.getUserId());
+        Users user = userRepository.findByUserId(boardRequestDto.getUserId());
         Board board = new Board();
-        board.setUser(currentUser);
+        board.setUser(user);
         board.setTitle(boardRequestDto.getTitle());
         board.setContent(boardRequestDto.getContent());
         if (board.getUser() == null) {
