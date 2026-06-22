@@ -10,7 +10,6 @@ function BusArrivalPanel({ selectedStation }) {
   const [selectedRoute, setSelectedRoute] = useState(null);
 
   useEffect(() => {
-    console.log(selectedStation)
     if (!selectedStation?.localStationID) {
       return;
     }
@@ -49,7 +48,6 @@ function BusArrivalPanel({ selectedStation }) {
   }
 
   const loadBusLocation = (routeId) => {
-    console.log("클릭한 routeId =", routeId);
     axios
       .get("http://localhost:8080/api/bus/location", {
         params: {
@@ -57,10 +55,7 @@ function BusArrivalPanel({ selectedStation }) {
         },
       })
       .then((res) => {
-        console.log("위치 응답", res.data);
         const list = res.data.response?.msgBody?.busLocationList || [];
-
-        console.log("버스 위치", list);
 
         setBusLocations(list);
       })

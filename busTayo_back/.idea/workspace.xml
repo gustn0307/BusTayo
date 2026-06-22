@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusArrivalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/BusApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/api/busApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusArrivalPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteSearchPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteSearchPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusArrivalPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusArrivalPanel.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
