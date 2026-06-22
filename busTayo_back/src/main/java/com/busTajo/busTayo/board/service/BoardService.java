@@ -39,13 +39,31 @@ public class BoardService {
         board.setUser(currentUser);
         board.setTitle(boardRequestDto.getTitle());
         board.setContent(boardRequestDto.getContent());
+        if (board.getUser() == null) {
+            System.out.println("헉! 유저가 null입니다!");
+        }
         boardRepository.save(board);
     }
 
     // 게시글 수정
-    public BoardRequestDto editBoard(Long id, BoardRequestDto boardRequestDto) {
-        return null;
+    public BoardResponseDto editBoard(Long id, BoardRequestDto boardRequestDto) {
+        Board board = boardRepository.findById(id).orElse(null);
+        if (board == null){
+            return null;
+        }
+        board.setTitle(boardRequestDto.getContent());
+        board.setContent(boardRequestDto.getContent());
+        boardRepository.save(board);
+        return BoardResponseDto.toDto(board);
     }
 
     // 게시글 삭제
+    public boolean deleteBoard(Long id) {
+        Board board = boardRepository.findById(id).orElse(null);
+        if (board == null){
+            return false;
+        }
+        boardRepository.delete(board);
+        return true;
+    }
 }
