@@ -9,6 +9,7 @@ import com.busTajo.busTayo.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,13 @@ public class BoardService {
     private final UserRepository userRepository;
 
     // 게시글 전체 조회
-    public List<Board> getAllBoards() {
-        return boardRepository.findAll();
+    public List<BoardResponseDto> getAllBoards() {
+        List<Board> boards = boardRepository.findAll();
+        List<BoardResponseDto> result = new ArrayList<>();
+        boards.stream()
+                .map(BoardResponseDto::toDto)
+        .toList();
+        return result;
     }
 
     // 게시글 상세 조회

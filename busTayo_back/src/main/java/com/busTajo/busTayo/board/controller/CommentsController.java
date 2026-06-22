@@ -1,0 +1,23 @@
+package com.busTajo.busTayo.board.controller;
+
+import com.busTajo.busTayo.board.entity.Comments;
+import com.busTajo.busTayo.board.service.CommentsService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("api/board/{id}/comments")
+public class CommentsController {
+    private final CommentsService commentsService;
+
+    // 댓글 조회
+    @GetMapping()
+    public List<Comments> getAllComments(@PathVariable ("id") Long id) {
+        return commentsService.getAllComments(id);
+    }
+
+    // 댓글 작성
+}

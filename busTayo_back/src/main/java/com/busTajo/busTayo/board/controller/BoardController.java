@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //@Controller
@@ -21,8 +22,9 @@ public class BoardController {
 
     // 게시글 전체 조회
     @GetMapping()
-    public List<Board> getAllBoards() {
+    public List<BoardResponseDto> getAllBoards() {
         return boardService.getAllBoards();
+
     }
 
     // 게시글 상세 조회
