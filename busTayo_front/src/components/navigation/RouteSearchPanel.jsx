@@ -3,6 +3,7 @@ import axios from "axios";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
 import RouteDetail from "./RouteDetail";
+import BusArrivalPanel from "./BusArrivalPanel";
 
 function RouteSearchPanel({
   currentLocation,
@@ -75,17 +76,20 @@ function RouteSearchPanel({
       )}
 
       {!selectedRoute ? (
-        <SearchResultList 
-          routes={routes} 
+        <SearchResultList
+          routes={routes}
           setSelectedRoute={setSelectedRoute}
           setSelectedStation={setSelectedStation}
         />
       ) : (
-        <RouteDetail
-          route={selectedRoute}
-          setSelectedRoute={setSelectedRoute}
-          setSelectedStation={setSelectedStation}
-        />
+        <>
+          <RouteDetail
+            route={selectedRoute}
+            setSelectedRoute={setSelectedRoute}
+            setSelectedStation={setSelectedStation}
+          />
+          <BusArrivalPanel selectedStation={selectedStation} />
+        </>
       )}
 
       {/* 이후 구현해야 할 부분 */}
