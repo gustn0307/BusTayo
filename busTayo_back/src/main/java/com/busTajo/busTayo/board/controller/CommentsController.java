@@ -18,14 +18,14 @@ public class CommentsController {
 
     // 댓글 조회
     @GetMapping()
-    public List<CommentsResponseDto> getAllComments(@PathVariable ("id") Long id) {
+    public List<CommentsResponseDto> getAllComments(@PathVariable("id") Long id) {
         return commentsService.getAllComments(id);
     }
 
     // 댓글 작성
     @PostMapping()
     public String writeComments(@PathVariable("id") Long id,
-                                @RequestBody CommentsRequestDto commentsRequestDto){
+                                @RequestBody CommentsRequestDto commentsRequestDto) {
         commentsService.writeComments(id, commentsRequestDto);
         return "댓글이 작성되었습니다.";
     }
@@ -33,7 +33,7 @@ public class CommentsController {
     // 댓글 수정
     @PutMapping("/{cid}")
     public ResponseEntity<CommentsResponseDto> editComments(@PathVariable("cid") Long id,
-                                                            @RequestBody CommentsRequestDto commentsRequestDto){
+                                                            @RequestBody CommentsRequestDto commentsRequestDto) {
         CommentsResponseDto result = commentsService.editComments(id, commentsRequestDto);
         if (result == null) {
             return ResponseEntity.notFound().build();
@@ -43,14 +43,13 @@ public class CommentsController {
 
     // 댓글 삭제
     @DeleteMapping("/{cid}")
-    public ResponseEntity<String> deleteComments(@PathVariable("cid") Long id){
+    public ResponseEntity<String> deleteComments(@PathVariable("cid") Long id) {
         System.out.println("삭제 요청 들어옴! id: " + id);
         boolean result = commentsService.deleteComments(id);
         System.out.println("삭제 결과: " + result);
-        if (!result){
+        if (!result) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok("댓글이 삭제되었습니다.");
     }
-    
 }
