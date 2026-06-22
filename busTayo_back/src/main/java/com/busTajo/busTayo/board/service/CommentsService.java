@@ -43,5 +43,16 @@ public class CommentsService {
     }
 
     // 댓글 수정
-    // public CommentsResponseDto editComments(Long id, CommentsRequestDto commentsRequestDto){}
+    public CommentsResponseDto editComments(Long id, CommentsRequestDto commentsRequestDto){
+        Comments comments = commentsRepository.findById(id).orElse(null);
+        if (comments == null){
+            return null;
+        }
+        comments.setContent(commentsRequestDto.getContent());
+        commentsRepository.save(comments);
+        return new CommentsResponseDto(comments);
+    }
+
+    // 댓글 삭제
+
 }

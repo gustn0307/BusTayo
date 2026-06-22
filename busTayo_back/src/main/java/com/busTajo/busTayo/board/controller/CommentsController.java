@@ -5,6 +5,7 @@ import com.busTajo.busTayo.board.dto.CommentsResponseDto;
 import com.busTajo.busTayo.board.entity.Comments;
 import com.busTajo.busTayo.board.service.CommentsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,4 +29,18 @@ public class CommentsController {
         commentsService.writeComments(id, commentsRequestDto);
         return "댓글이 작성되었습니다.";
     }
+
+    // 댓글 수정
+    @PutMapping("/{cid}")
+    public ResponseEntity<CommentsResponseDto> editComments(@PathVariable("cid") Long id,
+                                                            @RequestBody CommentsRequestDto commentsRequestDto){
+        CommentsResponseDto result = commentsService.editComments(id, commentsRequestDto);
+        if (result == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    // 댓글 삭제
+    // @DeleteMapping("/{id}")
 }
