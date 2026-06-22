@@ -1,4 +1,4 @@
-import { Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { Row, Col, Card, Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api";
@@ -12,8 +12,17 @@ import {
   BsMegaphone,
 } from "react-icons/bs";
 
+function formatDateTime(dateStr) {
+  if (!dateStr) return "";
+  return new Date(dateStr).toLocaleString("ko-KR", {
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit"
+  });
+}
+
 function Home() {
   const [recentNotices, setRecentNotices] = useState([]);
+  const [recentBusHistory, setBusNameInput] = useState([]);
 
   useEffect(() => {
     api.get("/notice")
@@ -25,6 +34,17 @@ function Home() {
       .catch(err => console.error("공지사항 조회 실패:", err));
   }, []);
 
+  useEffect(() => {
+    api.get("/lost")
+      .then(r => r.data)
+      .then(data => {
+        const sorted = [...data];
+        setBusNameInput(sorted); 
+        setBusNameInput(sorted.slice(0, 1));
+      })
+      .catch(err => console.error("이용내역 조회 실패:", err));
+  })
+  
   return (
     <div>
       {/* 인사말 */}
@@ -119,12 +139,26 @@ function Home() {
           <Card className="border-0 shadow-sm h-100">
             <Card.Body>
               <h5 className="fw-bold mb-3">🚌 최근 이용 버스</h5>
-
-              <div className="fs-4 fw-bold text-primary">720-3번</div>
-
-              <div className="text-secondary">아주대학교 → 수원역</div>
-
-              <small className="text-muted">2026-06-17 08:20</small>
+              <ListGroup variant="flush">
+                {recentBusHistory.length === 0 ? (
+                <ListGroup.Item className="text-secondary">
+                최근 이용내역이 없습니다.
+                </ListGroup.Item>
+              ) : (
+              recentBusHistory.map((lost) => (
+                <ListGroup.Item>
+                  <div className="fs-4 fw-bold text-primary"
+                   key={lost.id}>{lost.busName}</div>
+                  <div className="text-secondary" 
+                  key={lost.id}>{lost.start} → {lost.end}</div>
+                  <small className="text-muted"
+                  key={lost.id}>
+                    {formatDateTime(lost.boardingTime)} ~ {formatDateTime(lost.alightingTime)}
+                  </small>
+                </ListGroup.Item>
+                ))
+              )}
+            </ListGroup>
             </Card.Body>
             <Button as={Link} to="/history" variant="outline-primary" size="sm">
               전체 보기

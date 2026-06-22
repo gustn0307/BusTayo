@@ -10,11 +10,11 @@ import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
 import BoardingAlarm from "../pages/BoardingAlarm";
-import LostFound from "../pages/LostFound";
 import FreeBoard from "../pages/FreeBoard";
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
+import Lost from "../pages/Lost";
 
 import UserManagement from "../pages/admin/UserManagement";
 import NoticeManagement from "../pages/admin/notice/NoticeManagement";
@@ -34,12 +34,12 @@ function Router() {
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
         <Route path="/alarm" element={<BoardingAlarm />} />
-        <Route path="/lostfound" element={<LostFound />} />
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
+        <Route path="/lost" element={<Lost />} />
       </Route>
 
       {/* 관리자 */}

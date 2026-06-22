@@ -119,7 +119,7 @@ function UserSidebar() {
 
         <Nav.Link
           as={Link}
-          to="/lostfound"
+          to="/lost"
           className="bg-light rounded-4 py-3 px-3"
         >
           <BsBriefcase className="text-primary me-2" />

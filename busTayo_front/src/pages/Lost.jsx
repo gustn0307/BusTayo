@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./BusHistory.css";
+import "./Lost.css";
 import api from "../api";
 
 function formatDateTime(dateStr) {
@@ -12,12 +12,13 @@ function formatDateTime(dateStr) {
 
 const PAGE_SIZE = 10;
 
-function BusHistory() {
+function Lost() {
   const [lostList, setLostList] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [busNameInput, setBusNameInput] = useState("");
   const [page, setPage] = useState(1);
 
+  const [showModal, setShowModal] = useState(false);
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
@@ -28,9 +29,7 @@ function BusHistory() {
     api.get("/lost")
       .then(r => r.data)
       .then(data => {
-        const sorted = [...data].sort((a, b) =>
-          new Date(b.time) - new Date(a.time)
-        );
+        const sorted = [...data].reverse();
         setLostList(sorted);
         setFiltered(sorted);
       });
@@ -39,6 +38,11 @@ function BusHistory() {
   const openDetail = (item) => {
     setSelected(item);
     setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelected(null);
   };
 
   const handleSearch = () => {
@@ -60,7 +64,7 @@ function BusHistory() {
     <div className="page-container">
 
       <div className="page-header">
-        <h2>이용 내역</h2>
+        <h2>분실물 찾기</h2>
       </div>
 
       <div className="search-card">
@@ -127,8 +131,33 @@ function BusHistory() {
           <button onClick={() => setPage(p => Math.min(totalPages, p + 1))}>{">"}</button>
         </div>
       </div>
+
+      {showModal && selected && (
+        <div className="lost-modal-backdrop" onClick={closeModal}>
+          <div className="lost-modal-box" onClick={e => e.stopPropagation()}>
+            <div className="lost-modal-header">
+              <span className="lost-modal-title">버스 회사 연락처</span>
+              <button className="lost-modal-close" onClick={closeModal}>✕</button>
+            </div>
+            <div className="lost-modal-body">
+              <div className="lost-modal-row">
+                <label>회사명</label>
+                <span>{selected.companyName}</span>
+              </div>
+              <div className="lost-modal-row">
+                <label>전화번호</label>
+                <span>{selected.companyPhone}</span>
+              </div>
+            </div>
+            <div className="lost-modal-footer">
+              <button className="reset-btn" onClick={closeModal}>닫기</button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
 
-export default BusHistory;
+export default Lost;
