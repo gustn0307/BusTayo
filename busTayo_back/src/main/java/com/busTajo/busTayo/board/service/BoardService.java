@@ -20,9 +20,9 @@ public class BoardService {
 
     // 게시글 전체 조회
     public List<BoardResponseDto> getAllBoards() {
-        List<Board> boards = boardRepository.findAll();
+        List<Board> board = boardRepository.findAll();
         List<BoardResponseDto> result = new ArrayList<>();
-        boards.stream()
+        board.stream()
                 .map(BoardResponseDto::toDto)
         .toList();
         return result;

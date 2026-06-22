@@ -1,6 +1,7 @@
 package com.busTajo.busTayo.board.controller;
 
 import com.busTajo.busTayo.board.dto.CommentsRequestDto;
+import com.busTajo.busTayo.board.dto.CommentsResponseDto;
 import com.busTajo.busTayo.board.entity.Comments;
 import com.busTajo.busTayo.board.service.CommentsService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class CommentsController {
 
     // 댓글 조회
     @GetMapping()
-    public List<Comments> getAllComments(@PathVariable ("id") Long id) {
+    public List<CommentsResponseDto> getAllComments(@PathVariable ("id") Long id) {
         return commentsService.getAllComments(id);
     }
 

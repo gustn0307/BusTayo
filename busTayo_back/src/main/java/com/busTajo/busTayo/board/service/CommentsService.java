@@ -11,6 +11,7 @@ import com.busTajo.busTayo.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -20,8 +21,13 @@ public class CommentsService {
     private final UserRepository userRepository;
 
     // 댓글 조회
-    public List<Comments> getAllComments(Long boardId) {
-        return commentsRepository.findByBoardId(boardId);
+    public List<CommentsResponseDto> getAllComments(Long boardId) {
+        List<Comments> comments = commentsRepository.findByBoardId(boardId);
+        List<CommentsResponseDto> result = new ArrayList<>();
+        for (Comments comment : comments){
+            result.add(new CommentsResponseDto(comment));
+        }
+        return result;
     }
 
     // 댓글 작성
