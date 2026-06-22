@@ -44,7 +44,7 @@ public class BoardService {
 
     // 게시글 수정
     public BoardRequestDto editBoard(Long id, BoardRequestDto boardRequestDto) {
-        Board board
+        return null;
     }
 
     // 게시글 삭제

@@ -42,14 +42,14 @@ public class BoardController {
     @PutMapping("/{id}")
     public ResponseEntity<BoardResponseDto> editBoard(@PathVariable Long id,
                                                       @RequestBody BoardRequestDto boardRequestDto) {
-        BoardRequestDto editresult = boardService.editBoard(id, boardRequestDto);
-        if (editresult == null) {
+        BoardRequestDto editResult = boardService.editBoard(id, boardRequestDto);
+        if (editResult == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(editresult);
+//        return ResponseEntity.ok(editResult);
     }
 
     // 게시글 삭제
-    @DeleteMapping("/{id}")
+//    @DeleteMapping("/{id}")
 }
 
