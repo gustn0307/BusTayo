@@ -11,7 +11,7 @@ import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
 import BoardingAlarm from "../pages/BoardingAlarm";
 import LostFound from "../pages/LostFound";
-import FreeBoard from "../pages/FreeBoard";
+import FreeBoard from "../pages/Board";
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
