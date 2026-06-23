@@ -22,6 +22,9 @@ import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail
 import Statistics from "../pages/admin/Statistics";
 import BusHistory from "../pages/BusHistory";
 
+// 게시판
+// import BoardList from "../pages/board/BoardList";
+
 function Router() {
   return (
     <Routes>
@@ -40,6 +43,9 @@ function Router() {
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
+
+        {/* 게시판 */}
+        {/* <Route path="/board" element={<BoardList />} /> */}
       </Route>
 
       {/* 관리자 */}

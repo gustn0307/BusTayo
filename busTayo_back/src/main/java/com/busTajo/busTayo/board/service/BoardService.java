@@ -21,10 +21,12 @@ public class BoardService {
     // 게시글 전체 조회
     public List<BoardResponseDto> getAllBoards() {
         List<Board> board = boardRepository.findAll();
+        System.out.println("board:" + board.get(0).getTitle());
         List<BoardResponseDto> result = new ArrayList<>();
-        board.stream()
+        result = board.stream()
                 .map(BoardResponseDto::toDto)
         .toList();
+        System.out.println("dto:");
         return result;
     }
 
