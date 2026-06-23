@@ -16,20 +16,10 @@ import {
   BsBriefcase,
   BsShieldLock,
   BsClockHistory,
-  } from "react-icons/bs";
+} from "react-icons/bs";
 
 function UserSidebar() {
   const role = localStorage.getItem("role");
-  const nagivate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("role");
-    alert("로그아웃 되었습니다.");
-
-    nagivate("/home");
-    window.location.reload()
-  };
 
   return (
     <div
@@ -197,18 +187,6 @@ function UserSidebar() {
           </Button>
         )}
       </Nav>
-
-      <div className="mt-5 pt-3 border-top">
-        {role ? (
-          <Button variant="danger" className="w-100 rounded-4 fw-bold" onClick={handleLogout}>
-            로그아웃
-          </Button>
-        ) : (
-          <Button as={Link} to="/login" variant="primary" className="w-100 rounded-4 fw-bold">
-            로그인 하러가기
-          </Button>
-        )}
-      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Nav, Card, Button } from "react-bootstrap";
 import { MdAnnouncement } from "react-icons/md";
 import { LuMegaphone } from "react-icons/lu";
@@ -53,52 +53,36 @@ function UserSidebar() {
 
       <Nav className="flex-column gap-2">
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/home"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-primary text-white rounded-4 py-3 px-3"
         >
-          <BsHouse className="text-primary me-2" />홈
+          <BsHouse className="me-2" />홈
         </Nav.Link>
 
         <div className="mt-3 text-secondary fw-bold small">버스 서비스</div>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/nearby"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsGeoAlt className="text-primary me-2" />내 주변 검색
         </Nav.Link>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/route"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsSignpost className="text-primary me-2" />
           길찾기
         </Nav.Link>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/alarm"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsBell className="text-primary me-2" />
           승하차 알림
@@ -107,38 +91,26 @@ function UserSidebar() {
         <div className="mt-3 text-secondary fw-bold small">내 정보</div>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/favorite"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsStar className="text-primary me-2" />
           즐겨찾기
         </Nav.Link>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/mypage"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsPerson className="text-primary me-2" />
           마이페이지
         </Nav.Link>
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/history"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsClockHistory className="text-primary me-2" />
           이용 내역
@@ -147,39 +119,27 @@ function UserSidebar() {
         <div className="mt-3 text-secondary fw-bold small">커뮤니티</div>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/board"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsChatDots className="text-primary me-2" />
           자유게시판
         </Nav.Link>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/lostfound"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <BsBriefcase className="text-primary me-2" />
           분실물 찾기
         </Nav.Link>
 
         <Nav.Link
-          as={NavLink}
+          as={Link}
           to="/notice"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="bg-light rounded-4 py-3 px-3"
         >
           <PiMegaphoneSimpleThin className="text-primary me-2" />
           공지사항
@@ -187,7 +147,7 @@ function UserSidebar() {
 
         {role === "ADMIN" && (
           <Button
-            as={NavLink}
+            as={Link}
             to="/admin"
             variant="outline-primary"
             className="mt-4 rounded-4"
