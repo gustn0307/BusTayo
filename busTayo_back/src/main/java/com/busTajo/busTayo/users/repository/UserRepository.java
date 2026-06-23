@@ -10,4 +10,7 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     // userEmail을 받아 DB에서 회원을 조회하는 메서드
     Users findByUserId(String userEmail);
+
+    //이메일(userId)을 받아 회원을 삭제(탈퇴)하는 메서드
+    void deleteByUserId(String userId);
 }
