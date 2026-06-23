@@ -332,3 +332,5 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,intellij+all,visualstudiocode,react,gradle,node,dotenv
+
+busTayo_back/.idea/
