@@ -5,21 +5,22 @@ import AdminLayout from "../layouts/AdminLayout";
 
 import AdminRoute from "./AdminRoute";
 
-import Home from "../Pages/Home";
-import Favorite from "../Pages/Favorite";
-import NearbyBus from "../Pages/NearbyBus";
-import RouteSearch from "../Pages/RouteSearch";
-import BoardingAlarm from "../Pages/BoardingAlarm";
-import LostFound from "../Pages/LostFound";
-import FreeBoard from "../Pages/FreeBoard";
-import MyPage from "../Pages/MyPage";
+import Home from "../pages/Home";
+import Favorite from "../pages/Favorite";
+import NearbyBus from "../pages/NearbyBus";
+import RouteSearch from "../pages/RouteSearch";
+import BoardingAlarm from "../pages/BoardingAlarm";
+import LostFound from "../pages/LostFound";
+import FreeBoard from "../pages/FreeBoard";
+import MyPage from "../pages/MyPage";
+import Notice from "../pages/Notice";
+import NoticeDetail from "../pages/NoticeDetail";
 
-import UserManagement from "../Pages/admin/UserManagement";
-import NoticeManagement from "../Pages/admin/NoticeManagement";
-import Statistics from "../Pages/admin/Statistics";
-import BusHistory from "../Pages/BusHistory";
-import Join from "../auth/join";
-import Login from "../auth/login";
+import UserManagement from "../pages/admin/UserManagement";
+import NoticeManagement from "../pages/admin/notice/NoticeManagement";
+import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail";
+import Statistics from "../pages/admin/Statistics";
+import BusHistory from "../pages/BusHistory";
 
 function Router() {
   return (
@@ -37,8 +38,8 @@ function Router() {
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/history" element={<BusHistory />} />
-        <Route path="/join" element={<Join />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/notice" element={<Notice />} />
+        <Route path="/notice/:id" element={<NoticeDetail />} />
       </Route>
 
       {/* 관리자 */}
@@ -54,6 +55,7 @@ function Router() {
         <Route index element={<UserManagement />} />
         <Route path="users" element={<UserManagement />} />
         <Route path="notices" element={<NoticeManagement />} />
+        <Route path="notices/:id" element={<NoticeManagementDetail />} />
         <Route path="statistics" element={<Statistics />} />
       </Route>
     </Routes>
