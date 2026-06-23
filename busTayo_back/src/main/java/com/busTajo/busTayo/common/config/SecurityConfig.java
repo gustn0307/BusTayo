@@ -74,7 +74,8 @@ public class SecurityConfig {
                                         "/admin/**",
                                         "/notice",
                                         "/notice/**",
-                                        "/api/bus/**").permitAll()
+                                        "/api/bus/**",
+                                        "/api/path/**").permitAll()
                                 .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated()

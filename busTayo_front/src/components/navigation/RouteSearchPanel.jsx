@@ -18,34 +18,31 @@ function RouteSearchPanel({
   selectedStation,
   setSelectedStation,
 }) {
+  
   const searchRoute = async () => {
-    if (!startPlace || !endPlace) {
-      alert("출발지와 도착지를 선택하세요.");
-      return;
-    }
+  if (!startPlace || !endPlace) {
+    alert("출발지와 도착지를 선택하세요.");
+    return;
+  }
 
-    try {
-      const response = await axios.get(
-        "https://api.odsay.com/v1/api/searchPubTransPathT",
-        {
-          params: {
-            SX: startPlace.lng,
-            SY: startPlace.lat,
-            EX: endPlace.lng,
-            EY: endPlace.lat,
-            apiKey: import.meta.env.VITE_ODSAY_API_KEY,
-            SearchPathType: 2,
-          },
+  try {
+    const response = await axios.get(
+      "http://localhost:8080/api/path/search",
+      {
+        params: {
+          sx: startPlace.lng,
+          sy: startPlace.lat,
+          ex: endPlace.lng,
+          ey: endPlace.lat,
         },
-      );
+      },
+    );
 
-      const paths = response.data.result.path;
-
-      setRoutes(response.data.result.path);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    setRoutes(response.data.result.path);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <div className="h-100 border-start bg-white p-3">

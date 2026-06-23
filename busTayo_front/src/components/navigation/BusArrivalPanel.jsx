@@ -9,19 +9,32 @@ function BusArrivalPanel({ selectedStation }) {
 
   const [selectedRoute, setSelectedRoute] = useState(null);
 
-  useEffect(() => {
-    if (!selectedStation?.localStationID) {
-      return;
-    }
+  const getCrowdedBadge = (crowded) => {
+    switch (Number(crowded)) {
+      case 1:
+        return "🟢 여유";
 
-    setBusLocations([]);
-    setSelectedRoute(null);
+      case 2:
+        return "🟡 보통";
+
+      case 3:
+        return "🟠 혼잡";
+
+      case 4:
+        return "🔴 매우 혼잡";
+
+      default:
+        return "정보없음";
+    }
+  };
+
+  const loadArrival = () => {
+    if (!selectedStation?.localStationID) return;
 
     axios
       .get("http://localhost:8080/api/bus/arrival", {
         params: {
           stationId: selectedStation.localStationID,
-
           cityCode: selectedStation.stationCityCode,
         },
       })
@@ -34,20 +47,34 @@ function BusArrivalPanel({ selectedStation }) {
 
         setArrivals(filtered);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
+  };
+
+  useEffect(() => {
+    if (!selectedStation?.localStationID) {
+      return;
+    }
+
+    setBusLocations([]);
+    setSelectedRoute(null);
+
+    loadArrival();
   }, [selectedStation]);
 
   useEffect(() => {
-    if (!selectedStation) return;
+    if (!selectedStation?.localStationID) return;
+
+    // 15초에 한 번씩 새로고침
+    const interval = setInterval(() => {
+      loadArrival();
+    }, 15000);
+
+    return () => clearInterval(interval);
   }, [selectedStation]);
 
-  if (!selectedStation) {
-    return null;
-  }
+  const loadBusLocation = (routeId = selectedRoute?.routeId) => {
+    if (!routeId) return;
 
-  const loadBusLocation = (routeId) => {
     axios
       .get("http://localhost:8080/api/bus/location", {
         params: {
@@ -61,6 +88,16 @@ function BusArrivalPanel({ selectedStation }) {
       })
       .catch(console.error);
   };
+
+  useEffect(() => {
+    if (!selectedRoute) return;
+
+    const interval = setInterval(() => {
+      loadBusLocation();
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [selectedRoute]);
 
   return (
     <>
@@ -94,8 +131,8 @@ function BusArrivalPanel({ selectedStation }) {
 
                 {bus.locationNo1 && <div>{bus.locationNo1}정류장 전</div>}
 
-                {bus.remainSeatCnt1 !== "" && bus.remainSeatCnt1 >= 0 && (
-                  <div>빈자리 {bus.remainSeatCnt1}석</div>
+                {bus.remainSeatCnt1 > 0 && (
+                  <div>🪑 빈자리 {bus.remainSeatCnt1}석</div>
                 )}
               </div>
             ))
@@ -104,31 +141,40 @@ function BusArrivalPanel({ selectedStation }) {
       </Card>
       <hr />
 
-      <h6>실시간 차량</h6>
+      {selectedRoute && (
+        <>
+          <h6>실시간 차량</h6>
 
-      {busLocations
-        .filter(
-          (bus) =>
-            selectedRoute && selectedRoute.staOrder - bus.stationSeq >= 0,
-        )
-        .map((bus) => (
-          <div key={bus.vehId} className="border rounded p-2 mb-2">
-            <div>🚍 {bus.plateNo}</div>
+          {busLocations
+            .filter(
+              (bus) =>
+                selectedRoute && selectedRoute.staOrder - bus.stationSeq >= 0,
+            )
+            .map((bus) => (
+              <div key={bus.vehId} className="border rounded p-2 mb-2">
+                <div>🚍 {bus.plateNo}</div>
 
-            <div>
-              {selectedStation.stationName}까지{" "}
-              {selectedRoute.staOrder - bus.stationSeq}정거장
-            </div>
+                <div>
+                  {selectedStation.stationName}까지{" "}
+                  {Math.max(0, selectedRoute.staOrder - bus.stationSeq)}
+                  정거장
+                </div>
 
-            {bus.remainSeatCnt >= 0 && <div>빈자리 {bus.remainSeatCnt}석</div>}
+                {bus.remainSeatCnt > 0 ? (
+                  <div>🪑 빈자리 {bus.remainSeatCnt}석</div>
+                ) : (
+                  <div>{getCrowdedBadge(bus.crowded)}</div>
+                )}
 
-            <div>
-              {bus.stateCd === 0 && "교차로 통과"}
-              {bus.stateCd === 1 && "정류장 도착"}
-              {bus.stateCd === 2 && "정류장 출발"}
-            </div>
-          </div>
-        ))}
+                <div>
+                  {bus.stateCd === 0 && "교차로 통과"}
+                  {bus.stateCd === 1 && "정류장 도착"}
+                  {bus.stateCd === 2 && "정류장 출발"}
+                </div>
+              </div>
+            ))}
+        </>
+      )}
     </>
   );
 }
