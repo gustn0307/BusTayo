@@ -11,7 +11,7 @@ import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
 import BoardingAlarm from "../pages/BoardingAlarm";
 import LostFound from "../pages/LostFound";
-import FreeBoard from "../pages/Board";
+import Board from "../pages/Board";
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
@@ -35,7 +35,7 @@ function Router() {
         <Route path="/route" element={<RouteSearch />} />
         <Route path="/alarm" element={<BoardingAlarm />} />
         <Route path="/lostfound" element={<LostFound />} />
-        <Route path="/board" element={<FreeBoard />} />
+        <Route path="/board" element={<Board />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
