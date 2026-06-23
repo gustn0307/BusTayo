@@ -21,6 +21,8 @@ import NoticeManagement from "../pages/admin/notice/NoticeManagement";
 import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail";
 import Statistics from "../pages/admin/Statistics";
 import BusHistory from "../pages/BusHistory";
+import Login from "../auth/login";
+import Join from "../auth/join";
 
 function Router() {
   return (
@@ -40,6 +42,8 @@ function Router() {
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
       </Route>
 
       {/* 관리자 */}

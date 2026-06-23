@@ -3,6 +3,8 @@ import axios from "axios";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
 import RouteDetail from "./RouteDetail";
+import BusArrivalPanel from "./BusArrivalPanel";
+import { useEffect } from "react";
 
 function RouteSearchPanel({
   currentLocation,
@@ -16,6 +18,8 @@ function RouteSearchPanel({
   setSelectedRoute,
   selectedStation,
   setSelectedStation,
+  history,
+  setHistory
 }) {
   const searchRoute = async () => {
     if (!startPlace || !endPlace) {
@@ -24,27 +28,45 @@ function RouteSearchPanel({
     }
 
     try {
+      const token = localStorage.getItem("accessToken");
+
       const response = await axios.get(
-        "https://api.odsay.com/v1/api/searchPubTransPathT",
+        "http://localhost:8080/api/path/search",
         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           params: {
-            SX: startPlace.lng,
-            SY: startPlace.lat,
-            EX: endPlace.lng,
-            EY: endPlace.lat,
-            apiKey: import.meta.env.VITE_ODSAY_API_KEY,
-            SearchPathType: 2,
+            sx: startPlace.lng,
+            sy: startPlace.lat,
+            ex: endPlace.lng,
+            ey: endPlace.lat,
+            startName: startPlace.name,
+            endName: endPlace.name,
           },
         },
       );
-
-      const paths = response.data.result.path;
 
       setRoutes(response.data.result.path);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    axios
+      .get("http://localhost:8080/api/navigating/history", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setHistory(res.data);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="h-100 border-start bg-white p-3">
@@ -75,29 +97,34 @@ function RouteSearchPanel({
       )}
 
       {!selectedRoute ? (
-        <SearchResultList 
-          routes={routes} 
+        <SearchResultList
+          routes={routes}
           setSelectedRoute={setSelectedRoute}
           setSelectedStation={setSelectedStation}
         />
       ) : (
-        <RouteDetail
-          route={selectedRoute}
-          setSelectedRoute={setSelectedRoute}
-          setSelectedStation={setSelectedStation}
-        />
+        <>
+          <RouteDetail
+            route={selectedRoute}
+            setSelectedRoute={setSelectedRoute}
+            setSelectedStation={setSelectedStation}
+          />
+          {selectedStation && (
+            <BusArrivalPanel selectedStation={selectedStation} />
+          )}
+        </>
       )}
 
       {/* 이후 구현해야 할 부분 */}
       <h5 className="mt-4 mb-3">최근 길찾기</h5>
 
-      <Card className="mb-2">
-        <Card.Body>강남역 → 잠실역</Card.Body>
-      </Card>
-
-      <Card className="mb-2">
-        <Card.Body>서울역 → 코엑스</Card.Body>
-      </Card>
+      {history.map((item) => (
+        <Card key={item.id} className="mb-2">
+          <Card.Body>
+            {item.start} → {item.end}
+          </Card.Body>
+        </Card>
+      ))}
     </div>
   );
 }

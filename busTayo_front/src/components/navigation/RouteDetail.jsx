@@ -2,7 +2,6 @@ import { Card, Badge, Button } from "react-bootstrap";
 import { useState } from "react";
 
 function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
-
   const [openStops, setOpenStops] = useState({});
 
   if (!route) return null;
@@ -22,9 +21,6 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
         <hr />
 
         {route.subPath.map((path, index) => {
-
-
-
           if (path.trafficType === 3) {
             return <div key={index}>🚶 도보 {path.distance}m</div>;
           }
@@ -46,7 +42,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                       lng: Number(path.startX),
                       name: path.startName,
                       zoomLevel: 2,
-                    })
+                    });
                   }}
                 >
                   승차 : {path.startName}
@@ -77,14 +73,17 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                           style={{
                             cursor: "pointer",
                           }}
-                          onClick={() =>
+                          onClick={() => {
+                            // 정류장 원본 데이터 유지
                             setSelectedStation({
                               ...station,
+
                               lat: Number(station.y),
                               lng: Number(station.x),
+
                               name: station.stationName,
-                            })
-                          }
+                            });
+                          }}
                         >
                           {station.stationName}
                         </div>
@@ -104,10 +103,8 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                       lng: Number(path.endX),
                       name: path.endName,
                       zoomLevel: 2,
-                    })
-                  }
-                  }
-
+                    });
+                  }}
                 >
                   하차 : {path.endName}
                 </div>

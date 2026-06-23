@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
 import KakaoMap from "../components/navigation/KakaoMap";
@@ -18,7 +18,11 @@ function RouteSearch() {
   const [selectedRoute, setSelectedRoute] = useState(null);
 
   const [selectedStation, setSelectedStation] = useState(null);
-  console.log(selectedStation)
+
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+  }, [selectedStation]);
 
   return (
     <Row className="g-0 h-100">
@@ -44,6 +48,8 @@ function RouteSearch() {
           setSelectedRoute={setSelectedRoute}
           selectedStation={selectedStation}
           setSelectedStation={setSelectedStation}
+          history = {history}
+          setHistory={setHistory}
         />
       </Col>
     </Row>
