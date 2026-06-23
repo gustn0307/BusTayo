@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface NavigatingHistoryRepository extends JpaRepository<NavigatingHistory, Long> {
 
-    List<NavigatingHistory> findTop10ByUserIdOrderByCreatedAtDesc(String userId);
+    List<NavigatingHistory> findTop10ByUser_UserIdOrderByCreatedAtDesc(String userId);
 }

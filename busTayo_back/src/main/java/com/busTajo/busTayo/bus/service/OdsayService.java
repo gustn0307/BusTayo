@@ -21,6 +21,7 @@ public class OdsayService {
             double ey
     ) {
 
+        System.out.println("path 컨트롤러 진입");
         String url =
                 "https://api.odsay.com/v1/api/searchPubTransPathT?" +
                         "SX=" + sx +

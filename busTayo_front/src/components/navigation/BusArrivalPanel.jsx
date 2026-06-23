@@ -9,6 +9,10 @@ function BusArrivalPanel({ selectedStation }) {
 
   const [selectedRoute, setSelectedRoute] = useState(null);
 
+  if (!selectedStation) {
+    return null;
+  }
+
   const getCrowdedBadge = (crowded) => {
     switch (Number(crowded)) {
       case 1:
