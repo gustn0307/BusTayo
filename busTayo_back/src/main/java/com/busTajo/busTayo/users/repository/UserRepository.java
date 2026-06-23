@@ -1,5 +1,7 @@
 package com.busTajo.busTayo.users.repository;
 
+import com.busTajo.busTayo.users.entity.RoleType;
+import com.busTajo.busTayo.users.entity.UserStatus;
 import com.busTajo.busTayo.users.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,4 +12,8 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     // userEmail을 받아 DB에서 회원을 조회하는 메서드
     Users findByUserId(String userEmail);
+
+    long countByRole(RoleType role);
+
+    long countByStatus(UserStatus status);
 }

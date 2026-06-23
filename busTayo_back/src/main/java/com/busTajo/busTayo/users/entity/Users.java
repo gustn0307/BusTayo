@@ -28,4 +28,5 @@ public class Users extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserStatus status;
+
 }

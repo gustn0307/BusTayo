@@ -35,3 +35,7 @@ spring:
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
+
+server:
+  servlet:
+    context-path: /api
