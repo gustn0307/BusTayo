@@ -18,6 +18,8 @@ import UserManagement from "../Pages/admin/UserManagement";
 import NoticeManagement from "../Pages/admin/NoticeManagement";
 import Statistics from "../Pages/admin/Statistics";
 import BusHistory from "../Pages/BusHistory";
+import Join from "../auth/join";
+import Login from "../auth/login";
 
 function Router() {
   return (
@@ -35,6 +37,8 @@ function Router() {
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/history" element={<BusHistory />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/login" element={<Login />} />
       </Route>
 
       {/* 관리자 */}
