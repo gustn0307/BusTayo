@@ -38,7 +38,7 @@ function Router() {
         <Route path="/route" element={<RouteSearch />} />
         <Route path="/alarm" element={<BoardingAlarm />} />
         <Route path="/lostfound" element={<LostFound />} />
-        <Route path="/board" element={<Board />} />
+        <Route path="/board/*" element={<Board />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />

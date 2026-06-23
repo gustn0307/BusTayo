@@ -59,7 +59,7 @@ public class BoardService {
         if (board == null){
             return null;
         }
-        board.setTitle(boardRequestDto.getContent());
+        board.setTitle(boardRequestDto.getTitle());
         board.setContent(boardRequestDto.getContent());
         boardRepository.save(board);
         return BoardResponseDto.toDto(board);
