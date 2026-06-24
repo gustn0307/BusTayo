@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 function Board() {
   console.log("Board 렌더링됨");
 

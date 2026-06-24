@@ -11,7 +11,7 @@ import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
 import BoardingAlarm from "../pages/BoardingAlarm";
 import LostFound from "../pages/LostFound";
-import Board from "../pages/board/Board"
+// import Board from "../pages/board/Board"
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
@@ -24,7 +24,7 @@ import Login from "../auth/login";
 import Join from "../auth/join";
 
 // 게시판
-// import BoardList from "../pages/board/BoardList";
+import BoardList from "../pages/board/BoardList";
 
 function Router() {
   return (
@@ -43,14 +43,14 @@ function Router() {
         <Route path="/route" element={<RouteSearch />} />
         <Route path="/alarm" element={<BoardingAlarm />} />
         <Route path="/lostfound" element={<LostFound />} />
-        <Route path="/board" element={<Board />} />
+        {/* <Route path="/board" element={<Board />} /> */}
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
 
         {/* 게시판 */}
-        {/* <Route path="/board" element={<BoardList />} /> */}
+        <Route path="/board" element={<BoardList />} />
       </Route>
 
       {/* 관리자 */}

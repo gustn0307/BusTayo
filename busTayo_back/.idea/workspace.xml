@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/dto/PasswordUpdateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/FindPassword.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/join.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/update.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/entity/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/jwt/JWTFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/jwt/JWTFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/CustomUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/board/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/Board.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardWrite.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +93,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.BusTayoApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Merging feature/board",
+    "git-widget-placeholder": "feature/board",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/BusTayo/busTayo_back",

@@ -67,7 +67,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) ->
                         auth
-                                .requestMatchers("/login", "/", "/join", "/api/board/**").permitAll()
+                                .requestMatchers("/login", "/", "/join", "/board", "/board/**", "/api/board/**").permitAll()
                                 .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
