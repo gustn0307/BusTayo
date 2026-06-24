@@ -70,19 +70,17 @@ public class SecurityConfig {
                                 .requestMatchers("/login", "/", "/join", "/api/board/**").permitAll()
                                 .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
                                 .anyRequest().authenticated()
                 );
 
         // LoginFilter 앞에 JWTFilter 등록
         http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
 
-        // 필터 추가 LoginFilter()는 인자를 받음
-        http
-                .addFilterAt(new LoginFilter(
-                                authenticationManager(authenticationConfiguration), jwtUtil),
-                        UsernamePasswordAuthenticationFilter.class
-                );
+        LoginFilter loginFilter = new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil);
+        loginFilter.setFilterProcessesUrl("/login");
 
+        http.addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class);
         // 세션 설정
         // JWT를 통한 인증/인가를 위해 세션을 STATELESS 상태로 설정하는 것이 중요
         http
@@ -95,7 +93,7 @@ public class SecurityConfig {
 
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowedOrigins(
-                            List.of("http://localhost:3000")
+                            List.of("http://localhost:3000", "http://localhost:5173")
                     );
                     config.setAllowedMethods(
                             List.of("*")
