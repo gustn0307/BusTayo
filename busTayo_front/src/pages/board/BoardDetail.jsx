@@ -33,6 +33,18 @@ function BoardDetail() {
 
   if (!post) return <div>로딩중...</div>;
 
+  const handleDelete = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      api.delete(`/api/board/${id}`)
+        .then(() => {
+          alert("삭제되었습니다.");
+          navigate("/board");
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  // 작성자 * 표시
   const maskUserId = (userId) => {
     const id = userId.split("@")[0];
     return id[0] + "*".repeat(id.length - 1);
@@ -54,7 +66,7 @@ function BoardDetail() {
         <button className="btn-list" onClick={() => navigate("/board")}>목록</button>
         <button
           className="btn-edit" onClick={() => navigate(`/board/${id}/edit`)}>수정</button>
-        <button className="btn-delete">삭제</button>
+        <button className="btn-delete" onClick={handleDelete}>삭제</button>
       </div>
 
       <div className="board-detail-comments">
@@ -75,7 +87,6 @@ function BoardDetail() {
           <textarea placeholder="댓글을 입력하세요" />
           <div className="comment-write-buttons">
             <button className="btn-comment-submit">작성</button>
-            <button className="btn-comment-edit">수정</button>
           </div>
         </div>
       </div>

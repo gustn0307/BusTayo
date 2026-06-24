@@ -70,7 +70,7 @@ public class SecurityConfig {
                                 .requestMatchers("/login", "/", "/join", "/board", "/board/**", "/api/board/**").permitAll()
                                 .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
-                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
+                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account", "/api/board/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
