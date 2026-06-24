@@ -43,7 +43,7 @@ function Home() {
         setBusNameInput(sorted.slice(0, 1));
       })
       .catch(err => console.error("이용내역 조회 실패:", err));
-  })
+  }, []);
   
   return (
     <div>

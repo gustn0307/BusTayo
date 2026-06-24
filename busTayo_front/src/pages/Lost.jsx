@@ -95,6 +95,7 @@ function Lost() {
               <th>버스 번호</th>
               <th>이용 시간 (승하차)</th>
               <th>출발, 도착지</th>
+              <th>차량 번호</th>
             </tr>
           </thead>
           <tbody>
