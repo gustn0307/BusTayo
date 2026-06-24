@@ -23,6 +23,7 @@ function formatDateTime(dateStr) {
 function Home() {
   const [recentNotices, setRecentNotices] = useState([]);
   const [recentBusHistory, setBusNameInput] = useState([]);
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     api.get("/notice")
@@ -35,7 +36,9 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    api.get("/lost")
+    api.get("/lost/my", {
+    headers: { Authorization: `Bearer ${token}` }
+    })
       .then(r => r.data)
       .then(data => {
         const sorted = [...data];

@@ -16,11 +16,13 @@ public class LostDto {
     private String end;
     private String companyName;
     private String companyPhone;
+    private String vehicleNumber;
 
     public LostDto(Long id, String busName,
                    LocalDateTime boardingTime, LocalDateTime alightingTime,
                    String start, String end,
-                   String companyName, String companyPhone) {
+                   String companyName, String companyPhone,
+                   String vehicleNumber) {
         this.id = id;
         this.busName = busName;
         this.boardingTime = boardingTime;
@@ -29,5 +31,6 @@ public class LostDto {
         this.end = end;
         this.companyName = companyName;
         this.companyPhone = companyPhone;
+        this.vehicleNumber = vehicleNumber;
     }
 }

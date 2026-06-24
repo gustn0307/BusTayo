@@ -145,7 +145,7 @@ function UserSidebar() {
           공지사항
         </Nav.Link>
 
-        {role === "ADMIN" && (
+        {role === "ROLE_ADMIN" && (
           <Button
             as={Link}
             to="/admin"

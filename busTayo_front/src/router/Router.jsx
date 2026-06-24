@@ -15,6 +15,8 @@ import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
 import Lost from "../pages/Lost";
+import Login from "../auth/login";
+import Join from "../auth/join";
 
 import UserManagement from "../pages/admin/UserManagement";
 import NoticeManagement from "../pages/admin/notice/NoticeManagement";
@@ -40,6 +42,8 @@ function Router() {
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
         <Route path="/lost" element={<Lost />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
       </Route>
 
       {/* 관리자 */}

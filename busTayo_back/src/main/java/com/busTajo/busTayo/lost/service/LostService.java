@@ -24,7 +24,26 @@ public class LostService {
                         x.getStart(),
                         x.getEnd(),
                         x.getCompany().getCompanyName(),
-                        x.getCompany().getPhone()
+                        x.getCompany().getPhone(),
+                        x.getVehicleNo()
+                ))
+                .toList();
+    }
+
+    public List<LostDto> findByUserId(String userId) {
+        return busHistoryRepository
+                .findByUser_UserId(userId)
+                .stream()
+                .map(x -> new LostDto(
+                        x.getId(),
+                        x.getBusName(),
+                        x.getBoardingTime(),
+                        x.getAlightingTime(),
+                        x.getStart(),
+                        x.getEnd(),
+                        x.getCompany().getCompanyName(),
+                        x.getCompany().getPhone(),
+                        x.getVehicleNo()
                 ))
                 .toList();
     }
