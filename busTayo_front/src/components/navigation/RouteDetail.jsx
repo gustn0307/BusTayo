@@ -1,8 +1,117 @@
 import { Card, Badge, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
+  const getCrowdedBadge = (crowded) => {
+    switch (Number(crowded)) {
+      case 1:
+        return "🟢 여유";
+
+      case 2:
+        return "🟡 보통";
+
+      case 3:
+        return "🟠 혼잡";
+
+      case 4:
+        return "🔴 매우 혼잡";
+
+      default:
+        return "정보없음";
+    }
+  };
   const [openStops, setOpenStops] = useState({});
+
+  const [arrivalMap, setArrivalMap] = useState({});
+
+  const [busLocationMap, setBusLocationMap] = useState({});
+
+  // 특정 정류장 도착 정보 조회
+  const loadArrival = async (stationId, cityCode, pathIndex) => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/bus/arrival", {
+        params: {
+          stationId,
+          cityCode,
+        },
+      });
+
+      const list = res.data.response?.msgBody?.busArrivalList || [];
+
+      setArrivalMap((prev) => ({
+        ...prev,
+        [pathIndex]: list,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const loadBusLocation = async (routeId, pathIndex) => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/bus/location", {
+        params: {
+          routeId,
+        },
+      });
+
+      const list = res.data.response?.msgBody?.busLocationList || [];
+
+      setBusLocationMap((prev) => ({
+        ...prev,
+        [pathIndex]: list,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!route) return;
+
+    route.subPath.forEach((path, index) => {
+      if (path.trafficType !== 2) return;
+
+      if (path.startLocalStationID) {
+        loadArrival(path.startLocalStationID, path.startStationCityCode, index);
+      }
+
+      if (path.lane?.[0]?.busLocalBlID) {
+        loadBusLocation(path.lane[0].busLocalBlID, index);
+      }
+    });
+  }, [route]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      Object.keys(openStops).forEach((index) => {
+        if (!openStops[index]) return;
+
+        const path = route?.subPath?.[index];
+
+        if (!path) return;
+
+        if (path.trafficType !== 2) return;
+
+        // 도착정보 새로고침
+        if (path.startLocalStationID) {
+          loadArrival(
+            path.startLocalStationID,
+            path.startStationCityCode,
+            index,
+          );
+        }
+
+        // 차량위치 새로고침
+        if (path.lane?.[0]?.busLocalBlID) {
+          loadBusLocation(path.lane[0].busLocalBlID, index);
+        }
+      });
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [openStops, route]);
 
   if (!route) return null;
 
@@ -26,15 +135,36 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
           }
 
           if (path.trafficType === 2) {
+            const currentArrival = arrivalMap[index]?.find(
+              (bus) => String(bus.routeName) === String(path.lane[0].busNo),
+            );
+
             return (
               <div key={index}>
-                <Badge bg="primary">{path.lane[0].busNo}번</Badge>
-
                 <div
-                  className="mt-2"
+                  className="border rounded p-3 mb-3"
+                  style={{
+                    backgroundColor: "#f8f9fa",
+                  }}
+                >
+                  <div className="fw-bold fs-5">🚌 {path.lane[0].busNo}번</div>
+
+                  {currentArrival && (
+                    <>
+                      <div>⏱ {currentArrival.predictTime1}분 후 도착</div>
+
+                      <div>📍 {currentArrival.locationNo1}정류장 전</div>
+
+                      {currentArrival.remainSeatCnt1 > 0 && (
+                        <div>🪑 빈자리 {currentArrival.remainSeatCnt1}석</div>
+                      )}
+                    </>
+                  )}
+                </div>
+                <div
+                  className="fw-bold text-success"
                   style={{
                     cursor: "pointer",
-                    color: "#28a745",
                   }}
                   onClick={() => {
                     setSelectedStation({
@@ -45,21 +175,32 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                     });
                   }}
                 >
-                  승차 : {path.startName}
+                  🚏 {path.startName}
                 </div>
-
+                <div className="text-center my-2">↓</div>
                 <Button
                   variant="link"
                   className="p-0 text-decoration-none"
-                  onClick={() =>
+                  onClick={() => {
+                    const open = !openStops[index];
+
                     setOpenStops((prev) => ({
                       ...prev,
-                      [index]: !prev[index],
-                    }))
-                  }
+                      [index]: open,
+                    }));
+
+                    if (open && path.startLocalStationID) {
+                      loadArrival(
+                        path.startLocalStationID,
+                        path.startStationCityCode,
+                        index,
+                      );
+
+                      loadBusLocation(path.lane[0].busLocalBlID, index);
+                    }
+                  }}
                 >
-                  {path.stationCount}개 정류장 이동{" "}
-                  {openStops[index] ? "▲" : "▼"}
+                  정류장 보기 {openStops[index] ? "▲" : "▼"}
                 </Button>
 
                 {/* 정류장 목록 보여주기  */}
@@ -92,10 +233,47 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   </div>
                 )}
 
+                {openStops[index] && busLocationMap[index] && (
+                  <div className="mt-3">
+                    <h6>실시간 차량 위치</h6>
+
+                    {[...busLocationMap[index]]
+                      .sort((a, b) => b.stationSeq - a.stationSeq)
+                      .slice(0, 5)
+                      .map((vehicle) => {
+                        return (
+                          <div
+                            key={vehicle.vehId}
+                            className="border rounded p-2 mb-2"
+                          >
+                            <div className="fw-bold">🚍 {vehicle.plateNo}</div>
+
+                            {/* 현재 정류장까지 남은 정거장 수 */}
+
+                            {/* 좌석 정보 */}
+                            {vehicle.remainSeatCnt > 0 && (
+                              <div>🪑 빈자리 {vehicle.remainSeatCnt}석</div>
+                            )}
+
+                            <div>{getCrowdedBadge(vehicle.crowded)}</div>
+
+                            {/* 차량 상태 */}
+                            <div>
+                              📍
+                              {vehicle.stateCd === 0 && "교차로 통과"}
+                              {vehicle.stateCd === 1 && "정류장 도착"}
+                              {vehicle.stateCd === 2 && "정류장 출발"}
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                )}
+                <div className="text-center my-2">↓</div>
                 <div
+                  className="fw-bold text-danger"
                   style={{
                     cursor: "pointer",
-                    color: "#dc3545",
                   }}
                   onClick={() => {
                     setSelectedStation({
@@ -106,7 +284,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                     });
                   }}
                 >
-                  하차 : {path.endName}
+                  🚏 {path.endName}
                 </div>
               </div>
             );

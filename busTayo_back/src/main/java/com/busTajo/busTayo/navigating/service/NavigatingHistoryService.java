@@ -27,6 +27,9 @@ public class NavigatingHistoryService {
             Double endY
     ) {
 
+        // 동일한 이용내역 삭제(같은 길찾기 경로 계속 중첩되는 것 방지)
+        navigatingHistoryRepository.deleteByUser_UserIdAndStartAndEnd(userId, start, end);
+
         Users user = usersRepository.findByUserId(userId);
 
         NavigatingHistory history = new NavigatingHistory();

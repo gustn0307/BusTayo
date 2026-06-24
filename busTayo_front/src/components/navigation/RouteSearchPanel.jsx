@@ -19,7 +19,7 @@ function RouteSearchPanel({
   selectedStation,
   setSelectedStation,
   history,
-  setHistory
+  setHistory,
 }) {
   const searchRoute = async () => {
     if (!startPlace || !endPlace) {
@@ -53,6 +53,52 @@ function RouteSearchPanel({
     }
   };
 
+  const loadHistoryRoute = async (history) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const response = await axios.get(
+        "http://localhost:8080/api/path/search",
+        {
+          params: {
+            sx: history.startX,
+            sy: history.startY,
+
+            ex: history.endX,
+            ey: history.endY,
+
+            startName: history.start,
+            endName: history.end,
+          },
+
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      setRoutes(response.data.result.path);
+
+      setSelectedRoute(null);
+
+      setSelectedStation(null);
+
+      setStartPlace({
+        name: history.start,
+        lat: history.startY,
+        lng: history.startX,
+      });
+
+      setEndPlace({
+        name: history.end,
+        lat: history.endY,
+        lng: history.endX,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
 
@@ -72,11 +118,19 @@ function RouteSearchPanel({
     <div className="h-100 border-start bg-white p-3">
       <h3 className="mb-4">길찾기</h3>
 
-      <PlaceSearchInput placeholder="출발지 입력" onSelect={setStartPlace} />
+      <PlaceSearchInput
+        placeholder="출발지 입력"
+        value={startPlace}
+        onSelect={setStartPlace}
+      />
 
       <div className="mb-3"></div>
 
-      <PlaceSearchInput placeholder="도착지 입력" onSelect={setEndPlace} />
+      <PlaceSearchInput
+        placeholder="도착지 입력"
+        value={endPlace}
+        onSelect={setEndPlace}
+      />
 
       <Button variant="primary" className="w-100 mt-3" onClick={searchRoute}>
         검색
@@ -119,7 +173,12 @@ function RouteSearchPanel({
       <h5 className="mt-4 mb-3">최근 길찾기</h5>
 
       {history.map((item) => (
-        <Card key={item.id} className="mb-2">
+        <Card
+          key={item.id}
+          className="mb-2"
+          style={{ cursor: "pointer" }}
+          onClick={() => loadHistoryRoute(item)}
+        >
           <Card.Body>
             {item.start} → {item.end}
           </Card.Body>

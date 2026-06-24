@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, ListGroup } from "react-bootstrap";
 import { loadKakaoMap } from "../../util/loadKakaoMap";
 
-function PlaceSearchInput({ placeholder, onSelect }) {
+function PlaceSearchInput({ placeholder, value, onSelect }) {
   const [keyword, setKeyword] = useState("");
 
   const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    if (value?.name) {
+      setKeyword(value.name);
+    }
+  }, [value]);
 
   const searchPlaces = (value) => {
     setKeyword(value);
@@ -48,9 +54,7 @@ function PlaceSearchInput({ placeholder, onSelect }) {
 
                 onSelect({
                   name: place.place_name,
-
                   lat: Number(place.y),
-
                   lng: Number(place.x),
                 });
               }}
