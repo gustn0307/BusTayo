@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,6 +17,7 @@ public class BoardResponseDto {
     private String userId;
     private String title;
     private String content;
+    private LocalDateTime createdAt;
 
     // 게시글 상세 조회
     public static BoardResponseDto toDto(Board board) {
@@ -23,6 +26,7 @@ public class BoardResponseDto {
         boardResponseDto.setUserId(board.getUser().getUserId());
         boardResponseDto.setTitle(board.getTitle());
         boardResponseDto.setContent(board.getContent());
+        boardResponseDto.setCreatedAt(board.getCreatedAt());
         return boardResponseDto;
     }
 }

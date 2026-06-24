@@ -1,0 +1,92 @@
+/* 전체 컨테이너 */
+.board-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* 제목 */
+.board-container h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.board-container h3 {
+  font-size: 14px;
+  color: #888;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+/* 글쓰기 버튼 */
+.board-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.btn-write {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1a6fd4;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-write:hover {
+  background-color: #155ab5;
+}
+
+/* 테이블 */
+.board-container .table {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.board-container .table thead tr {
+  background-color: #f0f4ff;
+}
+
+.board-container .table thead th {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a2e;
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.board-container .table tbody td {
+  font-size: 14px;
+  color: #333;
+  padding: 14px 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* 게시글 제목 */
+.board-title-cell {
+  text-align: left !important;
+  cursor: pointer;
+  color: #1a1a2e;
+}
+
+.board-title-cell:hover {
+  color: #1a6fd4;
+  text-decoration: underline;
+}
+
+/* 게시글 없을 때 */
+.board-empty {
+  text-align: center !important;
+  color: #aaa;
+  padding: 40px 0 !important;
+}
