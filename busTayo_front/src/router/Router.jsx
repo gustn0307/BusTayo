@@ -25,6 +25,7 @@ import Join from "../auth/join";
 
 // 게시판
 import BoardDetail from "../pages/board/BoardDetail";
+import BoardWrite from "../pages/board/BoardWrite";
 
 function Router() {
   return (
@@ -51,6 +52,7 @@ function Router() {
 
         {/* 게시판 */}
         <Route path="/board/:id" element={<BoardDetail />} />
+        <Route path="/board/write" element={<BoardWrite />} />
         
       </Route>
 
