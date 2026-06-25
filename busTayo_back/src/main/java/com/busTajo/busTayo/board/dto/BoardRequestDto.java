@@ -11,7 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardRequestDto {
-    private String userId;
     private String title;
     private String content;
 }

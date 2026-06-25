@@ -41,15 +41,15 @@ public class BoardService {
     }
 
     // 게시글 작성
-    public void writeBoard(BoardRequestDto boardRequestDto) {
-        Users user = userRepository.findByUserId(boardRequestDto.getUserId());
+    public void writeBoard(BoardRequestDto boardRequestDto, String userId) {
+
+        Users user = userRepository.findByUserId(userId);
+
         Board board = new Board();
         board.setUser(user);
         board.setTitle(boardRequestDto.getTitle());
         board.setContent(boardRequestDto.getContent());
-        if (board.getUser() == null) {
-            System.out.println("헉! 유저가 null입니다!");
-        }
+
         boardRepository.save(board);
     }
 

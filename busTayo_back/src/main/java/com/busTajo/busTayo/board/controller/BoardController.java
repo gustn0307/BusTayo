@@ -5,11 +5,15 @@ import com.busTajo.busTayo.board.dto.BoardResponseDto;
 import com.busTajo.busTayo.board.service.BoardService;
 import com.busTajo.busTayo.board.service.PageService;
 import com.busTajo.busTayo.board.dto.PageResponseDto;
+import com.busTajo.busTayo.users.entity.Users;
+import com.busTajo.busTayo.users.service.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 //@Controller
@@ -40,8 +44,9 @@ public class BoardController {
 
     // 게시글 작성
     @PostMapping()
-    public String writeBoard(@RequestBody BoardRequestDto boardRequestDto){
-        boardService.writeBoard(boardRequestDto);
+    public String writeBoard(@RequestBody BoardRequestDto boardRequestDto,
+                             @AuthenticationPrincipal CustomUserDetails userDetails){
+        boardService.writeBoard(boardRequestDto, userDetails.getEmail());
         return "게시글이 작성되었습니다.";
     }
 
