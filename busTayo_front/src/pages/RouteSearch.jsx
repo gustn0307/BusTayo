@@ -19,6 +19,8 @@ function RouteSearch() {
 
   const [selectedStation, setSelectedStation] = useState(null);
 
+  const [history, setHistory] = useState([]);
+
   useEffect(() => {
   }, [selectedStation]);
 
@@ -46,6 +48,8 @@ function RouteSearch() {
           setSelectedRoute={setSelectedRoute}
           selectedStation={selectedStation}
           setSelectedStation={setSelectedStation}
+          history = {history}
+          setHistory={setHistory}
         />
       </Col>
     </Row>
