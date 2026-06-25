@@ -2,15 +2,15 @@ package com.busTajo.busTayo.board.controller;
 
 import com.busTajo.busTayo.board.dto.BoardRequestDto;
 import com.busTajo.busTayo.board.dto.BoardResponseDto;
-import com.busTajo.busTayo.board.entity.Board;
 import com.busTajo.busTayo.board.service.BoardService;
+import com.busTajo.busTayo.board.service.PageService;
+import com.busTajo.busTayo.board.dto.PageResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //@Controller
 //@ResponseBody
@@ -19,12 +19,17 @@ import java.util.List;
 @RequestMapping("api/board")
 public class BoardController {
     private final BoardService boardService;
+    private final PageService pageService;
 
     // 게시글 전체 조회
     @GetMapping()
-    public List<BoardResponseDto> getAllBoards() {
-        return boardService.getAllBoards();
-
+    public ResponseEntity<PageResponseDto<BoardResponseDto>> getAllBoards(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(
+                page, size, Sort.by("createdAt").descending());
+        return ResponseEntity.ok(pageService.findAll(pageable));
     }
 
     // 게시글 상세 조회

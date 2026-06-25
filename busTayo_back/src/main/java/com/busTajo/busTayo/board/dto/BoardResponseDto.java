@@ -29,4 +29,14 @@ public class BoardResponseDto {
         boardResponseDto.setCreatedAt(board.getCreatedAt());
         return boardResponseDto;
     }
+
+    public static BoardResponseDto from(Board board) {
+        return new BoardResponseDto(
+                board.getId(),
+                board.getUser().getUserId(),
+                board.getTitle(),
+                board.getContent(),
+                board.getCreatedAt()
+        );
+    }
 }
