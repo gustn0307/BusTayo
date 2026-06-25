@@ -11,6 +11,10 @@ function BoardDetail() {
   // 페이징 처리
   const [currentPage, setCurrentPage] = useState(0); // 현재 페이지
   const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
+  // 게시글 수정
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
 
   // 작성자 * 표시
   const maskUserId = (userId) => {
@@ -29,10 +33,21 @@ function BoardDetail() {
       .catch((err) => console.log(err));
   }, [id]);
 
-  // 게시글 수정
-  const [isEditing, setIsEditing] = useState(false);
-  const [editTitle, setEditTitle] = useState("");
-  const [editContent, setEditContent] = useState("");
+  // 댓글 조회
+  useEffect(() => {
+    console.log("현재 페이지:", currentPage);
+    api
+      .get(`/api/board/${id}/comments?page=${currentPage}&size=5`)
+      .then((res) => {
+        console.log("댓글 데이터:", res.data);
+        setComments(res.data.content);
+        setTotalPages(res.data.totalPages);
+      })
+      .catch((err) => console.log(err));
+  }, [id, currentPage]);
+
+  if (!post) return <div>로딩중...</div>;
+
   const handleEdit = () => {
     setIsEditing(true);
     setEditTitle(post.title);
@@ -40,7 +55,11 @@ function BoardDetail() {
   };
   const handleEditSubmit = () => {
     api
-      .put(`/api/board/${id}`, { title: editTitle, content: editContent, userId: post.userId })
+      .put(`/api/board/${id}`, {
+        title: editTitle,
+        content: editContent,
+        userId: post.userId,
+      })
       .then(() => {
         alert("수정되었습니다.");
         setIsEditing(false);
@@ -61,21 +80,6 @@ function BoardDetail() {
         .catch((err) => console.log(err));
     }
   };
-
-  // 댓글 조회
-  useEffect(() => {
-    console.log("현재 페이지:", currentPage);
-    api
-      .get(`/api/board/${id}/comments?page=${currentPage}&size=5`)
-      .then((res) => {
-        console.log("댓글 데이터:", res.data);
-        setComments(res.data.content);
-        setTotalPages(res.data.totalPages);
-      })
-      .catch((err) => console.log(err));
-  }, [id, currentPage]);
-
-  if (!post) return <div>로딩중...</div>;
 
   // 게시글 상세 조회
   return (

@@ -16,13 +16,26 @@ function BoardWrite() {
         alert("게시글이 작성되었습니다.");
         navigate("/board");
       })
-      .catch((err) => console.log(err));
-    alert("게시글 작성에 실패했습니다.");
-  };
+      .catch((err) => {
+        console.log(err);
+        alert("게시글 작성에 실패했습니다.");
+      });
+    };    
 
   return (
     <div className="board-write-container">
       <h2 className="board-write-title">게시글 작성</h2>
+
+      <div className="board-write-field">
+        <label>작성자</label>
+        <input
+          type="text"
+          placeholder="아이디를 입력하세요"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+      </div>
+
       <div className="board-write-field">
         <label>제목</label>
         <input
@@ -52,6 +65,7 @@ function BoardWrite() {
       </div>
     </div>
   );
-}
+};
+
 
 export default BoardWrite;

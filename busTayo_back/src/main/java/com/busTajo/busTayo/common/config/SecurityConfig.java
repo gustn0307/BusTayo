@@ -73,7 +73,9 @@ public class SecurityConfig {
                                         "/join",
                                         "/admin/**",
                                         "/notice",
-                                        "/notice/**"
+                                        "/notice/**",
+                                        "/api/board",
+                                        "/api/board/**"
                                         ).permitAll()
                                 .requestMatchers(
                                         "/user",
