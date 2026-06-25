@@ -29,7 +29,7 @@ public class BoardController {
     ) {
         Pageable pageable = PageRequest.of(
                 page, size, Sort.by("createdAt").descending());
-        return ResponseEntity.ok(pageService.findAll(pageable));
+        return ResponseEntity.ok(pageService.boardFindAll(pageable));
     }
 
     // 게시글 상세 조회

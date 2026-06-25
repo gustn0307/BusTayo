@@ -8,6 +8,9 @@ function BoardDetail() {
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
+  // 페이징 처리
+  const [currentPage, setCurrentPage] = useState(0); // 현재 페이지
+  const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
 
   // 게시글 상세 조회
   useEffect(() => {
@@ -22,14 +25,16 @@ function BoardDetail() {
 
   // 댓글 조회
   useEffect(() => {
+    console.log("현재 페이지:", currentPage);
     api
-      .get(`/api/board/${id}/comments`)
+      .get(`/api/board/${id}/comments?page=${currentPage}&size=10`)
       .then((res) => {
         console.log("댓글 데이터:", res.data);
-        setComments(res.data)
+        setComments(res.data.content);
+        
       })
       .catch((err) => console.log(err));
-  }, [id]);
+  }, [id, currentPage]);
 
   if (!post) return <div>로딩중...</div>;
 
@@ -64,8 +69,7 @@ function BoardDetail() {
       {/* 버튼 */}
       <div className="board-detail-buttons">
         <button className="btn-list" onClick={() => navigate("/board")}>목록</button>
-        <button
-          className="btn-edit" onClick={() => navigate(`/board/${id}/edit`)}>수정</button>
+        <button className="btn-edit" onClick={() => navigate(`/board/${id}/edit`)}>수정</button>
         <button className="btn-delete" onClick={handleDelete}>삭제</button>
       </div>
 
@@ -82,6 +86,42 @@ function BoardDetail() {
         ) : (
           <div className="comment-empty">첫 댓글을 작성해보세요!</div>
         )}
+
+        {/* 페이지 버튼 */}
+      <nav>
+        <ul className="pagination justify-content-center">
+          <li className={`page-item ${currentPage === 0 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              이전
+            </button>
+          </li>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <li
+              key={i}
+              className={`page-item ${currentPage === i ? "active" : ""}`}
+            >
+              <button className="page-link" onClick={() => setCurrentPage(i)}>
+                {i + 1}
+              </button>
+            </li>
+          ))}
+
+          <li
+            className={`page-item ${currentPage === totalPages - 1 ? "disabled" : ""}`}
+          >
+            <button
+              className="page-link"
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
+              다음
+            </button>
+          </li>
+        </ul>
+      </nav>
 
         <div className="comment-write">
           <textarea placeholder="댓글을 입력하세요" />

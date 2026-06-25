@@ -1,10 +1,16 @@
 package com.busTajo.busTayo.board.controller;
 
+import com.busTajo.busTayo.board.dto.BoardResponseDto;
 import com.busTajo.busTayo.board.dto.CommentsRequestDto;
 import com.busTajo.busTayo.board.dto.CommentsResponseDto;
+import com.busTajo.busTayo.board.dto.PageResponseDto;
 import com.busTajo.busTayo.board.entity.Comments;
 import com.busTajo.busTayo.board.service.CommentsService;
+import com.busTajo.busTayo.board.service.PageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +21,15 @@ import java.util.List;
 @RequestMapping("api/board/{id}/comments")
 public class CommentsController {
     private final CommentsService commentsService;
+    private final PageService pageService;
 
     // 댓글 조회
     @GetMapping()
-    public List<CommentsResponseDto> getAllComments(@PathVariable("id") Long id) {
-        return commentsService.getAllComments(id);
+    public ResponseEntity<PageResponseDto<CommentsResponseDto>> getAllComments(@PathVariable("id") Long id,
+                                                                               @RequestParam(defaultValue = "0") int page,
+                                                                               @RequestParam(defaultValue = "5") int size){
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").ascending());
+        return ResponseEntity.ok(pageService.commentsFindAll(id, pageable));
     }
 
     // 댓글 작성
