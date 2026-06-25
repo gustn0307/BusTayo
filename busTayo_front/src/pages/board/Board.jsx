@@ -62,8 +62,8 @@ function Board() {
                 >
                   {list.title}
                 </td>
-                <td>{maskUserId(list.userId)}</td> {/* 작성자 *표시 */}
-                <td>{list.createdAt.slice(0, 10)}</td> {/* 작성일 축소 */}
+                <td>{maskUserId(list.userId)} {/* 작성자 *표시 */} </td> 
+                <td>{list.createdAt.slice(0, 10)} {/* 작성일 축소 */} </td> 
               </tr>
             ))
           ) : (
