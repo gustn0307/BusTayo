@@ -3,7 +3,6 @@ import axios from "axios";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
 import RouteDetail from "./RouteDetail";
-import BusArrivalPanel from "./BusArrivalPanel";
 import { useEffect } from "react";
 
 function RouteSearchPanel({
@@ -163,9 +162,6 @@ function RouteSearchPanel({
             setSelectedRoute={setSelectedRoute}
             setSelectedStation={setSelectedStation}
           />
-          {selectedStation && (
-            <BusArrivalPanel selectedStation={selectedStation} />
-          )}
         </>
       )}
 

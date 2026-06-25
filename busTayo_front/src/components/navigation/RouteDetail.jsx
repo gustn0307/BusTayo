@@ -29,11 +29,15 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
   // 특정 정류장 도착 정보 조회
   const loadArrival = async (stationId, cityCode, pathIndex) => {
+    console.log("token", localStorage.getItem("accessToken"));
     try {
       const res = await axios.get("http://localhost:8080/api/bus/arrival", {
         params: {
           stationId,
           cityCode,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
 
@@ -45,6 +49,8 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
       }));
     } catch (error) {
       console.error(error);
+      console.log(error.response);
+      console.log(error.response?.data);
     }
   };
 
@@ -53,6 +59,9 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
       const res = await axios.get("http://localhost:8080/api/bus/location", {
         params: {
           routeId,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
 
@@ -142,12 +151,36 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
             return (
               <div key={index}>
                 <div
-                  className="border rounded p-3 mb-3"
+                  className="border rounded p-3 my-2"
                   style={{
                     backgroundColor: "#f8f9fa",
                   }}
                 >
-                  <div className="fw-bold fs-5">🚌 {path.lane[0].busNo}번</div>
+                  <div className="d-flex align-items-center">
+                    <div className="fw-bold fs-5">
+                      🚌 {path.lane[0].busNo}번
+                    </div>
+                    <Button
+                      size="sm"
+                      className="ms-auto border-0 shadow-none"
+                      variant="light"
+                      onClick={() => {
+                        if (path.startLocalStationID) {
+                          loadArrival(
+                            path.startLocalStationID,
+                            path.startStationCityCode,
+                            index,
+                          );
+                        }
+
+                        if (path.lane?.[0]?.busLocalBlID) {
+                          loadBusLocation(path.lane[0].busLocalBlID, index);
+                        }
+                      }}
+                    >
+                      🔄
+                    </Button>
+                  </div>
 
                   {currentArrival && (
                     <>
@@ -233,6 +266,24 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   </div>
                 )}
 
+                
+                <div className="text-center my-2">↓</div>
+                <div
+                  className="fw-bold text-danger"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setSelectedStation({
+                      lat: Number(path.endY),
+                      lng: Number(path.endX),
+                      name: path.endName,
+                      zoomLevel: 2,
+                    });
+                  }}
+                >
+                  🚏 {path.endName}
+                </div>
                 {openStops[index] && busLocationMap[index] && (
                   <div className="mt-3">
                     <h6>실시간 차량 위치</h6>
@@ -269,23 +320,6 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                       })}
                   </div>
                 )}
-                <div className="text-center my-2">↓</div>
-                <div
-                  className="fw-bold text-danger"
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    setSelectedStation({
-                      lat: Number(path.endY),
-                      lng: Number(path.endX),
-                      name: path.endName,
-                      zoomLevel: 2,
-                    });
-                  }}
-                >
-                  🚏 {path.endName}
-                </div>
               </div>
             );
           }

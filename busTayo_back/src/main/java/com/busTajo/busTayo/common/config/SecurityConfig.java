@@ -73,12 +73,12 @@ public class SecurityConfig {
                                         "/join",
                                         "/admin/**",
                                         "/notice",
-                                        "/notice/**",
-                                        "/api/bus/**"
+                                        "/notice/**"
                                         ).permitAll()
                                 .requestMatchers(
                                         "/user",
                                         "/api/navigating/**",
+                                        "/api/bus/**",
                                         "/api/path/**"
                                 ).hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
