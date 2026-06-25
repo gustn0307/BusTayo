@@ -1,9 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Nav, Card, Button } from "react-bootstrap";
-import { MdAnnouncement } from "react-icons/md";
-import { LuMegaphone } from "react-icons/lu";
 import { PiMegaphoneSimpleThin } from "react-icons/pi";
-
 import {
   BsBusFront,
   BsHouse,
@@ -16,195 +13,208 @@ import {
   BsBriefcase,
   BsShieldLock,
   BsClockHistory,
-  } from "react-icons/bs";
+} from "react-icons/bs";
 
 function UserSidebar() {
   const role = localStorage.getItem("role");
-  const nagivate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("role");
     alert("로그아웃 되었습니다.");
-
-    nagivate("/home");
-    window.location.reload()
+    navigate("/home");
+    window.location.reload();
   };
+
+  // 💡 중복되는 NavLink 스타일을 한 곳에서 깔끔하게 관리합니다.
+  const getNavLinkStyle = ({ isActive }) => ({
+    backgroundColor: isActive ? "#0d6efd" : "transparent",
+    color: isActive ? "#ffffff" : "#495057",
+    fontWeight: isActive ? "600" : "500",
+    transition: "all 0.2s ease-in-out",
+  });
 
   return (
     <div
-      className="bg-white border-end"
+      className="bg-white border-end d-flex flex-column"
       style={{
         width: "280px",
         minHeight: "100vh",
-        padding: "20px",
+        padding: "24px 20px",
+        position: "sticky",
+        top: 0,
       }}
     >
-      <Card className="border-0 shadow-sm mb-4" bg="primary" text="white">
-        <Card.Body>
-          <h4 className="fw-bold mb-1">
-            <BsBusFront className="me-2" />
-            BUS TAYO
+      {/* 🚀 상단 로고 영역: 그라데이션으로 더욱 세련되게 */}
+      <Card 
+        className="border-0 mb-4 overflow-hidden" 
+        style={{ 
+          background: "linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%)",
+          borderRadius: "16px",
+          boxShadow: "0 4px 12px rgba(13, 110, 253, 0.15)"
+        }}
+      >
+        <Card.Body className="p-3 text-white text-center text-sm-start">
+          <h4 className="fw-black mb-1 d-flex align-items-center justify-content-center justify-content-sm-start gap-2">
+            <BsBusFront size={22} />
+            <span style={{ letterSpacing: "1px" }}>BUS TAYO</span>
           </h4>
-
-          <small>스마트 버스 서비스</small>
+          <small className="text-white-50 fw-light">스마트 버스 플랫폼</small>
         </Card.Body>
       </Card>
 
-      <Nav className="flex-column gap-2">
+      {/* 📜 메뉴 리스트 영역 */}
+      <Nav className="flex-column gap-1 flex-grow-1 custom-sidebar-nav">
+        {/* 기본 홈 */}
         <Nav.Link
           as={NavLink}
           to="/home"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsHouse className="text-primary me-2" />홈
+          <BsHouse size={18} className="nav-icon" />
+          <span>홈</span>
         </Nav.Link>
 
-        <div className="mt-3 text-secondary fw-bold small">버스 서비스</div>
+        {/* 섹션: 버스 서비스 */}
+        <div className="mt-3 mb-1 text-muted fw-bold px-3" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
+          버스 서비스
+        </div>
 
         <Nav.Link
           as={NavLink}
           to="/nearby"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsGeoAlt className="text-primary me-2" />내 주변 검색
+          <BsGeoAlt size={18} className="nav-icon" />
+          <span>내 주변 검색</span>
         </Nav.Link>
 
         <Nav.Link
           as={NavLink}
           to="/route"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsSignpost className="text-primary me-2" />
-          길찾기
+          <BsSignpost size={18} className="nav-icon" />
+          <span>길찾기</span>
         </Nav.Link>
 
         <Nav.Link
           as={NavLink}
           to="/alarm"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsBell className="text-primary me-2" />
-          승하차 알림
+          <BsBell size={18} className="nav-icon" />
+          <span>승하차 알림</span>
         </Nav.Link>
 
-        <div className="mt-3 text-secondary fw-bold small">내 정보</div>
+        {/* 섹션: 내 정보 */}
+        <div className="mt-3 mb-1 text-muted fw-bold px-3" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
+          내 정보
+        </div>
 
         <Nav.Link
           as={NavLink}
           to="/favorite"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsStar className="text-primary me-2" />
-          즐겨찾기
+          <BsStar size={18} className="nav-icon" />
+          <span>즐겨찾기</span>
         </Nav.Link>
 
         <Nav.Link
           as={NavLink}
           to="/mypage"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsPerson className="text-primary me-2" />
-          마이페이지
+          <BsPerson size={18} className="nav-icon" />
+          <span>마이페이지</span>
         </Nav.Link>
+
         <Nav.Link
           as={NavLink}
           to="/history"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsClockHistory className="text-primary me-2" />
-          이용 내역
+          <BsClockHistory size={18} className="nav-icon" />
+          <span>이용 내역</span>
         </Nav.Link>
 
-        <div className="mt-3 text-secondary fw-bold small">커뮤니티</div>
+        {/* 섹션: 커뮤니티 */}
+        <div className="mt-3 mb-1 text-muted fw-bold px-3" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
+          커뮤니티
+        </div>
 
         <Nav.Link
           as={NavLink}
           to="/board"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsChatDots className="text-primary me-2" />
-          자유게시판
+          <BsChatDots size={18} className="nav-icon" />
+          <span>자유게시판</span>
         </Nav.Link>
 
         <Nav.Link
           as={NavLink}
           to="/lostfound"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <BsBriefcase className="text-primary me-2" />
-          분실물 찾기
+          <BsBriefcase size={18} className="nav-icon" />
+          <span>분실물 찾기</span>
         </Nav.Link>
 
         <Nav.Link
           as={NavLink}
           to="/notice"
-          className="rounded-4 py-3 px-3"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? "#0d6efd" : "#f8f9fa",
-            color: isActive ? "white" : "black",
-          })}
+          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
+          style={getNavLinkStyle}
         >
-          <PiMegaphoneSimpleThin className="text-primary me-2" />
-          공지사항
+          <PiMegaphoneSimpleThin size={18} className="nav-icon" />
+          <span>공지사항</span>
         </Nav.Link>
 
-        {role === "ADMIN" && (
+        {/* 관리자 특수 버튼 */}
+        {role === "ROLE_ADMIN" && (
           <Button
             as={NavLink}
             to="/admin"
             variant="outline-primary"
-            className="mt-4 rounded-4"
+            className="mt-3 rounded-3 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold"
+            style={{ fontSize: "0.9rem" }}
           >
-            <BsShieldLock className="me-2" />
+            <BsShieldLock size={16} />
             관리자 페이지
           </Button>
         )}
       </Nav>
 
-      <div className="mt-5 pt-3 border-top">
+      {/* 🚪 하단 인증 영역 (로그인/로그아웃) */}
+      <div className="mt-4 pt-3 border-top">
         {role ? (
-          <Button variant="danger" className="w-100 rounded-4 fw-bold" onClick={handleLogout}>
+          <Button 
+            variant="light" 
+            className="w-100 rounded-3 fw-semibold text-danger border-0 py-2.5"
+            style={{ backgroundColor: "#fff5f5", transition: "all 0.2s" }}
+            onClick={handleLogout}
+          >
             로그아웃
           </Button>
         ) : (
-          <Button as={Link} to="/login" variant="primary" className="w-100 rounded-4 fw-bold">
+          <Button 
+            as={Link} 
+            to="/login" 
+            variant="primary" 
+            className="w-100 rounded-3 fw-semibold py-2.5 shadow-sm"
+          >
             로그인 하러가기
           </Button>
         )}

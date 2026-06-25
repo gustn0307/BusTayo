@@ -58,7 +58,7 @@ public class AdminController {
         adminService.changeStatus(id, status);
     }
 
-    @GetMapping("/statistice")
+    @GetMapping("/statistics")
     public AdminStatisticsDto statisticsDto(){
         return adminService.getStatistics();
     }

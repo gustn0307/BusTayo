@@ -23,7 +23,7 @@ function MyPage() {
       return;
     }
 
-    axios.get("http://localhost:8080/my-info", {
+    axios.get("http://localhost:8080/api/my-info", {
       headers: {
         Authorization: `Bearer ${token}` // 백엔드 시큐리티가 검증할 JWT 토큰 규격
       }

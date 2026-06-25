@@ -13,4 +13,6 @@ public class AdminStatisticsDto {
     private long normalUsers;
 
     private long blockedUsers;
+
+    private long totalNotices;
 }

@@ -36,9 +36,6 @@ logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
 
-server:
-  servlet:
-    context-path: /api
 bus:
   gyeonggi:
     service-key: ${BUS_INFO_API_KEY}

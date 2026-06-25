@@ -1,6 +1,7 @@
 package com.busTajo.busTayo.admin.service;
 
 import com.busTajo.busTayo.admin.dto.AdminStatisticsDto;
+import com.busTajo.busTayo.notice.repository.NoticeRepository;
 import com.busTajo.busTayo.users.entity.RoleType;
 import com.busTajo.busTayo.users.entity.UserStatus;
 import com.busTajo.busTayo.users.entity.Users;
@@ -16,6 +17,7 @@ public class AdminService {
 
 
     private final UserRepository userRepository;
+    private final NoticeRepository noticeRepository;
 
 
 
@@ -74,6 +76,7 @@ public class AdminService {
                 userRepository.countByStatus(
                         UserStatus.PENDING
                 );
+        long totalNotices = noticeRepository.count();
 
 
 
@@ -81,7 +84,8 @@ public class AdminService {
                 totalUsers,
                 adminUsers,
                 normalUsers,
-                blockedUsers
+                blockedUsers,
+                totalNotices
         );
 
     }
