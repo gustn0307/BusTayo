@@ -21,15 +21,24 @@ public class BusArrivalController {
             @RequestParam("stationId")
             String stationId,
             @RequestParam("cityCode")
-            Integer cityCode
+            Integer cityCode,
+            @RequestParam(name = "routeId", required = false)
+            String routeId,
+            @RequestParam(name = "ord", required = false)
+            Integer ord
     ) {
 
-        System.out.println("받은 stationId = " + stationId);
+        System.out.println("stationId = " + stationId);
+        System.out.println("cityCode = " + cityCode);
+        System.out.println("routeId = " + routeId);
+        System.out.println("ord = " + ord);
 
         return busArrivalService
                 .getArrivalInfo(
                         stationId,
-                        cityCode
+                        cityCode,
+                        routeId,
+                        ord
                 );
     }
 

@@ -28,20 +28,27 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
   const [busLocationMap, setBusLocationMap] = useState({});
 
   // 특정 정류장 도착 정보 조회
-  const loadArrival = async (stationId, cityCode, pathIndex) => {
-    console.log("token", localStorage.getItem("accessToken"));
+  const loadArrival = async (stationId, cityCode, routeId, ord, pathIndex) => {
     try {
       const res = await axios.get("http://localhost:8080/api/bus/arrival", {
         params: {
           stationId,
           cityCode,
+          routeId,
+          ord,
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
+      console.log(res.data);
 
-      const list = res.data.response?.msgBody?.busArrivalList || [];
+      const raw = res.data.response?.msgBody?.busArrivalList;
+
+      const list = Array.isArray(raw) ? raw : raw ? [raw] : [];
+      console.log("raw", raw);
+      console.log("list", list);
+      console.log(Array.isArray(list));
 
       setArrivalMap((prev) => ({
         ...prev,
@@ -65,7 +72,12 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
         },
       });
 
-      const list = res.data.response?.msgBody?.busLocationList || [];
+      const raw = res.data.response?.msgBody?.busArrivalList;
+
+      const list = Array.isArray(raw) ? raw : raw ? [raw] : [];
+      console.log("raw", raw);
+      console.log("list", list);
+      console.log(Array.isArray(list));
 
       setBusLocationMap((prev) => ({
         ...prev,
@@ -82,8 +94,21 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
     route.subPath.forEach((path, index) => {
       if (path.trafficType !== 2) return;
 
+      const startStation = path.passStopList?.stations?.find(
+        (station) =>
+          String(station.localStationID) === String(path.startLocalStationID),
+      );
+
+      const ord = startStation ? startStation.index + 1 : 1;
+
       if (path.startLocalStationID) {
-        loadArrival(path.startLocalStationID, path.startStationCityCode, index);
+        loadArrival(
+          path.startLocalStationID,
+          path.startStationCityCode,
+          path.lane?.[0]?.busLocalBlID,
+          ord,
+          index,
+        );
       }
 
       if (path.lane?.[0]?.busLocalBlID) {
@@ -104,10 +129,19 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
         if (path.trafficType !== 2) return;
 
         // 도착정보 새로고침
+        const startStation = path.passStopList?.stations?.find(
+          (station) =>
+            String(station.localStationID) === String(path.startLocalStationID),
+        );
+
+        const ord = startStation ? startStation.index + 1 : 1;
+
         if (path.startLocalStationID) {
           loadArrival(
             path.startLocalStationID,
             path.startStationCityCode,
+            path.lane?.[0]?.busLocalBlID,
+            ord,
             index,
           );
         }
@@ -144,6 +178,9 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
           }
 
           if (path.trafficType === 2) {
+            console.log("arrivalMap[index]", arrivalMap[index]);
+            console.log("typeof", typeof arrivalMap[index]);
+            console.log("isArray", Array.isArray(arrivalMap[index]));
             const currentArrival = arrivalMap[index]?.find(
               (bus) => String(bus.routeName) === String(path.lane[0].busNo),
             );
@@ -165,10 +202,20 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                       className="ms-auto border-0 shadow-none"
                       variant="light"
                       onClick={() => {
+                        const startStation = path.passStopList?.stations?.find(
+                          (station) =>
+                            String(station.localStationID) ===
+                            String(path.startLocalStationID),
+                        );
+
+                        const ord = startStation ? startStation.index + 1 : 1;
+
                         if (path.startLocalStationID) {
                           loadArrival(
                             path.startLocalStationID,
                             path.startStationCityCode,
+                            path.lane?.[0]?.busLocalBlID,
+                            ord,
                             index,
                           );
                         }
@@ -223,9 +270,19 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                     }));
 
                     if (open && path.startLocalStationID) {
+                      const startStation = path.passStopList?.stations?.find(
+                        (station) =>
+                          String(station.localStationID) ===
+                          String(path.startLocalStationID),
+                      );
+
+                      const ord = startStation ? startStation.index + 1 : 1;
+
                       loadArrival(
                         path.startLocalStationID,
                         path.startStationCityCode,
+                        path.lane?.[0]?.busLocalBlID,
+                        ord,
                         index,
                       );
 
@@ -266,7 +323,6 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   </div>
                 )}
 
-                
                 <div className="text-center my-2">↓</div>
                 <div
                   className="fw-bold text-danger"

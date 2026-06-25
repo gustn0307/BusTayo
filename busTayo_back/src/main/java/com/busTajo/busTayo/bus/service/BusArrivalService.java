@@ -16,25 +16,35 @@ public class BusArrivalService {
 
     public String getArrivalInfo(
             String stationId,
-            Integer cityCode
+            Integer cityCode,
+            String routeId,
+            Integer ord
     ) {
 
-        String url =
-                "https://apis.data.go.kr/6410000/busarrivalservice/v2/getBusArrivalListv2"
-                        + "?serviceKey=" + busApiConfig.getServiceKey()
-                        + "&stationId=" + stationId
-                        + "&format=json";
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url;
+        if (cityCode ==1000){ // 서울
+            url =
+                    "http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute"
+                            + "?serviceKey=" + busApiConfig.getServiceKey()
+                            + "&stId=" + stationId
+                            + "&busRouteId=" + routeId
+                            + "&ord=" + ord;
+        }else { // 경기
+            url =
+                    "https://apis.data.go.kr/6410000/busarrivalservice/v2/getBusArrivalListv2"
+                            + "?serviceKey=" + busApiConfig.getServiceKey()
+                            + "&stationId=" + stationId
+                            + "&format=json";
+        }
 
         System.out.println(url);
-        RestTemplate restTemplate =
-                new RestTemplate();
 
-        String result = restTemplate.getForObject(
+        return restTemplate.getForObject(
                 url,
                 String.class
         );
-
-        return result;
     }
 
     public String getBusLocation(Long routeId) {
@@ -66,7 +76,7 @@ public class BusArrivalService {
                         + "&routeId=" + routeId
                         + "&format=json";
 
-        System.out.println(url);
+
 
         RestTemplate restTemplate =
                 new RestTemplate();
@@ -77,7 +87,7 @@ public class BusArrivalService {
                         String.class
                 );
 
-        System.out.println(result);
+
 
         return result;
     }
