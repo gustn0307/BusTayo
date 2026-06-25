@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/board/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/Board.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardWrite.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardWrite.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
