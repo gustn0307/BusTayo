@@ -54,8 +54,6 @@ function Router() {
         <Route path="/board/:id" element={<BoardDetail />} />
         <Route path="/board/write" element={<BoardWrite />} />
         
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} />
       </Route>
 
       {/* 관리자 */}

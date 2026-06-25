@@ -5,13 +5,19 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 80ae7db6d1589c711a0df27542d3d7529654685a
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#JAVA_HOME" />
+<<<<<<< HEAD
 =======
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
 >>>>>>> 666621c77d6538cd6216e9199d099dc121d3dd00
+=======
+>>>>>>> 80ae7db6d1589c711a0df27542d3d7529654685a
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />

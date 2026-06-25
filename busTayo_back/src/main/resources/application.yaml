@@ -35,3 +35,10 @@ spring:
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
+
+bus:
+  gyeonggi:
+    service-key: ${BUS_INFO_API_KEY}
+
+odsay:
+  api-key: ${ODSAY_API_KEY}

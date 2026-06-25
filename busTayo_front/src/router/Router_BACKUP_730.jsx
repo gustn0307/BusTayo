@@ -22,10 +22,13 @@ import Statistics from "../pages/admin/Statistics";
 import BusHistory from "../pages/BusHistory";
 import Login from "../auth/login";
 import Join from "../auth/join";
+<<<<<<< HEAD
 
 // 게시판
 import BoardDetail from "../pages/board/BoardDetail";
 import BoardWrite from "../pages/board/BoardWrite";
+=======
+>>>>>>> 80ae7db6d1589c711a0df27542d3d7529654685a
 
 function Router() {
   return (
@@ -49,13 +52,16 @@ function Router() {
         <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
+<<<<<<< HEAD
 
         {/* 게시판 */}
         <Route path="/board/:id" element={<BoardDetail />} />
         <Route path="/board/write" element={<BoardWrite />} />
         
+=======
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
+>>>>>>> 80ae7db6d1589c711a0df27542d3d7529654685a
       </Route>
 
       {/* 관리자 */}
