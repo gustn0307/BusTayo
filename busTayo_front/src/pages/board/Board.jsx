@@ -38,11 +38,13 @@ function Board() {
       });
   }, [currentPage, searchTrigger]); // 페이지 바뀔 때마다 새로 요청
 
+  // 내 글 검색
   const handleSearch = () => {
     if (searchType === "my") {
       const token = localStorage.getItem("accessToken");
       if (!token) {
         alert("로그인이 필요합니다.");
+        navigate(`/login`)
         return;
       }
       const email = token ? JSON.parse(atob(token.split(".")[1])).email : null;
