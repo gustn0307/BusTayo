@@ -28,11 +28,18 @@ public class BoardController {
     // 게시글 전체 조회
     @GetMapping()
     public ResponseEntity<PageResponseDto<BoardResponseDto>> getAllBoards(
+            // 페이징 처리
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "10") int size,
+            // 검색창
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) String keyword
     ) {
         Pageable pageable = PageRequest.of(
                 page, size, Sort.by("createdAt").descending());
+        if (type != null && keyword != null && !keyword.isEmpty()) {
+            return ResponseEntity.ok(pageService.searchBoards(type, keyword, pageable));
+        }
         return ResponseEntity.ok(pageService.boardFindAll(pageable));
     }
 

@@ -17,11 +17,17 @@ function Board() {
     const id = userId.split("@")[0];
     return id[0] + "*".repeat(id.length - 1);
   };
+  // 게시글 검색 창
+  const [searchType, setSearchType] = useState("title"); // 전체/제목/작성자
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchTrigger, setSearchTrigger] = useState(false);
 
   useEffect(() => {
     console.log("현재 페이지:", currentPage);
     api
-      .get(`/api/board?page=${currentPage}&size=10`)
+      .get(
+        `/api/board?page=${currentPage}&size=10&type=${searchType}&keyword=${searchKeyword}`,
+      )
       .then((res) => {
         console.log("받아온 데이터:", res.data);
         setlist(res.data.content);
@@ -30,13 +36,46 @@ function Board() {
       .catch((err) => {
         console.log(err);
       });
-  }, [currentPage]); // 페이지 바뀔 때마다 새로 요청
+  }, [currentPage, searchTrigger]); // 페이지 바뀔 때마다 새로 요청
+
+  const handleSearch = () => {
+    if (searchType === "my") {
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        alert("로그인이 필요합니다.");
+        return;
+      }
+      const email = token ? JSON.parse(atob(token.split(".")[1])).email : null;
+      setSearchKeyword(email);
+    }
+    setCurrentPage(0);
+    setSearchTrigger(!searchTrigger);
+  };
 
   // 게시글 전체 조회
   return (
     <div className="board-container">
       <h1>자유게시판</h1>
       <h3>버스타요 이용과 관련한 자유로운 의견을 나눠주세요.</h3>
+      {/* 검색창 */}
+      <div className="board-search">
+        <select
+          value={searchType}
+          onChange={(e) => setSearchType(e.target.value)}
+        >
+          <option value="all">전체</option>
+          <option value="title">제목</option>
+          <option value="author">작성자</option>
+          <option value="my">내 글</option>
+        </select>
+        <input
+          type="text"
+          placeholder="검색어를 입력하세요"
+          value={searchKeyword}
+          onChange={(e) => setSearchKeyword(e.target.value)}
+        />
+        <button onClick={handleSearch}>검색</button>
+      </div>
       <div className="board-header">
         <button className="btn-write" onClick={() => navigate("/board/write")}>
           글쓰기
@@ -62,8 +101,12 @@ function Board() {
                 >
                   {list.title}
                 </td>
-                <td>{maskUserId(list.userId)} {/* 작성자 *표시 */} </td> 
-                <td>{list.createdAt.slice(0, 10)} {/* 작성일 축소 */} </td> 
+                <td>
+                  {maskUserId(list.userId)} {/* 작성자 *표시 */}{" "}
+                </td>
+                <td>
+                  {list.createdAt.slice(0, 10)} {/* 작성일 축소 */}{" "}
+                </td>
               </tr>
             ))
           ) : (

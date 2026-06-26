@@ -26,6 +26,20 @@ public class PageService {
         return new PageResponseDto<>(boardResponseDto);
     }
 
+    public PageResponseDto<BoardResponseDto> searchBoards(String type, String keyword, Pageable pageable) {
+        Page<Board> board;
+        if (type.equals("title")) {
+            board = boardRepository.findByTitleContaining(keyword, pageable);
+        } else if (type.equals("author")) {
+            board = boardRepository.findByUserIdBeforeAt(keyword, pageable);
+        } else if (type.equals("my")) {
+            board = boardRepository.findByUserId(keyword, pageable);
+        } else {
+            board = boardRepository.findByTitleContainingOrUserUserIdContaining(keyword, keyword, pageable);
+        }
+        return new PageResponseDto<>(board.map(BoardResponseDto::from));
+    }
+
     public PageResponseDto<CommentsResponseDto> commentsFindAll(Long boardId, Pageable pageable) {
         Page<Comments> comments = commentsRepository.findByBoardId(boardId, pageable);
         Page<CommentsResponseDto> commentsResponseDto = comments.map(comment -> new CommentsResponseDto(comment));
