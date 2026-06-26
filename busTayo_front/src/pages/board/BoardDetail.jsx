@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import api from "../../api";
 import { useParams, useNavigate } from "react-router-dom";
 import "./BoardDetail.css";
@@ -21,6 +21,8 @@ function BoardDetail() {
   // 댓글 수정
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
+  // 에디터
+  const oEditors = useRef([]);
 
   // 작성자 * 표시
   const maskUserId = (userId) => {
@@ -52,6 +54,26 @@ function BoardDetail() {
       .catch((err) => console.log(err));
   }, [id, currentPage]);
 
+  // 에디터
+  useEffect(() => {
+    if (isEditing) {
+      const timer = setTimeout(() => {
+        if (window.nhn) {
+          window.nhn.husky.EZCreator.createInIFrame({
+            oAppRef: oEditors.current,
+            elPlaceHolder: "editContentTxt",
+            sSkinURI: "/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
+            fCreator: "createSEditor2",
+            fOnAppLoad: function () {
+              oEditors.current[0].setIR(post.content); // 기존 내용 넣기
+            },
+          });
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isEditing]);
+
   if (!post) return <div>로딩중...</div>;
 
   const token = localStorage.getItem("accessToken");
@@ -66,15 +88,17 @@ function BoardDetail() {
     setEditContent(post.content);
   };
   const handleEditSubmit = () => {
+    oEditors.current[0].exec("UPDATE_CONTENTS_FIELD", []);
+    const editorContent = document.getElementById("editContentTxt").value;
     api
       .put(`/api/board/${id}`, {
         title: editTitle,
-        content: editContent,
+        content: editorContent,
         userId: post.userId,
       })
       .then(() => {
         alert("수정되었습니다.");
-        setIsEditing(false);
+        closeEditor();
         api.get(`/api/board/${id}`).then((res) => setPost(res.data));
       })
       .catch(() => alert("수정에 실패했습니다."));
@@ -94,6 +118,7 @@ function BoardDetail() {
   };
 
   // 댓글 작성
+
   const handleCommentSummit = () => {
     const token = localStorage.getItem("accessToken");
     if (!token) {
@@ -106,7 +131,7 @@ function BoardDetail() {
       .then(() => {
         alert("작성되었습니다.");
         setNewComment("");
-        fetchComments(); // 댓글 목록 새로고침
+        fetchComments();
       })
       .catch((err) => console.log(err));
   };
@@ -155,6 +180,13 @@ function BoardDetail() {
     }
   };
 
+  const closeEditor = () => {
+    const iframes = document.querySelectorAll("iframe");
+    iframes.forEach((iframe) => iframe.parentNode.removeChild(iframe));
+    oEditors.current = [];
+    setIsEditing(false);
+  };
+
   // 게시글 상세 조회
   return (
     <div className="board-detail-container">
@@ -167,15 +199,16 @@ function BoardDetail() {
             className="edit-title-input"
           />
           <textarea
-            value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
-            className="edit-content-textarea"
+            id="editContentTxt"
+            name="editContentTxt"
+            rows="15"
+            style={{ width: "100%" }}
           />
           <div className="board-detail-buttons">
             <button onClick={handleEditSubmit} className="btn-save">
               저장
             </button>
-            <button onClick={() => setIsEditing(false)} className="btn-cancel">
+            <button onClick={closeEditor} className="btn-cancel">
               취소
             </button>
           </div>
@@ -188,7 +221,10 @@ function BoardDetail() {
             <span>작성자: {maskUserId(post.userId)}</span>
             <span>작성일: {post.createdAt.slice(0, 10)}</span>
           </div>
-          <p className="board-detail-content">{post.content}</p>
+          <p
+            className="board-detail-content"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
           <div className="board-detail-buttons">
             <button className="btn-list" onClick={() => navigate("/board")}>
