@@ -66,12 +66,6 @@ function BoardDetail() {
     setEditContent(post.content);
   };
   const handleEditSubmit = () => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      alert("로그인이 필요합니다.");
-      navigate("/login");
-      return;
-    }
     api
       .put(`/api/board/${id}`, {
         title: editTitle,
