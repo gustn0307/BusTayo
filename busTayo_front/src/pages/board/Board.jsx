@@ -57,7 +57,9 @@ function Board() {
     <div className="board-container">
       <h1>자유게시판</h1>
       <h3>버스타요 이용과 관련한 자유로운 의견을 나눠주세요.</h3>
+
       {/* 검색창 */}
+      <div className="board-header">
       <div className="board-search">
         <select
           value={searchType}
@@ -76,11 +78,11 @@ function Board() {
         />
         <button onClick={handleSearch}>검색</button>
       </div>
-      <div className="board-header">
         <button className="btn-write" onClick={() => navigate("/board/write")}>
           글쓰기
         </button>
       </div>
+
       <Table striped bordered hover>
         <thead>
           <tr>

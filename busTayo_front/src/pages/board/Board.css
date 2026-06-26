@@ -25,7 +25,8 @@
 /* 글쓰기 버튼 */
 .board-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
 }
 
@@ -89,4 +90,48 @@
   text-align: center !important;
   color: #aaa;
   padding: 40px 0 !important;
+}
+
+/* 검색창 */
+.board-search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.board-search select {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+}
+
+.board-search input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.board-search input:focus {
+  border-color: #1a6fd4;
+}
+
+.board-search button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1a6fd4;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.board-search button:hover {
+  background-color: #155ab5;
 }
