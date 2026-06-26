@@ -31,9 +31,11 @@ public class CommentsService {
     }
 
     // 댓글 작성
-    public void writeComments(Long boardId, CommentsRequestDto commentsRequestDto){
-        Users user = userRepository.findByUserId(commentsRequestDto.getUserId());
+    public void writeComments(Long boardId, CommentsRequestDto commentsRequestDto, String userId){
+
+        Users user = userRepository.findByUserId(userId);
         Board board = boardRepository.findById(boardId).orElse(null);
+
         Comments comments = new Comments();
         comments.setUser(user);
         comments.setBoard(board);

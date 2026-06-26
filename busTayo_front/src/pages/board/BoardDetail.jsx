@@ -6,6 +6,7 @@ import "./BoardDetail.css";
 function BoardDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  // 게시물/댓글 목록
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   // 페이징 처리
@@ -15,6 +16,11 @@ function BoardDetail() {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
+  // 댓글 작성
+  const [newComment, setNewComment] = useState("");
+  // 댓글 수정
+  const [editCommentId, setEditCommentId] = useState(null);
+  const [editCommentContent, setEditCommentContent] = useState("");
 
   // 작성자 * 표시
   const maskUserId = (userId) => {
@@ -48,6 +54,7 @@ function BoardDetail() {
 
   if (!post) return <div>로딩중...</div>;
 
+  // 게시글 수정
   const handleEdit = () => {
     setIsEditing(true);
     setEditTitle(post.title);
@@ -76,6 +83,62 @@ function BoardDetail() {
         .then(() => {
           alert("삭제되었습니다.");
           navigate("/board");
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  // 댓글 작성
+  const handleCommentSummit = () => {
+    api
+      .post(`/api/board/${id}/comments`, { content: newComment })
+      .then(() => {
+        alert("작성되었습니다.");
+        setNewComment("");
+        fetchComments(); // 댓글 목록 새로고침
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchComments = () => {
+    api
+      .get(`/api/board/${id}/comments?page=${currentPage}&size=5`)
+      .then((res) => {
+        setComments(res.data.content);
+        setTotalPages(res.data.totalPages);
+      });
+  };
+
+  // 댓글 수정
+
+  const handleCommentEdit = (comment) => {
+    setEditCommentId(comment.id);
+    setEditCommentContent(comment.content);
+  };
+
+  const handleCommentEditSubmit = (commentId) => {
+    api
+      .put(`/api/board/${id}/comments/${commentId}`, {
+        content: editCommentContent,
+      })
+      .then(() => {
+        alert("수정되었습니다.");
+        setEditCommentId(null);
+        setEditCommentContent("");
+        fetchComments();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // 댓글 삭제
+
+  const handleCommentDelete = (commentId) => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      api
+        .delete(`/api/board/${id}/comments/${commentId}`)
+        .then(() => {
+          alert("삭제되었습니다.");
+          fetchComments();
         })
         .catch((err) => console.log(err));
     }
@@ -137,13 +200,26 @@ function BoardDetail() {
         {comments.length > 0 ? (
           comments.map((comment) => (
             <div key={comment.id} className="comment">
-              <div className="comment-userId">
-                {maskUserId(comment.userId)} {/* 작성자 *표시 */}{" "}
-              </div>
-              <div className="comment-content">{comment.content}</div>
+              <div className="comment-userId">{maskUserId(comment.userId)}</div>
+              {editCommentId === comment.id ? (
+                <div>
+                  <textarea
+                    value={editCommentContent}
+                    onChange={(e) => setEditCommentContent(e.target.value)}
+                  />
+                  <button onClick={() => handleCommentEditSubmit(comment.id)}>
+                    저장
+                  </button>
+                  <button onClick={() => setEditCommentId(null)}>취소</button>
+                </div>
+              ) : (
+                <div className="comment-content">{comment.content}</div>
+              )}
               <div className="comment-createdAt">
-                {comment.createdAt.slice(0, 10)} {/* 작성일 축소 */}{" "}
+                {comment.createdAt.slice(0, 10)}
               </div>
+              <button onClick={() => handleCommentEdit(comment)}>수정</button>
+              <button onClick={() => handleCommentDelete(comment.id)}>삭제</button>
             </div>
           ))
         ) : (
@@ -189,9 +265,18 @@ function BoardDetail() {
         {/* 댓글 작성 */}
 
         <div className="comment-write">
-          <textarea placeholder="댓글을 입력하세요" />
+          <textarea
+            placeholder="댓글을 입력하세요"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
           <div className="comment-write-buttons">
-            <button className="btn-comment-submit">작성</button>
+            <button
+              className="btn-comment-submit"
+              onClick={handleCommentSummit}
+            >
+              작성
+            </button>
           </div>
         </div>
       </div>

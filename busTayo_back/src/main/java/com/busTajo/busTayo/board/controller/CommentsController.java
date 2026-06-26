@@ -7,11 +7,13 @@ import com.busTajo.busTayo.board.dto.PageResponseDto;
 import com.busTajo.busTayo.board.entity.Comments;
 import com.busTajo.busTayo.board.service.CommentsService;
 import com.busTajo.busTayo.board.service.PageService;
+import com.busTajo.busTayo.users.service.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +37,9 @@ public class CommentsController {
     // 댓글 작성
     @PostMapping()
     public String writeComments(@PathVariable("id") Long id,
-                                @RequestBody CommentsRequestDto commentsRequestDto) {
-        commentsService.writeComments(id, commentsRequestDto);
+                                @RequestBody CommentsRequestDto commentsRequestDto,
+                                @AuthenticationPrincipal CustomUserDetails userDetails) {
+        commentsService.writeComments(id, commentsRequestDto, userDetails.getEmail());
         return "댓글이 작성되었습니다.";
     }
 
