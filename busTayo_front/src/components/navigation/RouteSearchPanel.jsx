@@ -45,6 +45,7 @@ function RouteSearchPanel({
           },
         },
       );
+      console.log("응답 전체:", response.data);
 
       setRoutes(response.data.result.path);
     } catch (error) {

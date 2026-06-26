@@ -33,7 +33,7 @@
 }
 
 .search-row label {
-  width: 72px;
+  width: 100px;
   font-size: 13px;
   font-weight: 600;
   color: #374151;
@@ -41,7 +41,7 @@
 
 .search-row input,
 .search-row select {
-  width: 230px;
+  width: 250px;
   padding: 9px 13px;
   border: 1px solid #d1d9e6;
   border-radius: 9px;

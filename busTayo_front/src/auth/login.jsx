@@ -26,16 +26,14 @@ function Login() {
       .then((response) => {
         console.log("로그인 성공 반응 전체 데이터: ", response);
 
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      const userRole = payload.role; 
+        const authHeader = response.headers["authorization"];
+        let token = authHeader;
 
         if (authHeader && authHeader.startsWith("Bearer ")) {
           token = authHeader.replace("Bearer ", "");
         }
-
         const payload = JSON.parse(atob(token.split(".")[1]));
         const userRole = payload.role;
-
         localStorage.setItem("accessToken", token);
         localStorage.setItem("role", userRole);
 

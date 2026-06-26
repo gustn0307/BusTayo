@@ -23,8 +23,6 @@ import NoticeManagement from "../pages/admin/notice/NoticeManagement";
 import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail";
 import Statistics from "../pages/admin/Statistics";
 import BusHistory from "../pages/BusHistory";
-import Login from "../auth/login";
-import Join from "../auth/join";
 
 function Router() {
   return (
