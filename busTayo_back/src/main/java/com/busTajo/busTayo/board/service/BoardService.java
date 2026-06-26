@@ -68,10 +68,9 @@ public class BoardService {
     // 게시글 삭제
     public boolean deleteBoard(Long id) {
         Board board = boardRepository.findById(id).orElse(null);
-        if (board == null){
-            return false;
-        }
-        boardRepository.delete(board);
+        if (board == null) return false;
+        board.setDeleted(true);
+        boardRepository.save(board);
         return true;
     }
 }

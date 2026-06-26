@@ -21,7 +21,7 @@ public class PageService {
     private final CommentsRepository commentsRepository;
 
     public PageResponseDto<BoardResponseDto> boardFindAll(Pageable pageable) {
-        Page<Board> board = boardRepository.findAll(pageable);
+        Page<Board> board = boardRepository.findByIsDeletedFalse(pageable);
         Page<BoardResponseDto> boardResponseDto = board.map(BoardResponseDto::from);
         return new PageResponseDto<>(boardResponseDto);
     }
@@ -29,19 +29,19 @@ public class PageService {
     public PageResponseDto<BoardResponseDto> searchBoards(String type, String keyword, Pageable pageable) {
         Page<Board> board;
         if (type.equals("title")) {
-            board = boardRepository.findByTitleContaining(keyword, pageable);
+            board = boardRepository.findByTitleContainingAndIsDeletedFalse(keyword, pageable);
         } else if (type.equals("author")) {
-            board = boardRepository.findByUserIdBeforeAt(keyword, pageable);
+            board = boardRepository.findByUserIdBeforeAtAndIsDeletedFalse(keyword, pageable);
         } else if (type.equals("my")) {
-            board = boardRepository.findByUserId(keyword, pageable);
+            board = boardRepository.findByUserIdAndIsDeletedFalse(keyword, pageable);
         } else {
-            board = boardRepository.findByTitleContainingOrUserUserIdContaining(keyword, keyword, pageable);
+            board = boardRepository.findByTitleContainingOrUserUserIdContainingAndIsDeletedFalse(keyword, keyword, pageable);
         }
         return new PageResponseDto<>(board.map(BoardResponseDto::from));
     }
 
     public PageResponseDto<CommentsResponseDto> commentsFindAll(Long boardId, Pageable pageable) {
-        Page<Comments> comments = commentsRepository.findByBoardId(boardId, pageable);
+        Page<Comments> comments = commentsRepository.findByBoardIdAndIsDeletedFalse(boardId, pageable);
         Page<CommentsResponseDto> commentsResponseDto = comments.map(comment -> new CommentsResponseDto(comment));
         return new PageResponseDto<>(commentsResponseDto);
     }

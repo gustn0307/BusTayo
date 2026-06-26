@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    Page<Board> findByTitleContaining(String keyword, Pageable pageable);
+    Page<Board> findByTitleContainingAndIsDeletedFalse(String keyword, Pageable pageable);
     @Query("SELECT b FROM Board b WHERE SUBSTRING(b.user.userId, 1, LOCATE('@', b.user.userId) - 1) LIKE %:keyword%")
-    Page<Board> findByUserIdBeforeAt(@Param("keyword") String keyword, Pageable pageable);
-    Page<Board> findByUserId(String userId, Pageable pageable);
-    Page<Board> findByTitleContainingOrUserUserIdContaining(String title, String userId, Pageable pageable);
+    Page<Board> findByUserIdBeforeAtAndIsDeletedFalse(@Param("keyword") String keyword, Pageable pageable);
+    Page<Board> findByUserIdAndIsDeletedFalse(String userId, Pageable pageable);
+    Page<Board> findByTitleContainingOrUserUserIdContainingAndIsDeletedFalse(String title, String userId, Pageable pageable);
+    Page<Board> findByIsDeletedFalse(Pageable pageable);
 }

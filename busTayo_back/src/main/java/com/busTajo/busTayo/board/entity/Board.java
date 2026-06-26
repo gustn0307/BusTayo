@@ -28,4 +28,7 @@ public class Board extends BaseEntity {
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content; // 내용
+
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false; // 삭제 여부
 }

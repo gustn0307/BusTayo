@@ -10,5 +10,6 @@ import java.util.List;
 public interface CommentsRepository extends JpaRepository<Comments, Long> {
     List<Comments> findByBoardId(Long boardId);
     // 페이징 처리
-    Page<Comments> findByBoardId(Long boardId, Pageable pageable);
+    Page<Comments> findByBoardIdAndIsDeletedFalse(Long boardId, Pageable pageable);
+    Page<Comments> findByIsDeletedFalse(Pageable pageable);
 }

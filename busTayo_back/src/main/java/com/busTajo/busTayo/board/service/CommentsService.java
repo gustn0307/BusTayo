@@ -58,10 +58,9 @@ public class CommentsService {
     // 댓글 삭제
     public boolean deleteComments(Long id) {
         Comments comments = commentsRepository.findById(id).orElse(null);
-        if (comments == null) {
-            return false;
-        }
-        commentsRepository.delete(comments);
+        if (comments == null) return false;
+        comments.setDeleted(true);
+        commentsRepository.save(comments);
         return true;
     }
 }
