@@ -9,8 +9,14 @@ function BoardWrite() {
   const [content, setContent] = useState("");
 
   const handleSubmit = () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
     api
-      .post("/api/board", { title, content})
+      .post("/api/board", { title, content })
       .then(() => {
         alert("게시글이 작성되었습니다.");
         navigate("/board");
@@ -19,7 +25,7 @@ function BoardWrite() {
         console.log(err);
         alert("게시글 작성에 실패했습니다.");
       });
-    };    
+  };
 
   return (
     <div className="board-write-container">
@@ -54,7 +60,6 @@ function BoardWrite() {
       </div>
     </div>
   );
-};
-
+}
 
 export default BoardWrite;

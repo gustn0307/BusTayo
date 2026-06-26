@@ -54,6 +54,11 @@ function BoardDetail() {
 
   if (!post) return <div>로딩중...</div>;
 
+  const token = localStorage.getItem("accessToken");
+  const currentUserId = token
+    ? JSON.parse(atob(token.split(".")[1])).email
+    : null;
+
   // 게시글 수정
   const handleEdit = () => {
     setIsEditing(true);
@@ -61,6 +66,12 @@ function BoardDetail() {
     setEditContent(post.content);
   };
   const handleEditSubmit = () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
     api
       .put(`/api/board/${id}`, {
         title: editTitle,
@@ -90,6 +101,12 @@ function BoardDetail() {
 
   // 댓글 작성
   const handleCommentSummit = () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
     api
       .post(`/api/board/${id}/comments`, { content: newComment })
       .then(() => {
@@ -183,12 +200,16 @@ function BoardDetail() {
             <button className="btn-list" onClick={() => navigate("/board")}>
               목록
             </button>
-            <button className="btn-edit" onClick={handleEdit}>
-              수정
-            </button>
-            <button className="btn-delete" onClick={handleDelete}>
-              삭제
-            </button>
+            {post.userId === currentUserId && (
+              <button className="btn-edit" onClick={handleEdit}>
+                수정
+              </button>
+            )}
+            {post.userId === currentUserId && (
+              <button className="btn-delete" onClick={handleDelete}>
+                삭제
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -203,7 +224,8 @@ function BoardDetail() {
               <div className="comment-userId">{maskUserId(comment.userId)}</div>
               {editCommentId === comment.id ? (
                 <div>
-                  <textarea className="edit-comment-textarea"
+                  <textarea
+                    className="edit-comment-textarea"
                     value={editCommentContent}
                     onChange={(e) => setEditCommentContent(e.target.value)}
                   />
@@ -226,20 +248,22 @@ function BoardDetail() {
               <div className="comment-createdAt">
                 {comment.createdAt.slice(0, 10)}
               </div>
-              <div className="comment-buttons">
-                <button
-                  className="btn-comment-edit"
-                  onClick={() => handleCommentEdit(comment)}
-                >
-                  수정
-                </button>
-                <button
-                  className="btn-comment-delete"
-                  onClick={() => handleCommentDelete(comment.id)}
-                >
-                  삭제
-                </button>
-              </div>
+              {comment.userId === currentUserId && (
+                <div className="comment-buttons">
+                  <button
+                    className="btn-comment-edit"
+                    onClick={() => handleCommentEdit(comment)}
+                  >
+                    수정
+                  </button>
+                  <button
+                    className="btn-comment-delete"
+                    onClick={() => handleCommentDelete(comment.id)}
+                  >
+                    삭제
+                  </button>
+                </div>
+              )}
             </div>
           ))
         ) : (
