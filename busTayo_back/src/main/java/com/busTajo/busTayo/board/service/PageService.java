@@ -41,7 +41,7 @@ public class PageService {
     }
 
     public PageResponseDto<CommentsResponseDto> commentsFindAll(Long boardId, Pageable pageable) {
-        Page<Comments> comments = commentsRepository.findByBoardIdAndIsDeletedFalse(boardId, pageable);
+        Page<Comments> comments = commentsRepository.findByBoardIdAndParentIsNullAndIsDeletedFalse(boardId, pageable);
         Page<CommentsResponseDto> commentsResponseDto = comments.map(comment -> new CommentsResponseDto(comment));
         return new PageResponseDto<>(commentsResponseDto);
     }

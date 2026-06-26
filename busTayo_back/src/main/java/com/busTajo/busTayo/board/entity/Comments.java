@@ -35,4 +35,9 @@ public class Comments extends BaseEntity {
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false; // 삭제 여부
+
+    // 대댓글
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Comments parent; // 부모 댓글 (null이면 일반 댓글, 값 있으면 대댓글)
 }

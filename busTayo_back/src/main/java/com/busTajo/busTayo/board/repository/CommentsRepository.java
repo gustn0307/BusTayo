@@ -12,4 +12,6 @@ public interface CommentsRepository extends JpaRepository<Comments, Long> {
     // 페이징 처리
     Page<Comments> findByBoardIdAndIsDeletedFalse(Long boardId, Pageable pageable);
     Page<Comments> findByIsDeletedFalse(Pageable pageable);
+    // 대댓글
+    Page<Comments> findByBoardIdAndParentIsNullAndIsDeletedFalse(Long boardId, Pageable pageable);
 }
