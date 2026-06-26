@@ -32,6 +32,15 @@
   gap: 4px;
 }
 
+/* 게시글 상세 조회 */
+.view-mode {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
 /* 게시글 본문 */
 .board-detail-content {
   font-size: 15px;
