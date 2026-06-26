@@ -203,14 +203,22 @@ function BoardDetail() {
               <div className="comment-userId">{maskUserId(comment.userId)}</div>
               {editCommentId === comment.id ? (
                 <div>
-                  <textarea
+                  <textarea className="edit-comment-textarea"
                     value={editCommentContent}
                     onChange={(e) => setEditCommentContent(e.target.value)}
                   />
-                  <button onClick={() => handleCommentEditSubmit(comment.id)}>
+                  <button
+                    className="btn-save"
+                    onClick={() => handleCommentEditSubmit(comment.id)}
+                  >
                     저장
                   </button>
-                  <button onClick={() => setEditCommentId(null)}>취소</button>
+                  <button
+                    className="btn-cancel"
+                    onClick={() => setEditCommentId(null)}
+                  >
+                    취소
+                  </button>
                 </div>
               ) : (
                 <div className="comment-content">{comment.content}</div>
@@ -218,8 +226,20 @@ function BoardDetail() {
               <div className="comment-createdAt">
                 {comment.createdAt.slice(0, 10)}
               </div>
-              <button onClick={() => handleCommentEdit(comment)}>수정</button>
-              <button onClick={() => handleCommentDelete(comment.id)}>삭제</button>
+              <div className="comment-buttons">
+                <button
+                  className="btn-comment-edit"
+                  onClick={() => handleCommentEdit(comment)}
+                >
+                  수정
+                </button>
+                <button
+                  className="btn-comment-delete"
+                  onClick={() => handleCommentDelete(comment.id)}
+                >
+                  삭제
+                </button>
+              </div>
             </div>
           ))
         ) : (
