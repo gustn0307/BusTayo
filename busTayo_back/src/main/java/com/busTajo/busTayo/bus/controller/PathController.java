@@ -26,6 +26,13 @@ public class PathController {
             @RequestParam("startName") String startName,
             @RequestParam("endName") String endName
     ) {
+        System.out.println("sx : " + sx);
+        System.out.println("sy : " + sy);
+        System.out.println("ex : " + ex);
+        System.out.println("ey : " + ey);
+        System.out.println("시작지 : " + startName);
+        System.out.println("도착지 : " + endName);
+
 
         String userId = SecurityContextHolder
                 .getContext()

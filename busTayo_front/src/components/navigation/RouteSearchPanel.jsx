@@ -45,6 +45,7 @@ function RouteSearchPanel({
           },
         },
       );
+      console.log(response.data.result)
 
       setRoutes(response.data.result.path);
     } catch (error) {

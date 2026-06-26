@@ -23,15 +23,17 @@ public class BusArrivalService {
 
         RestTemplate restTemplate = new RestTemplate();
 
+
         String url;
-        if (cityCode ==1000){ // 서울
+        if (cityCode == 1000) { // 서울
+            System.out.println("serviceKey = [" + busApiConfig.getServiceKey() + "]");
             url =
                     "http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute"
                             + "?serviceKey=" + busApiConfig.getServiceKey()
                             + "&stId=" + stationId
                             + "&busRouteId=" + routeId
                             + "&ord=" + ord;
-        }else { // 경기
+        } else { // 경기
             url =
                     "https://apis.data.go.kr/6410000/busarrivalservice/v2/getBusArrivalListv2"
                             + "?serviceKey=" + busApiConfig.getServiceKey()
@@ -41,19 +43,28 @@ public class BusArrivalService {
 
         System.out.println(url);
 
-        return restTemplate.getForObject(
-                url,
-                String.class
-        );
+        String result = restTemplate.getForObject(url, String.class);
+
+        System.out.println("result: " + result);
+
+        return result;
     }
 
-    public String getBusLocation(Long routeId) {
+    public String getBusLocation(Integer cityCode, Long routeId) {
 
-        String url =
-                "https://apis.data.go.kr/6410000/buslocationservice/v2/getBusLocationListv2"
-                        + "?serviceKey=" + busApiConfig.getServiceKey()
-                        + "&routeId=" + routeId
-                        + "&format=json";
+        String url;
+
+        if(cityCode==1000){ // 서울
+            url =
+                    "http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid"
+                            + "?serviceKey=" + busApiConfig.getServiceKey()
+                            + "&busRouteId=" + routeId;
+        }else{ // 경기
+            url= "https://apis.data.go.kr/6410000/buslocationservice/v2/getBusLocationListv2"
+                    + "?serviceKey=" + busApiConfig.getServiceKey()
+                    + "&routeId=" + routeId
+                    + "&format=json";
+        }
 
         System.out.println(url);
 
@@ -65,31 +76,8 @@ public class BusArrivalService {
                 String.class
         );
 
-        return result;
-    }
-
-    public String testRoute(Long routeId) {
-
-        String url =
-                "https://apis.data.go.kr/6410000/busrouteservice/v2/getBusRouteStationListv2"
-                        + "?serviceKey=" + busApiConfig.getServiceKey()
-                        + "&routeId=" + routeId
-                        + "&format=json";
-
-
-
-        RestTemplate restTemplate =
-                new RestTemplate();
-
-        String result =
-                restTemplate.getForObject(
-                        url,
-                        String.class
-                );
-
-
+        System.out.println("차량위치 결과 : " +result);
 
         return result;
     }
-
 }

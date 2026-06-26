@@ -27,11 +27,11 @@ public class BusArrivalController {
             @RequestParam(name = "ord", required = false)
             Integer ord
     ) {
-
+        System.out.println("도착정보");
         System.out.println("stationId = " + stationId);
         System.out.println("cityCode = " + cityCode);
         System.out.println("routeId = " + routeId);
-        System.out.println("ord = " + ord);
+        System.out.println("ord = " + ord); // 전체 노선에서 해당 정류소의 순서
 
         return busArrivalService
                 .getArrivalInfo(
@@ -44,16 +44,13 @@ public class BusArrivalController {
 
     @GetMapping("/location")
     public String getBusLocation(
+            @RequestParam("cityCode") Integer cityCode,
             @RequestParam("routeId") Long routeId
     ) {
-        return busArrivalService.getBusLocation(routeId);
-    }
-
-    @GetMapping("/route")
-    public String getRoute(
-            @RequestParam("routeId") Long routeId
-    ) {
-        return busArrivalService.testRoute(routeId);
+        return busArrivalService.getBusLocation(
+                cityCode,
+                routeId
+        );
     }
 
 }
