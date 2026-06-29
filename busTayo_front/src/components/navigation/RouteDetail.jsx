@@ -4,7 +4,7 @@ import api from "../../api";
 import RouteBusCard from "./RouteBusCard";
 import RouteWalkCard from "./RouteWalkCard";
 
-function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
+function RouteDetail({ route, setSelectedRoute, setSelectedStation, busMarkers, setBusMarkers }) {
   const [openStops, setOpenStops] = useState({});
 
   const [arrivalMap, setArrivalMap] = useState({});
@@ -51,9 +51,9 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
       });
 
       console.log("서울 응답", res.data);
-      
-      const raw = res.data.response?.msgBody?.busLocationList;
-     
+
+      const raw = res.data.busLocationList;
+
       console.log("raw =", raw);
 
       const list = Array.isArray(raw) ? raw : raw ? [raw] : [];
@@ -183,6 +183,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
               loadArrival={loadArrival}
               loadBusLocation={loadBusLocation}
               setSelectedStation={setSelectedStation}
+              setBusMarkers={setBusMarkers}
             />
           );
         })}

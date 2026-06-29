@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { loadKakaoMap } from "../../util/loadKakaoMap";
 
-function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, selectedRoute }) {
+function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, selectedRoute, busMarkers }) {
   const mapRef = useRef(null);
 
   const mapContainerRef = useRef(null);
@@ -15,6 +15,8 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
   const stopMarkersRef = useRef([]);
 
   const stopOverlaysRef = useRef([]);
+
+  const busMarkersRef = useRef([]);
 
   const mapLevelListenerRef = useRef(null)
 
@@ -375,6 +377,42 @@ function KakaoMap({ currentLocation, setCurrentLocation, selectedStation, select
     }
 
   }, [selectedRoute]);
+
+  useEffect(() => {
+
+    if (!mapInstanceRef.current) return;
+
+    if (!busMarkers || busMarkers.length === 0) {
+
+      busMarkersRef.current.forEach(marker => marker.setMap(null));
+      busMarkersRef.current = [];
+
+      return;
+    }
+
+    busMarkersRef.current.forEach(marker => marker.setMap(null));
+    busMarkersRef.current = [];
+
+    const kakao = window.kakao;
+
+    busMarkers.forEach((bus) => {
+
+      const marker = new kakao.maps.Marker({
+
+        position: new kakao.maps.LatLng(
+          Number(bus.lat),
+          Number(bus.lng)
+        ),
+
+        map: mapInstanceRef.current,
+
+      });
+
+      busMarkersRef.current.push(marker);
+
+    });
+
+  }, [busMarkers]);
 
   return <div ref={mapContainerRef} className="w-100 h-100" />;
 }

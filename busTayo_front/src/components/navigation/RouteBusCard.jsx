@@ -1,4 +1,5 @@
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
 import BusLocationList from "./BusLocationList";
 import BusStopList from "./BusStopList";
 import BusInfoCard from "./BusInfoCard";
@@ -13,6 +14,7 @@ function RouteBusCard({
   loadArrival,
   loadBusLocation,
   setSelectedStation,
+  setBusMarkers
 }) {
   if (path.trafficType !== 2) {
     return null;
@@ -30,6 +32,48 @@ function RouteBusCard({
   );
 
   const ord = startStation ? startStation.index + 1 : 1;
+
+  useEffect(() => {
+
+    if (!busLocationMap[index]) return;
+
+    const markers = busLocationMap[index].map(vehicle => {
+
+      if (isSeoul) {
+
+        return {
+
+          lat: Number(vehicle.gpsY),
+
+          lng: Number(vehicle.gpsX),
+
+          plateNo: vehicle.plainNo,
+
+        };
+
+      }
+
+      return {
+
+        lat: Number(vehicle.y),
+
+        lng: Number(vehicle.x),
+
+        plateNo: vehicle.plateNo,
+
+      };
+
+    });
+    console.log("markers: ", markers)
+
+    setBusMarkers(markers);
+
+  }, [
+    busLocationMap,
+    index,
+    isSeoul,
+    setBusMarkers
+  ]);
 
   return (
     <div>
@@ -118,7 +162,14 @@ function RouteBusCard({
         🚏 {path.endName}
       </div>
       {openStops[index] && (
-        <BusLocationList vehicles={busLocationMap[index]} isSeoul={isSeoul} />
+        <BusLocationList
+          vehicles={busLocationMap[index]}
+          isSeoul={isSeoul}
+          stations={path.passStopList?.stations}
+          startOrd={ord}
+          startLocalStationID={path.startLocalStationID}
+          setBusMarkers={setBusMarkers}
+        />
       )}
     </div>
   );

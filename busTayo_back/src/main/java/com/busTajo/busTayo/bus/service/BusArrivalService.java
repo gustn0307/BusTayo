@@ -2,6 +2,8 @@ package com.busTajo.busTayo.bus.service;
 
 import com.busTajo.busTayo.config.BusApiConfig;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -73,10 +75,19 @@ public class BusArrivalService {
 
                 XmlMapper mapper = new XmlMapper();
 
-                JsonNode node =
-                        mapper.readTree(result.getBytes());
+                JsonNode node = mapper.readTree(result.getBytes());
 
-                return node.toString();
+                JsonNode itemList = node
+                        .path("msgBody")
+                        .path("itemList");
+
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                ObjectNode response = objectMapper.createObjectNode();
+
+                response.set("busLocationList", itemList);
+
+                return response.toString();
 
             }catch(Exception e){
 

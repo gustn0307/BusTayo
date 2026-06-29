@@ -19,6 +19,8 @@ function RouteSearch() {
 
   const [selectedStation, setSelectedStation] = useState(null);
 
+  const [busMarkers, setBusMarkers] = useState([]);
+
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
@@ -32,6 +34,7 @@ function RouteSearch() {
           setCurrentLocation={setCurrentLocation}
           selectedStation={selectedStation}
           selectedRoute={selectedRoute}
+          busMarkers={busMarkers}
         />
       </Col>
 
@@ -48,8 +51,10 @@ function RouteSearch() {
           setSelectedRoute={setSelectedRoute}
           selectedStation={selectedStation}
           setSelectedStation={setSelectedStation}
-          history = {history}
+          history={history}
           setHistory={setHistory}
+          busMarkers={busMarkers}
+          setBusMarkers={setBusMarkers}
         />
       </Col>
     </Row>

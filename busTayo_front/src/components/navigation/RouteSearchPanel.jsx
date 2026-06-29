@@ -34,6 +34,8 @@ function RouteSearchPanel({
   setSelectedStation,
   history,
   setHistory,
+  busMarkers,
+  setBusMarkers
 }) {
   const searchRoute = async () => {
     if (!startPlace || !endPlace) {
@@ -154,6 +156,8 @@ function RouteSearchPanel({
             route={selectedRoute}
             setSelectedRoute={setSelectedRoute}
             setSelectedStation={setSelectedStation}
+            busMarkers={busMarkers}
+            setBusMarkers={setBusMarkers}
           />
         </>
       )}
