@@ -1,28 +1,10 @@
-import { Card, Badge, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import BusLocationList from "./BusLocationList";
+import api from "../../api";
 import RouteBusCard from "./RouteBusCard";
+import RouteWalkCard from "./RouteWalkCard";
 
 function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
-  const getCrowdedBadge = (crowded) => {
-    switch (Number(crowded)) {
-      case 1:
-        return "🟢 여유";
-
-      case 2:
-        return "🟡 보통";
-
-      case 3:
-        return "🟠 혼잡";
-
-      case 4:
-        return "🔴 매우 혼잡";
-
-      default:
-        return "정보없음";
-    }
-  };
   const [openStops, setOpenStops] = useState({});
 
   const [arrivalMap, setArrivalMap] = useState({});
@@ -38,15 +20,12 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
     console.log("ord       :", ord);
     console.log("===============================");
     try {
-      const res = await axios.get("http://localhost:8080/api/bus/arrival", {
+      const res = await api.get("/api/bus/arrival", {
         params: {
           stationId,
           cityCode,
           routeId,
           ord,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
       console.log("도착정보: ", res.data);
@@ -71,13 +50,10 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
   // 버스의 위치 정보 조회
   const loadBusLocation = async (cityCode, routeId, pathIndex) => {
     try {
-      const res = await axios.get("http://localhost:8080/api/bus/location", {
+      const res = await api.get("/api/bus/location", {
         params: {
           routeId,
           cityCode,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
 
@@ -188,23 +164,23 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
         {route.subPath.map((path, index) => {
           if (path.trafficType === 3) {
-            return <div key={index}>🚶 도보 {path.distance}m</div>;
+            return <RouteWalkCard key={index} path={path} />;
           }
 
-          <RouteBusCard
-            key={index}
-            path={path}
-            index={index}
-            arrivalMap={arrivalMap}
-            busLocationMap={busLocationMap}
-            openStops={openStops}
-            setOpenStops={setOpenStops}
-            loadArrival={loadArrival}
-            loadBusLocation={loadBusLocation}
-            setSelectedStation={setSelectedStation}
-          />;
-
-          return null;
+          return (
+            <RouteBusCard
+              key={index}
+              path={path}
+              index={index}
+              arrivalMap={arrivalMap}
+              busLocationMap={busLocationMap}
+              openStops={openStops}
+              setOpenStops={setOpenStops}
+              loadArrival={loadArrival}
+              loadBusLocation={loadBusLocation}
+              setSelectedStation={setSelectedStation}
+            />
+          );
         })}
       </Card.Body>
     </Card>

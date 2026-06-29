@@ -1,9 +1,24 @@
 import { Card, Button } from "react-bootstrap";
-import axios from "axios";
+import api from "../../api";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
 import RouteDetail from "./RouteDetail";
 import { useEffect } from "react";
+
+// RouteSearchPanel
+//         │
+//         ▼
+// SearchResultList
+//         │
+//         ▼
+// RouteDetail
+//         │
+//         ▼
+// RouteBusCard
+//         │
+//  ┌──────┼──────────┐
+//  ▼      ▼          ▼
+// BusInfo BusStop  BusLocation
 
 function RouteSearchPanel({
   currentLocation,
@@ -27,25 +42,17 @@ function RouteSearchPanel({
     }
 
     try {
-      const token = localStorage.getItem("accessToken");
-
-      const response = await axios.get(
-        "http://localhost:8080/api/path/search",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            sx: startPlace.lng,
-            sy: startPlace.lat,
-            ex: endPlace.lng,
-            ey: endPlace.lat,
-            startName: startPlace.name,
-            endName: endPlace.name,
-          },
+      const response = await api.get("/api/path/search", {
+        params: {
+          sx: startPlace.lng,
+          sy: startPlace.lat,
+          ex: endPlace.lng,
+          ey: endPlace.lat,
+          startName: startPlace.name,
+          endName: endPlace.name,
         },
-      );
-      console.log(response.data.result)
+      });
+      console.log(response.data.result);
 
       setRoutes(response.data.result.path);
     } catch (error) {
@@ -55,27 +62,18 @@ function RouteSearchPanel({
 
   const loadHistoryRoute = async (history) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const response = await api.get("/api/path/search", {
+        params: {
+          sx: history.startX,
+          sy: history.startY,
 
-      const response = await axios.get(
-        "http://localhost:8080/api/path/search",
-        {
-          params: {
-            sx: history.startX,
-            sy: history.startY,
+          ex: history.endX,
+          ey: history.endY,
 
-            ex: history.endX,
-            ey: history.endY,
-
-            startName: history.start,
-            endName: history.end,
-          },
-
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          startName: history.start,
+          endName: history.end,
         },
-      );
+      });
 
       setRoutes(response.data.result.path);
 
@@ -100,14 +98,8 @@ function RouteSearchPanel({
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-
-    axios
-      .get("http://localhost:8080/api/navigating/history", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    api
+      .get("/api/navigating/history")
       .then((res) => {
         setHistory(res.data);
       })
