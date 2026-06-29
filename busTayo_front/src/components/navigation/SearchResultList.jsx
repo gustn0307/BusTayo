@@ -34,10 +34,7 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
         // ★ 수정 : 현재 route의 버스 구간 찾기
         const busPaths = route.subPath.filter((path) => path.trafficType === 2);
 
-
-        const busNumbers = busPaths.map(
-          (path) => path.lane[0].busNo
-        );
+        const busNumbers = busPaths.map((path) => path.lane[0].busNo);
 
         const firstBus = busPaths[0];
 
@@ -53,27 +50,18 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
             }}
           >
             <Card.Body>
-              <h5 className="fw-bold mb-2">
-                {route.info.totalTime}분
-              </h5>
+              <h5 className="fw-bold mb-2">{route.info.totalTime}분</h5>
 
               <div className="mt-2">
                 {busPaths.map((bus, idx) => (
-
-                  <div
-                    key={idx}
-                    className="mb-3"
-                  >
+                  <div key={idx} className="mb-3">
                     <div className="d-flex align-items-center">
                       <div
                         style={{
                           width: "10px",
                           height: "10px",
                           borderRadius: "50%",
-                          background:
-                            idx === 0
-                              ? "#28a745"
-                              : "#ffc107",
+                          background: idx === 0 ? "#28a745" : "#ffc107",
                           marginRight: "8px",
                         }}
                       />
@@ -86,8 +74,7 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
                         onClick={(e) => {
                           e.stopPropagation();
 
-                          const station =
-                            bus.passStopList?.stations?.[0];
+                          const station = bus.passStopList?.stations?.[0];
 
                           if (!station) return;
 
@@ -98,32 +85,26 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
                           });
                         }}
                       >
-                        {idx === 0 ? bus.startName : "🔄 환승 : " + bus.startName}
+                        {idx === 0
+                          ? bus.startName
+                          : "🔄 환승 : " + bus.startName}
                       </div>
                     </div>
 
                     <div className="ms-3 my-1">
                       ↓
-
                       <Badge
                         bg=""
                         style={{
-                          backgroundColor: getBusColor(
-                            bus.lane[0].type
-                          ),
+                          backgroundColor: getBusColor(bus.lane[0].type),
                         }}
                       >
                         {bus.lane[0].busNo}
                       </Badge>
-
-                      <span
-                        className="ms-2 small text-muted"
-                      >
+                      <span className="ms-2 small text-muted">
                         {bus.stationCount}개 정류장
                       </span>
                     </div>
-
-
 
                     {idx === busPaths.length - 1 && (
                       <div className="d-flex align-items-center mt-2">
@@ -145,13 +126,11 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
                           onClick={(e) => {
                             e.stopPropagation();
 
-                            const stations =
-                              bus.passStopList?.stations;
+                            const stations = bus.passStopList?.stations;
 
                             if (!stations?.length) return;
 
-                            const station =
-                              stations[stations.length - 1];
+                            const station = stations[stations.length - 1];
 
                             setSelectedStation({
                               lat: Number(station.y),
@@ -161,7 +140,7 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
                             console.log(
                               station.stationName,
                               station.y,
-                              station.x
+                              station.x,
                             );
                           }}
                         >
@@ -176,8 +155,8 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
               <hr />
 
               <div className="small text-muted">
-                환승 {route.info.busTransitCount - 1}회 ·
-                요금 {route.info.payment.toLocaleString()}원 ·
+                환승 {route.info.busTransitCount - 1}회 · 요금{" "}
+                {route.info.payment.toLocaleString()}원 ·
                 {(route.info.trafficDistance / 1000).toFixed(1)}km
               </div>
             </Card.Body>
