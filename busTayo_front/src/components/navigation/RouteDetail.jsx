@@ -13,12 +13,6 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
   // 특정 정류장 도착 정보 조회
   const loadArrival = async (stationId, cityCode, routeId, ord, pathIndex) => {
-    console.log("========== loadArrival ==========");
-    console.log("stationId :", stationId);
-    console.log("cityCode  :", cityCode);
-    console.log("routeId   :", routeId);
-    console.log("ord       :", ord);
-    console.log("===============================");
     try {
       const res = await api.get("/api/bus/arrival", {
         params: {
@@ -28,7 +22,6 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
           ord,
         },
       });
-      console.log("도착정보: ", res.data);
 
       const raw = res.data.response?.msgBody?.busArrivalList;
 
@@ -57,10 +50,14 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
         },
       });
 
+      console.log("서울 응답", res.data);
+      
       const raw = res.data.response?.msgBody?.busLocationList;
+     
+      console.log("raw =", raw);
 
       const list = Array.isArray(raw) ? raw : raw ? [raw] : [];
-
+      console.log("list =", list);
       setBusLocationMap((prev) => ({
         ...prev,
         [pathIndex]: list,
@@ -122,6 +119,15 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
         const ord = startStation ? startStation.index + 1 : 1;
 
+        console.log("========== 서울버스 확인 ==========");
+        console.log("busNo :", path.lane[0].busNo);
+        console.log("stationId :", path.startLocalStationID);
+        console.log("routeId :", path.lane[0].busLocalBlID);
+        console.log("ord :", ord);
+        console.log("startStation :", startStation);
+        console.log("passStopList :", path.passStopList?.stations);
+        console.log("===============================");
+
         if (path.startLocalStationID) {
           loadArrival(
             path.startLocalStationID,
@@ -159,9 +165,7 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
       </Button>
       <Card.Body>
         <h4>{route.info.totalTime}분</h4>
-
         <hr />
-
         {route.subPath.map((path, index) => {
           if (path.trafficType === 3) {
             return <RouteWalkCard key={index} path={path} />;

@@ -33,11 +33,6 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
       {busRoutes.map((route, index) => {
         // ★ 수정 : 현재 route의 버스 구간 찾기
         const busPaths = route.subPath.filter((path) => path.trafficType === 2);
-        console.log("busPaths", busPaths);
-        console.log("busPaths[0].lane[0]", busPaths[0].lane[0]);
-        console.log(JSON.stringify(busPaths[0].lane[0], null, 2));
-        console.log("busPaths[0] 전체");
-        console.log(JSON.stringify(busPaths[0], null, 2));
 
         const busNumbers = busPaths.map((path) => path.lane[0].busNo);
 
