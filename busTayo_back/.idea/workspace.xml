@@ -54,11 +54,12 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BusTayoApplication.executor": "Run",
+    "git-widget-placeholder": "feature/route"
+  }
+}]]></component>
   <component name="RunManager" selected="Application.BusTayoApplication">
     <configuration name="BusTayoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
@@ -93,6 +94,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.BusTayoApplication" />
+      <item itemvalue="Spring Boot.BusTayoApplication" />
     </list>
     <recent_temporary>
       <list>
