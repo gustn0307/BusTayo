@@ -8,6 +8,7 @@ function BusInfoCard({
   index,
   loadArrival,
   loadBusLocation,
+  allVehiclesPassed,
 }) {
   return (
     <div
@@ -50,15 +51,35 @@ function BusInfoCard({
       {currentArrival && (
         <>
           {isSeoul ? (
-            <div>⏱ {currentArrival.arrmsg1}</div>
+            <>
+              <div>⏱ {currentArrival.arrmsg1}</div>
+
+              {currentArrival.locationNo1 && (
+                <div>📍 {currentArrival.locationNo1}정류장 전</div>
+              )}
+
+              {Number(currentArrival.remainSeatCnt1) > 0 && (
+                <div>🪑 빈자리 {currentArrival.remainSeatCnt1}석</div>
+              )}
+            </>
+          ) : currentArrival.flag === "STOP" ? (
+            <div>🛑 오늘 운행이 종료되었습니다.</div>
+          ) : currentArrival.flag === "WAIT" ? (
+            <div>🔄 차량이 회차지에서 대기 중입니다.</div>
+          ) : currentArrival.predictTime1 ? (
+            <>
+              <div>⏱ {currentArrival.predictTime1}분 후 도착</div>
+
+              <div>📍 {currentArrival.locationNo1}정류장 전</div>
+
+              {Number(currentArrival.remainSeatCnt1) > 0 && (
+                <div>🪑 빈자리 {currentArrival.remainSeatCnt1}석</div>
+              )}
+            </>
+          ) : allVehiclesPassed ? (
+            <div>🌙 오늘 남은 도착 예정 차량이 없습니다.</div>
           ) : (
-            <div>⏱ {currentArrival.predictTime1}분 후 도착</div>
-          )}
-
-          <div>📍 {currentArrival.locationNo1}정류장 전</div>
-
-          {currentArrival.remainSeatCnt1 > 0 && (
-            <div>🪑 빈자리 {currentArrival.remainSeatCnt1}석</div>
+            <div>🚌 현재 도착 예정 차량이 없습니다.</div>
           )}
         </>
       )}

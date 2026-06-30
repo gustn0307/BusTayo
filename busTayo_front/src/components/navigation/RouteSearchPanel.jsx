@@ -3,22 +3,7 @@ import api from "../../api";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
 import RouteDetail from "./RouteDetail";
-import { useEffect } from "react";
-
-// RouteSearchPanel
-//         │
-//         ▼
-// SearchResultList
-//         │
-//         ▼
-// RouteDetail
-//         │
-//         ▼
-// RouteBusCard
-//         │
-//  ┌──────┼──────────┐
-//  ▼      ▼          ▼
-// BusInfo BusStop  BusLocation
+import { useEffect, useState } from "react";
 
 function RouteSearchPanel({
   currentLocation,
@@ -37,13 +22,44 @@ function RouteSearchPanel({
   busMarkers,
   setBusMarkers
 }) {
+  const [loading, setLoading] = useState(false);
+
+  const setCurrentLocationAsStart = () => {
+    if (!currentLocation?.lat || !currentLocation?.lng) {
+      alert("현재 위치를 아직 가져오지 못했습니다.");
+      return;
+    }
+
+    const currentPlace = {
+      name: "내 위치",
+      lat: currentLocation.lat,
+      lng: currentLocation.lng,
+    };
+
+    setStartPlace(currentPlace);
+
+    setSelectedStation({
+      ...currentPlace,
+      zoomLevel: 3,
+    });
+
+    setSelectedRoute(null);
+    setBusMarkers([]);
+  };
+
   const searchRoute = async () => {
     if (!startPlace || !endPlace) {
-      alert("출발지와 도착지를 선택하세요.");
+      alert("출발지와 도착지는 검색 결과에서 선택해야 합니다.\n서울·경기 지역만 검색할 수 있습니다.");
       return;
     }
 
     try {
+      setLoading(true);
+
+      setSelectedRoute(null);
+      setSelectedStation(null);
+      setBusMarkers([]);
+
       const response = await api.get("/api/path/search", {
         params: {
           sx: startPlace.lng,
@@ -54,16 +70,22 @@ function RouteSearchPanel({
           endName: endPlace.name,
         },
       });
-      console.log(response.data.result);
 
       setRoutes(response.data.result.path);
     } catch (error) {
       console.error(error);
+      alert("경로를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const loadHistoryRoute = async (history) => {
     try {
+      setSelectedRoute(null);
+      setSelectedStation(null);
+      setBusMarkers([]);
+
       const response = await api.get("/api/path/search", {
         params: {
           sx: history.startX,
@@ -78,10 +100,6 @@ function RouteSearchPanel({
       });
 
       setRoutes(response.data.result.path);
-
-      setSelectedRoute(null);
-
-      setSelectedStation(null);
 
       setStartPlace({
         name: history.start,
@@ -109,14 +127,24 @@ function RouteSearchPanel({
   }, []);
 
   return (
-    <div className="h-100 border-start bg-white p-3">
+    <div className="h-100 border-start bg-white p-3" style={{ overflowY: "auto" }}>
       <h3 className="mb-4">길찾기</h3>
+
+      <Button
+        variant="outline-primary"
+        size="sm"
+        className="w-100 mb-2"
+        onClick={setCurrentLocationAsStart}
+      >
+        ⊙ 내 위치를 출발지로 설정
+      </Button>
 
       <PlaceSearchInput
         placeholder="출발지 입력"
         value={startPlace}
         onSelect={setStartPlace}
       />
+
 
       <div className="mb-3"></div>
 
@@ -126,9 +154,15 @@ function RouteSearchPanel({
         onSelect={setEndPlace}
       />
 
-      <Button variant="primary" className="w-100 mt-3" onClick={searchRoute}>
-        검색
+      <Button variant="primary" className="w-100 mt-3" onClick={searchRoute} disabled={loading}>
+        {loading ? "경로 탐색 중..." : "검색"}
       </Button>
+
+      {loading && (
+        <div className="small text-muted text-center mt-2">
+          버스 경로를 탐색하고 있습니다.
+        </div>
+      )}
 
       <hr />
 

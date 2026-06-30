@@ -1,6 +1,5 @@
 import { Button } from "react-bootstrap";
 import { useEffect } from "react";
-import BusLocationList from "./BusLocationList";
 import BusStopList from "./BusStopList";
 import BusInfoCard from "./BusInfoCard";
 
@@ -31,19 +30,27 @@ function RouteBusCard({
       String(station.localStationID) === String(path.startLocalStationID),
   );
 
-  console.log("ODsay 정류장 목록", path.passStopList?.stations);
-  console.log("첫 번째 정류장", path.passStopList?.stations?.[0]);
-
-  console.log(
-    "ODsay localStationID 목록",
-    path.passStopList?.stations?.map((station) => ({
-      index: station.index,
-      name: station.stationName,
-      localStationID: station.localStationID,
-    })),
-  );
-
   const ord = startStation ? startStation.index + 1 : 1;
+
+  const startIndex = startStation ? startStation.index : 0;
+
+  const startOrder = currentArrival?.staOrder ?? startIndex + 1;
+
+  // 현재 노선 차량 목록
+  const routeVehicles = busLocationMap[index] ?? [];
+
+  // 승차정류장을 아직 지나지 않은 차량이 있는지
+  const hasUpcomingVehicle = routeVehicles.some(vehicle => {
+    if (vehicle.stationSeq == null) return false;
+
+    // stationSeq는 1부터 시작
+    return Number(vehicle.stationSeq) <= Number(startOrder);
+  });
+
+  // 모든 차량이 승차정류장을 지난 상태인지
+  const allVehiclesPassed =
+    routeVehicles.length > 0 &&
+    !hasUpcomingVehicle;
 
   useEffect(() => {
     if (!busLocationMap[index]) return;
@@ -69,13 +76,6 @@ function RouteBusCard({
             (station) =>
               String(station.localStationID) ===
               String(nearestStation.localStationID),
-          );
-
-          console.log(
-            vehicle.plainNo,
-            "nearestIndex =",
-            nearestIndex,
-            nearestStation.stationName,
           );
 
           // 현재 이용 구간(승차~하차) 안의 차량만 표시
@@ -118,9 +118,7 @@ function RouteBusCard({
           isSeoul: false,
         };
       })
-
       .filter(Boolean);
-    console.log("markers: ", markers);
 
     setBusMarkers(markers);
   }, [busLocationMap, index, isSeoul, setBusMarkers]);
@@ -135,6 +133,7 @@ function RouteBusCard({
         index={index}
         loadArrival={loadArrival}
         loadBusLocation={loadBusLocation}
+        allVehiclesPassed={allVehiclesPassed}
       />
       <div
         className="fw-bold text-success"

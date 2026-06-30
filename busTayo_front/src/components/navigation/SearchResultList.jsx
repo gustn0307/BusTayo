@@ -137,11 +137,6 @@ function SearchResultList({ routes, setSelectedRoute, setSelectedStation }) {
                               lng: Number(station.x),
                               name: station.stationName,
                             });
-                            console.log(
-                              station.stationName,
-                              station.y,
-                              station.x,
-                            );
                           }}
                         >
                           {bus.endName}

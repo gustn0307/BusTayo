@@ -7,6 +7,8 @@ function PlaceSearchInput({ placeholder, value, onSelect }) {
 
   const [results, setResults] = useState([]);
 
+  const [searched, setSearched] = useState(false);
+
   useEffect(() => {
     if (value?.name) {
       setKeyword(value.name);
@@ -18,6 +20,7 @@ function PlaceSearchInput({ placeholder, value, onSelect }) {
 
     if (!value.trim()) {
       setResults([]);
+      setSearched(false);
 
       return;
     }
@@ -26,8 +29,18 @@ function PlaceSearchInput({ placeholder, value, onSelect }) {
       const ps = new kakao.maps.services.Places();
 
       ps.keywordSearch(value, (data, status) => {
+        setSearched(true);
+
         if (status === kakao.maps.services.Status.OK) {
-          setResults(data);
+          const filteredResults = data.filter((place) => {
+            const address = place.address_name || place.road_address_name || "";
+
+            return address.startsWith("서울") || address.startsWith("경기");
+          });
+
+          setResults(filteredResults);
+        } else {
+          setResults([]);
         }
       });
     });
@@ -59,10 +72,18 @@ function PlaceSearchInput({ placeholder, value, onSelect }) {
                 });
               }}
             >
-              {place.place_name}
+              <div>{place.place_name}</div>
+              <div className="small text-muted">
+                {place.road_address_name || place.address_name}
+              </div>
             </ListGroup.Item>
           ))}
         </ListGroup>
+      )}
+      {searched && results.length === 0 && keyword.trim() && (
+        <div className="small text-muted mt-2">
+          서울·경기 지역만 검색할 수 있습니다.
+        </div>
       )}
     </>
   );

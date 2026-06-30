@@ -27,8 +27,8 @@ function RouteSearch() {
   }, [selectedStation]);
 
   return (
-    <Row className="g-0 h-100">
-      <Col>
+    <Row className="g-0" style={{ height: "100vh", overflow: "hidden" }}>
+      <Col style={{ height: "100vh" }}>
         <KakaoMap
           currentLocation={currentLocation}
           setCurrentLocation={setCurrentLocation}
@@ -38,7 +38,7 @@ function RouteSearch() {
         />
       </Col>
 
-      <Col xs={4} xxl={3}>
+      <Col xs={4} xxl={3} style={{ height: "100vh", overflow: "hidden" }}>
         <RouteSearchPanel
           currentLocation={currentLocation}
           startPlace={startPlace}
