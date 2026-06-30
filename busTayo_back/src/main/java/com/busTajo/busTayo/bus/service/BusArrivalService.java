@@ -5,19 +5,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class BusArrivalService {
 
-    private final BusApiConfig busApiConfig;
+    private final BusApiConfig busApiConfig; // 공공데이터 포털 api 키 가져오기
 
-    public BusArrivalService(BusApiConfig busApiConfig) {
+    public BusArrivalService(BusApiConfig busApiConfig) { // 생성자 주입 방식
         this.busApiConfig = busApiConfig;
     }
 
+    // 버스 도착 정보 API
     public String getArrivalInfo(
             String stationId,
             Integer cityCode,
@@ -52,11 +52,12 @@ public class BusArrivalService {
         return result;
     }
 
+    // 버스 위치 API
     public String getBusLocation(Integer cityCode, Long routeId) {
         RestTemplate restTemplate = new RestTemplate();
         String url;
 
-        if(cityCode==1000){ // 서울
+        if (cityCode == 1000) { // 서울
             url =
                     "http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid"
                             + "?serviceKey=" + busApiConfig.getServiceKey()
@@ -68,10 +69,10 @@ public class BusArrivalService {
                     String.class
             );
 
-            System.out.println("차량위치 결과 : " +result); // xml 형식
+            System.out.println("서울 차량위치 결과 XML : " + result); // xml 형식
 
             // xml -> json으로 변환
-            try{
+            try {
 
                 XmlMapper mapper = new XmlMapper();
 
@@ -87,18 +88,21 @@ public class BusArrivalService {
 
                 response.set("busLocationList", itemList);
 
+                System.out.println("서울 차량위치 결과 JSON : " + response.toString()); // json 형식
+
                 return response.toString();
 
-            }catch(Exception e){
+            } catch (Exception e) {
 
                 throw new RuntimeException(e);
 
             }
-        }else{ // 경기
-            url= "https://apis.data.go.kr/6410000/buslocationservice/v2/getBusLocationListv2"
+        } else { // 경기
+            url = "https://apis.data.go.kr/6410000/buslocationservice/v2/getBusLocationListv2"
                     + "?serviceKey=" + busApiConfig.getServiceKey()
                     + "&routeId=" + routeId
                     + "&format=json";
+
             System.out.println(url);
 
             String result = restTemplate.getForObject(
@@ -106,7 +110,7 @@ public class BusArrivalService {
                     String.class
             );
 
-            System.out.println("차량위치 결과 : " +result);
+            System.out.println("경기 차량위치 결과 : " + result);
 
             return result;
         }

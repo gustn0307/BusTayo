@@ -4,7 +4,13 @@ import api from "../../api";
 import RouteBusCard from "./RouteBusCard";
 import RouteWalkCard from "./RouteWalkCard";
 
-function RouteDetail({ route, setSelectedRoute, setSelectedStation, busMarkers, setBusMarkers }) {
+function RouteDetail({
+  route,
+  setSelectedRoute,
+  setSelectedStation,
+  busMarkers,
+  setBusMarkers,
+}) {
   const [openStops, setOpenStops] = useState({});
 
   const [arrivalMap, setArrivalMap] = useState({});
@@ -50,14 +56,37 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation, busMarkers, 
         },
       });
 
-      console.log("서울 응답", res.data);
+      console.log("응답", res.data);
+      console.log("서울 여부 :", cityCode === 1000);
 
-      const raw = res.data.busLocationList;
+      if (cityCode === 1000) {
+        console.log(
+          "서울 차량 sectOrd 목록",
+          res.data.busLocationList.map((bus) => ({
+            plateNo: bus.plainNo,
+            sectOrd: bus.sectOrd,
+            sectionId: bus.sectionId,
+            nextStId: bus.nextStId,
+          })),
+        );
+      }
+      let raw;
+
+      if (cityCode === 1000) {
+        // api 응답 형식에 따라 raw 값 정하기
+        // 서울
+        raw = res.data.busLocationList;
+      } else {
+        // 경기
+        raw = res.data.response?.msgBody?.busLocationList;
+      }
 
       console.log("raw =", raw);
 
       const list = Array.isArray(raw) ? raw : raw ? [raw] : [];
+
       console.log("list =", list);
+
       setBusLocationMap((prev) => ({
         ...prev,
         [pathIndex]: list,

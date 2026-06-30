@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,11 +59,12 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BusTayoApplication.executor": "Run",
+    "git-widget-placeholder": "feature/route"
+  }
+}]]></component>
   <component name="RunManager" selected="Application.BusTayoApplication">
     <configuration name="BusTayoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
@@ -99,6 +99,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.BusTayoApplication" />
+      <item itemvalue="Spring Boot.BusTayoApplication" />
     </list>
     <recent_temporary>
       <list>

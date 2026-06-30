@@ -14,7 +14,7 @@ function RouteBusCard({
   loadArrival,
   loadBusLocation,
   setSelectedStation,
-  setBusMarkers
+  setBusMarkers,
 }) {
   if (path.trafficType !== 2) {
     return null;
@@ -31,49 +31,99 @@ function RouteBusCard({
       String(station.localStationID) === String(path.startLocalStationID),
   );
 
+  console.log("ODsay 정류장 목록", path.passStopList?.stations);
+  console.log("첫 번째 정류장", path.passStopList?.stations?.[0]);
+
+  console.log(
+    "ODsay localStationID 목록",
+    path.passStopList?.stations?.map((station) => ({
+      index: station.index,
+      name: station.stationName,
+      localStationID: station.localStationID,
+    })),
+  );
+
   const ord = startStation ? startStation.index + 1 : 1;
 
   useEffect(() => {
-
     if (!busLocationMap[index]) return;
 
-    const markers = busLocationMap[index].map(vehicle => {
+    const markers = busLocationMap[index]
+      .map((vehicle) => {
+        if (isSeoul) {
+          const nearestStation = path.passStopList?.stations?.reduce(
+            (prev, current) => {
+              const prevDist =
+                Math.pow(Number(vehicle.gpsY) - Number(prev.y), 2) +
+                Math.pow(Number(vehicle.gpsX) - Number(prev.x), 2);
 
-      if (isSeoul) {
+              const currDist =
+                Math.pow(Number(vehicle.gpsY) - Number(current.y), 2) +
+                Math.pow(Number(vehicle.gpsX) - Number(current.x), 2);
+
+              return currDist < prevDist ? current : prev;
+            },
+          );
+
+          const nearestIndex = path.passStopList.stations.findIndex(
+            (station) =>
+              String(station.localStationID) ===
+              String(nearestStation.localStationID),
+          );
+
+          console.log(
+            vehicle.plainNo,
+            "nearestIndex =",
+            nearestIndex,
+            nearestStation.stationName,
+          );
+
+          // 현재 이용 구간(승차~하차) 안의 차량만 표시
+          if (nearestIndex < 0) {
+            return null;
+          }
+
+          return {
+            lat: Number(vehicle.gpsY),
+            lng: Number(vehicle.gpsX),
+            plateNo: vehicle.plainNo,
+            congetion: vehicle.congetion,
+            stopFlag: vehicle.stopFlag,
+            nearestStation,
+            nearestIndex,
+            isSeoul: true,
+          };
+        }
+
+        // 경기
+        const station =
+          path.passStopList?.stations?.[Number(vehicle.stationSeq) - 1];
+
+        if (!station) {
+          console.log("정류장 못찾음", vehicle.stationSeq);
+          return null;
+        }
 
         return {
+          lat: Number(station.y),
 
-          lat: Number(vehicle.gpsY),
+          lng: Number(station.x),
 
-          lng: Number(vehicle.gpsX),
+          plateNo: vehicle.plateNo,
 
-          plateNo: vehicle.plainNo,
+          crowded: vehicle.crowded,
 
+          stateCd: vehicle.stateCd,
+
+          isSeoul: false,
         };
+      })
 
-      }
-
-      return {
-
-        lat: Number(vehicle.y),
-
-        lng: Number(vehicle.x),
-
-        plateNo: vehicle.plateNo,
-
-      };
-
-    });
-    console.log("markers: ", markers)
+      .filter(Boolean);
+    console.log("markers: ", markers);
 
     setBusMarkers(markers);
-
-  }, [
-    busLocationMap,
-    index,
-    isSeoul,
-    setBusMarkers
-  ]);
+  }, [busLocationMap, index, isSeoul, setBusMarkers]);
 
   return (
     <div>
@@ -161,16 +211,6 @@ function RouteBusCard({
       >
         🚏 {path.endName}
       </div>
-      {openStops[index] && (
-        <BusLocationList
-          vehicles={busLocationMap[index]}
-          isSeoul={isSeoul}
-          stations={path.passStopList?.stations}
-          startOrd={ord}
-          startLocalStationID={path.startLocalStationID}
-          setBusMarkers={setBusMarkers}
-        />
-      )}
     </div>
   );
 }
