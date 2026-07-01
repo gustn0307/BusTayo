@@ -19,11 +19,21 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
+// Spring Security 설정 클래스
+// 역할:
+// 1. JWT 기반 인증/인가 설정
+// 2. 로그인 필터 등록
+// 3. JWT 검증 필터 등록
+// 4. API 접근 권한 설정
+// 5. CORS 설정
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // AuthenticationManager를 생성하기 위한 Spring Security 설정 객체
     private final AuthenticationConfiguration authenticationConfiguration;
+
+    // JWT 생성/검증 유틸 클래스
     private final JWTUtil jwtUtil;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
@@ -40,6 +50,8 @@ public class SecurityConfig {
         this.customSuccessHandler = customSuccessHandler;
     }
 
+    // AuthenticationManager Bean 등록
+    // LoginFilter에서 로그인 인증 처리 시 사용
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();

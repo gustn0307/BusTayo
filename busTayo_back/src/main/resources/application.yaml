@@ -27,7 +27,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 
     properties:
       hibernate:
@@ -71,11 +71,9 @@ logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
 
-busStop:
-  data:
-    api:
-      key: ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14
-
-kakao:
+bus:
   api:
-    key: ba356e0a5d0c0ea286f466cfbc5142dd
+    service-key: ${BUS_INFO_API_KEY}
+
+odsay:
+  api-key: ${ODSAY_API_KEY}

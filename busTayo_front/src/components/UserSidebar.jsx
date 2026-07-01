@@ -136,6 +136,15 @@ function UserSidebar() {
           공지사항
         </Nav.Link>
 
+        <Nav.Link
+          as={Link}
+          to="/notice"
+          className="bg-light rounded-4 py-3 px-3"
+        >
+          <PiMegaphoneSimpleThin className="text-primary me-2" />
+          공지사항
+        </Nav.Link>
+
         {role === "ADMIN" && (
           <Button
             as={Link}
