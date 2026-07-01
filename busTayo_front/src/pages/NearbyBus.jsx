@@ -10,7 +10,7 @@ function NearbyBus() {
   const hasAlertedRef = useRef(false);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("accessToken");
     
     // 토큰이 없는데 아직 알림을 띄운 적이 없다면?
     if (!token && !hasAlertedRef.current) {
@@ -228,7 +228,7 @@ function NearbyBus() {
     }
 
     // 💡 [보안 보강] 전역 규칙에 따라 sessionStorage에서 토큰을 추출합니다.
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("accessToken");
 
     // 💡 [핵심 분기] 카테고리가 버스정류장이냐 일반 편의시설이냐에 따라 다른 API를 호출합니다.
     if (category === "busStop") {

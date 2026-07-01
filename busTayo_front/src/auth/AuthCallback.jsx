@@ -35,7 +35,7 @@ function AuthCallback() {
           navigate("/join", { state: { tempToken: token, email: payload.email }, replace: true });
         } else {
           console.log("기존 유저 확인 -> 메인 홈 이동");
-          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("accessToken", token);
           sessionStorage.setItem("role", role);
           setToken(token);
           navigate("/home", { replace: true });

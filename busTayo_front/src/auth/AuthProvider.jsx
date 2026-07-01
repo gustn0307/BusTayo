@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   // 💡 세션 스토리지 기반으로 토큰 상태 초기화
-  const [token, setToken] = useState(() => sessionStorage.getItem("token"));
+  const [token, setToken] = useState(() => sessionStorage.getItem("accessToken"));
 
   // 💡 JWT 토큰 만료 여부 체크 함수
   const isTokenExpired = (targetToken) => {
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
   };
 
   const logout = (isExpired = false) => {
-    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("role");
     
     // 쿠키는 여기서 일괄 삭제
@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
   // 💡 주기적 타이머 감시 장치 (토큰 만료 체크)
   useEffect(() => {
     const timer = setInterval(() => {
-      const currentToken = sessionStorage.getItem("token");
+      const currentToken = sessionStorage.getItem("accessToken");
       
       if (currentToken) {
         if (isTokenExpired(currentToken)) {

@@ -41,7 +41,7 @@ function Board() {
   // 내 글 검색
   const handleSearch = () => {
     if (searchType === "my") {
-      const token = localStorage.getItem("accessToken");
+      const token = sessionStorage.getItem("accessToken");
       if (!token) {
         alert("로그인이 필요합니다.");
         navigate(`/login`)

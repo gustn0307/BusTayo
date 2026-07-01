@@ -81,7 +81,7 @@ function Join() {
           alert("구글 계정으로 회원가입 및 로그인이 완료되었습니다!");
 
           // 💡 [요구사항 3번 반영] 가입 완료 즉시 발급받았던 진짜 토큰을 넣어주어 바로 로그인 시킵니다.
-          sessionStorage.setItem("token", googleTempToken);
+          sessionStorage.setItem("accessToken", googleTempToken);
           sessionStorage.setItem("role", "ROLE_USER");
           setToken(googleTempToken);
 

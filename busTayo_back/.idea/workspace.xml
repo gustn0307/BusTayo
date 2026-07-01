@@ -4,274 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82b87a8b-54df-4cf9-83b7-04b702f78ba7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    <list default="true" id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_21_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_21_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthCallback.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthCallback.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthProvider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" afterDir="false" />
-=======
-<<<<<<< HEAD
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusArrivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/PathController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/PathController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/NavigatingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/NavigatingHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/OdsayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/OdsayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/BusApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/BusApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/controller/NavigatingHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/controller/NavigatingHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/dto/NavigatingHistoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/dto/NavigatingHistoryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/repository/NavigatingHistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/repository/NavigatingHistoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/service/NavigatingHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/service/NavigatingHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api/busApi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusInfoCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusInfoCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusStopList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusStopList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/KakaoMap.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/KakaoMap.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/PlaceSearchInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/PlaceSearchInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteSearchPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteSearchPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteWalkCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteWalkCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/SearchResultList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/SearchResultList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/util/loadKakaoMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/util/loadKakaoMap.js" afterDir="false" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
->>>>>>> 0a50bed843d951b422928f34d0e71eddcf6c969c
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" afterDir="false" />
->>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
-  </component>
-<<<<<<< HEAD
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 7
-=======
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-<<<<<<< HEAD
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="busTayo" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-<<<<<<< HEAD
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;minxxnn&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/gustn0307/BusTayo.git&quot;,
-    &quot;accountId&quot;: &quot;2959285c-aed2-4b53-8769-aca4cab0d012&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1,
-=======
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7,
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-  &quot;fromUser&quot;: false
->>>>>>> 0a50bed843d951b422928f34d0e71eddcf6c969c
-}</component>
-  <component name="ProjectId" id="3Ft8jvL4aXqjIgBXmc33W4d3W2f" />
   <component name="ProjectViewState">
-<<<<<<< HEAD
     <option name="hideEmptyMiddlePackages" value="true" />
-=======
-<<<<<<< HEAD
-    <option name="flattenModules" value="true" />
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build busTayo_back.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.busTayo_back [build].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/board&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/BusTayo/busTayo_back&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15429688&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
-  }
-}</component>
-  <component name="RunManager" selected="Spring Boot.BusTayoApplication">
-    <configuration name="BusTayoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.busTajo.busTayo.BusTayoApplication" />
-=======
-    <option name="showExcludedFiles" value="false" />
->>>>>>> 0a50bed843d951b422928f34d0e71eddcf6c969c
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build busTayo_back.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/passwordupdate&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BusTayoApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BusTayoApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/admin",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "feature/passwordupdate",
     "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm"
->>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
+    "last_opened_file_path": "C:/Maeng/BusTayo/busTayo_back"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="BUS_INFO_API_KEY" value="e9ba4241a2305206d93f14e2886d5be6c074902f0f76c18ec93794d7e3cfbdf3" />
-        <env name="busStop.data.api.key" value="ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14" />
+        <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
         <env name="GOOGLE_CLIENT_ID" value="353259509762-1303tcvdmqd2vq0b1qv2ni8c6uca0krp.apps.googleusercontent.com" />
         <env name="GOOGLE_CLIENT_SECRET" value="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" />
         <env name="kakao.api.key" value="ba356e0a5d0c0ea286f466cfbc5142dd" />
-        <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
+        <env name="busStop.data.api.key" value="ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14" />
       </envs>
-<<<<<<< HEAD
-=======
-      <option name="MAIN_CLASS_NAME" value="com.busTajo.busTayo.BusTayoApplication" />
-      <module name="busTayo.main" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.busTajo.busTayo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-<<<<<<< HEAD
-    <configuration name="busTayo_back [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <envs>
-        <env name="BUS_INFO_API_KEY" value="1be21f8cf6e878d9fffde8e1f2ea8291c3ca86bddb8aba03f0a732fe89ae97d1" />
-        <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
-      </envs>
-=======
-    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
->>>>>>> 0a50bed843d951b422928f34d0e71eddcf6c969c
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="busTayo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.busTajo.busTayo.BusTayoApplication" />
@@ -285,46 +57,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.BusTayoApplication" />
       </list>
     </recent_temporary>
   </component>
-=======
-    <list>
-      <item itemvalue="Application.BusTayoApplication" />
-<<<<<<< HEAD
-      <item itemvalue="Gradle.busTayo_back [build]" />
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-      <item itemvalue="Spring Boot.BusTayoApplication" />
-    </list>
-    <recent_temporary>
-      <list>
-<<<<<<< HEAD
-        <item itemvalue="Spring Boot.BusTayoApplication" />
-        <item itemvalue="Application.BusTayoApplication" />
-        <item itemvalue="Gradle.busTayo_back [build]" />
-      </list>
-    </recent_temporary>
-  </component>
-=======
-        <item itemvalue="Application.BusTayoApplication" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
->>>>>>> 0a50bed843d951b422928f34d0e71eddcf6c969c
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="82b87a8b-54df-4cf9-83b7-04b702f78ba7" name="Changes" comment="" />
-      <created>1782883144854</created>
+      <changelist id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="" />
+      <created>1782906947430</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1782883144854</updated>
+      <updated>1782906947430</updated>
     </task>
     <servers />
   </component>

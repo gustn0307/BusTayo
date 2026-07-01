@@ -30,7 +30,7 @@ const api = axios.create({
 // → 있으면 Authorization Header 추가
 api.interceptors.request.use((config) => {
     // 🟢 [보안] localStorage → sessionStorage로 변경
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("accessToken");
 
     // 🟢 [도배 방지] 토큰 존재 시 Authorization 헤더 추가
     if (token) {

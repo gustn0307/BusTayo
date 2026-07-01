@@ -15,7 +15,7 @@ function MyPage() {
 
   useEffect(() => {
     // 🟢 [교정] 오직 sessionStorage만 바라보도록 수정합니다.
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("accessToken");
     const role = sessionStorage.getItem("role");
     setUserRole(role); // 현재 유저의 권한 저장 (GUEST, USER 등)
 
@@ -42,7 +42,7 @@ function MyPage() {
       alert("인증이 만료되었거나 에러가 발생했습니다. 다시 로그인해 주세요.");
 
       // 🟢 [교정] 청소할 때도 세션 스토리지를 지웁니다.
-      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("accessToken");
       sessionStorage.removeItem("role");
       navigate("/login");
     });
@@ -58,7 +58,7 @@ function MyPage() {
     }
 
     // 🟢 [교정] sessionStorage 사용
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("accessToken");
 
     if (!currentPassword) { alert("현재 비밀번호를 입력해 주세요!"); return; }
     if (!newPassword) { alert("새 비밀번호를 입력해 주세요!"); return; }
@@ -87,7 +87,7 @@ function MyPage() {
     const isConfirm = window.confirm("정말로 BUS TAYO 서비스를 탈퇴하시겠습니까? 데이터가 모두 삭제됩니다.");
     if (isConfirm) {
       // 🟢 [교정] sessionStorage 사용
-      const token = sessionStorage.getItem("token");
+      const token = sessionStorage.getItem("accessToken");
 
       axios.delete("http://localhost:8080/api/delete-account", {
         headers: {
@@ -98,7 +98,7 @@ function MyPage() {
         alert("회원 탈퇴가 정상적으로 완료되었습니다. 그동안 이용해 주셔서 감사합니다.");
         
         // 🟢 [교정] 탈퇴 시에도 세션 스토리지 청소
-        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("accessToken");
         sessionStorage.removeItem("role");
         navigate("/login");
       })
