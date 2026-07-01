@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusLocationList.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" afterDir="false" />
     </list>
@@ -103,7 +103,6 @@
     </configuration>
     <list>
       <item itemvalue="Application.BusTayoApplication" />
-      <item itemvalue="Spring Boot.BusTayoApplication" />
     </list>
     <recent_temporary>
       <list>

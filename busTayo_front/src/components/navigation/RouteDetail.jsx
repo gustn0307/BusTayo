@@ -56,20 +56,6 @@ function RouteDetail({
         },
       });
 
-      console.log("응답", res.data);
-      console.log("서울 여부 :", cityCode === 1000);
-
-      if (cityCode === 1000) {
-        console.log(
-          "서울 차량 sectOrd 목록",
-          res.data.busLocationList.map((bus) => ({
-            plateNo: bus.plainNo,
-            sectOrd: bus.sectOrd,
-            sectionId: bus.sectionId,
-            nextStId: bus.nextStId,
-          })),
-        );
-      }
       let raw;
 
       if (cityCode === 1000) {
@@ -81,11 +67,7 @@ function RouteDetail({
         raw = res.data.response?.msgBody?.busLocationList;
       }
 
-      console.log("raw =", raw);
-
       const list = Array.isArray(raw) ? raw : raw ? [raw] : [];
-
-      console.log("list =", list);
 
       setBusLocationMap((prev) => ({
         ...prev,
@@ -129,6 +111,7 @@ function RouteDetail({
     });
   }, [route]);
 
+  // 지정시간(30초)마다 차량 도착 정보, 차량 위치 정보 새로고침
   useEffect(() => {
     const interval = setInterval(() => {
       Object.keys(openStops).forEach((index) => {
@@ -147,15 +130,6 @@ function RouteDetail({
         );
 
         const ord = startStation ? startStation.index + 1 : 1;
-
-        console.log("========== 서울버스 확인 ==========");
-        console.log("busNo :", path.lane[0].busNo);
-        console.log("stationId :", path.startLocalStationID);
-        console.log("routeId :", path.lane[0].busLocalBlID);
-        console.log("ord :", ord);
-        console.log("startStation :", startStation);
-        console.log("passStopList :", path.passStopList?.stations);
-        console.log("===============================");
 
         if (path.startLocalStationID) {
           loadArrival(
@@ -176,10 +150,12 @@ function RouteDetail({
           );
         }
       });
-    }, 15000);
+    }, 30000);
 
     return () => clearInterval(interval);
   }, [openStops, route]);
+
+
 
   if (!route) return null;
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Button } from "react-bootstrap";
 import { loadKakaoMap } from "../../util/loadKakaoMap";
 
 function KakaoMap({
@@ -16,6 +17,8 @@ function KakaoMap({
 
   const stationMarkerRef = useRef(null);
 
+  const currentLocationMarkerRef = useRef(null);
+
   const routePolylinesRef = useRef([]);
 
   const stopMarkersRef = useRef([]);
@@ -25,6 +28,9 @@ function KakaoMap({
   const busMarkersRef = useRef([]);
 
   const busOverlaysRef = useRef([]);
+
+  // 차량번호 기준으로 Marker/Overlay를 저장
+  const busObjectMapRef = useRef({});
 
   const infoOverlayRef = useRef(null);
 
@@ -62,7 +68,7 @@ function KakaoMap({
 
           mapInstanceRef.current = map;
 
-          new kakao.maps.Marker({
+          currentLocationMarkerRef.current = new kakao.maps.Marker({
             map,
             position: new kakao.maps.LatLng(lat, lng),
           });
@@ -87,6 +93,37 @@ function KakaoMap({
       },
     );
   }, []);
+
+  // 내 위치 버튼 함수
+  const moveToCurrentLocation = () => {
+    if (!currentLocation?.lat || !currentLocation?.lng) {
+      alert("현재 위치를 아직 가져오지 못했습니다.");
+      return;
+    }
+
+    if (!mapInstanceRef.current) {
+      return;
+    }
+
+    const kakao = window.kakao;
+
+    const position = new kakao.maps.LatLng(
+      currentLocation.lat,
+      currentLocation.lng,
+    );
+
+    mapInstanceRef.current.setCenter(position);
+    mapInstanceRef.current.setLevel(3, { animate: true });
+
+    if (currentLocationMarkerRef.current) {
+      currentLocationMarkerRef.current.setMap(null);
+    }
+
+    currentLocationMarkerRef.current = new kakao.maps.Marker({
+      map: mapInstanceRef.current,
+      position,
+    });
+  };
 
   // 정류장 선택시 해당 정류장으로 중심 이동
   useEffect(() => {
@@ -119,6 +156,11 @@ function KakaoMap({
   useEffect(() => {
     if (!mapInstanceRef.current) {
       return;
+    }
+
+    if (selectedRoute && currentLocationMarkerRef.current) {
+      currentLocationMarkerRef.current.setMap(null);
+      currentLocationMarkerRef.current = null;
     }
 
     if (!selectedRoute) {
@@ -410,37 +452,35 @@ function KakaoMap({
               </div>
               <div style="margin-bottom:4px;">
               혼잡도 :
-              ${
-                bus.isSeoul
-                  ? Number(bus.congetion) === 1
-                    ? "🟢 여유"
-                    : Number(bus.congetion) === 2
-                      ? "🟡 보통"
-                      : Number(bus.congetion) === 3
-                        ? "🟠 혼잡"
-                        : "🔴 매우혼잡"
-                  : Number(bus.crowded) === 1
-                    ? "🟢 여유"
-                    : Number(bus.crowded) === 2
-                      ? "🟡 보통"
-                      : Number(bus.crowded) === 3
-                        ? "🟠 혼잡"
-                        : "정보없음"
-              }
+              ${bus.isSeoul
+              ? Number(bus.congetion) === 1
+                ? "🟢 여유"
+                : Number(bus.congetion) === 2
+                  ? "🟡 보통"
+                  : Number(bus.congetion) === 3
+                    ? "🟠 혼잡"
+                    : "🔴 매우혼잡"
+              : Number(bus.crowded) === 1
+                ? "🟢 여유"
+                : Number(bus.crowded) === 2
+                  ? "🟡 보통"
+                  : Number(bus.crowded) === 3
+                    ? "🟠 혼잡"
+                    : "정보없음"
+            }
               </div>
               <div>
               상태 :
-              ${
-                bus.isSeoul
-                  ? Number(bus.stopFlag) === 1
-                    ? "정류장 정차"
-                    : "운행중"
-                  : Number(bus.stateCd) === 1
-                    ? "정류장 도착"
-                    : Number(bus.stateCd) === 2
-                      ? "정류장 출발"
-                      : "운행중"
-              }
+              ${bus.isSeoul
+              ? Number(bus.stopFlag) === 1
+                ? "정류장 정차"
+                : "운행중"
+              : Number(bus.stateCd) === 1
+                ? "정류장 도착"
+                : Number(bus.stateCd) === 2
+                  ? "정류장 출발"
+                  : "운행중"
+            }
               </div>
             </div>`,
         });
@@ -481,7 +521,25 @@ function KakaoMap({
     });
   }, [busMarkers]);
 
-  return <div ref={mapContainerRef} className="w-100 h-100" />;
+  return (
+    <div className="position-relative w-100 h-100">
+      <div ref={mapContainerRef} className="w-100 h-100" />
+
+      <Button
+        variant="light"
+        size="sm"
+        className="position-absolute shadow-sm"
+        style={{
+          top: "16px",
+          right: "16px",
+          zIndex: 10,
+        }}
+        onClick={moveToCurrentLocation}
+      >
+        📍 현재 내 위치로 이동
+      </Button>
+    </div>
+  );
 }
 
 export default KakaoMap;
