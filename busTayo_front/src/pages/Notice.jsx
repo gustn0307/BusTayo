@@ -1,38 +1,45 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import styles from "./Notice.module.css";
 
 function formatDate(dateStr) {
   if (!dateStr) return "";
-  return new Date(dateStr).toLocaleDateString("ko-KR", {
-    year: "numeric", month: "2-digit", day: "2-digit"
-  }).replace(/\. /g, ".").replace(".", ".");
+  return new Date(dateStr)
+    .toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\. /g, ".")
+    .replace(".", ".");
 }
 
 function isUpdated(createdAt, updatedAt) {
-  return updatedAt && new Date(updatedAt).getTime() !== new Date(createdAt).getTime();
+  return (
+    updatedAt &&
+    new Date(updatedAt).getTime() !== new Date(createdAt).getTime()
+  );
 }
 
-const PAGE_SIZE = 10;  // 추가
-function Notice(){
+const PAGE_SIZE = 10;
+
+function Notice() {
   const navigate = useNavigate();
   const [noticeList, setNoticeList] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [titleInput, setTitleInput] = useState("");
   const [page, setPage] = useState(1);
 
-  const [showModal, setShowModal] = useState(false);
-  const [editTarget, setEditTarget] = useState(null);
-  const [form, setForm] = useState({ noticeTitle: "", noticeContent: "" });
-
   useEffect(() => {
     fetchList();
   }, []);
 
   const fetchList = () => {
-    api.get("/notice")
-      .then(r => r.data)
-      .then(data => {
+    api
+      .get("/api/notice")
+      .then((r) => r.data)
+      .then((data) => {
         const sorted = [...data].reverse();
         setNoticeList(sorted);
         setFiltered(sorted);
@@ -40,7 +47,9 @@ function Notice(){
   };
 
   const handleSearch = () => {
-    const result = noticeList.filter(n => n.noticeTitle.includes(titleInput));
+    const result = noticeList.filter((n) =>
+      n.noticeTitle.includes(titleInput)
+    );
     setFiltered(result);
     setPage(1);
   };
@@ -55,33 +64,45 @@ function Notice(){
   const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="page-container">
+    <div className={styles.container}>
 
-      <div className="page-header">
-        <h2>공지사항</h2>
+      {/* 브레드크럼 */}
+      <div className={styles.breadcrumb}>
+        <i className="ti ti-home" aria-hidden="true"></i>
+        <span className={styles.link} onClick={() => navigate("/home")}>홈</span>
+        <span className={styles.sep}>›</span>
+        <span className={styles.current}>공지사항</span>
       </div>
 
-      <div className="search-card">
-        <div className="search-row">
+      {/* 검색 카드 */}
+      <div className={styles.searchCard}>
+        <div className={styles.searchRow}>
           <label>제목</label>
           <input
             type="text"
             placeholder="공지사항 제목 입력"
             value={titleInput}
-            onChange={e => setTitleInput(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && handleSearch()}
+            onChange={(e) => setTitleInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           />
         </div>
-        <div className="search-btn-box">
-          <button className="reset-btn" onClick={handleReset}>초기화</button>
-          <button className="search-btn" onClick={handleSearch}>검색</button>
+        <div className={styles.searchBtnBox}>
+          <button className={styles.resetBtn} onClick={handleReset}>
+            <i className="ti ti-refresh" aria-hidden="true"></i>
+            초기화
+          </button>
+          <button className={styles.searchBtn} onClick={handleSearch}>
+            <i className="ti ti-search" aria-hidden="true"></i>
+            검색
+          </button>
         </div>
       </div>
 
-      <div className="table-card">
-        <div className="table-top">
-          <span>공지 목록</span>
-          <span className="total-pill">총 {filtered.length}건</span>
+      {/* 테이블 카드 */}
+      <div className={styles.tableCard}>
+        <div className={styles.tableTop}>
+          <span className={styles.tableTopTitle}>공지 목록</span>
+          <span className={styles.totalPill}>총 {filtered.length}건</span>
         </div>
         <table>
           <thead>
@@ -93,21 +114,26 @@ function Notice(){
           <tbody>
             {paged.length === 0 ? (
               <tr>
-                <td colSpan="4" className="empty">등록된 공지사항이 없습니다.</td>
+                <td className={styles.empty} colSpan={2}>
+                  등록된 공지사항이 없습니다.
+                </td>
               </tr>
             ) : (
-              paged.map(notice => (
+              paged.map((notice) => (
                 <tr key={notice.noticeId}>
-                  <td
-                    style={{ textAlign: "left", cursor: "pointer", color: "#1d4ed8" }}
-                    onClick={() => navigate(`/notice/${notice.noticeId}`)}
-                  >
-                    {notice.noticeTitle}
-                    {isUpdated(notice.createdAt, notice.updatedAt) && (
-                      <span style={{ fontSize: "11px", color: "#9ca3af", marginLeft: "6px" }}>
-                        (수정됨)
+                  <td>
+                    <div
+                      className={styles.titleCell}
+                      onClick={() => navigate(`/notice/${notice.noticeId}`)}
+                    >
+                      <span className={styles.noticeBadge}>공지</span>
+                      <span className={styles.titleText}>
+                        {notice.noticeTitle}
                       </span>
-                    )}
+                      {isUpdated(notice.createdAt, notice.updatedAt) && (
+                        <span className={styles.updatedTag}>(수정됨)</span>
+                      )}
+                    </div>
                   </td>
                   <td>{formatDate(notice.createdAt)}</td>
                 </tr>
@@ -115,21 +141,23 @@ function Notice(){
             )}
           </tbody>
         </table>
-        <div className="pagination">
-          <button onClick={() => setPage(p => Math.max(1, p - 1))}>{"<"}</button>
+        <div className={styles.pagination}>
+          <button onClick={() => setPage((p) => Math.max(1, p - 1))}>{"<"}</button>
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i + 1}
-              className={page === i + 1 ? "active" : ""}
+              className={page === i + 1 ? styles.active : ""}
               onClick={() => setPage(i + 1)}
             >
               {i + 1}
             </button>
           ))}
-          <button onClick={() => setPage(p => Math.min(totalPages, p + 1))}>{">"}</button>
+          <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))}>{">"}</button>
         </div>
       </div>
+
     </div>
   );
 }
+
 export default Notice;

@@ -110,7 +110,9 @@ public class LostService {
 
             // lane 안이 아니라 result 바로 하위에 있음
             String companyName = (String) result.get("busCompanyNameKor");
-            System.out.println("busID: " + busId + " / companyName: " + companyName);
+            String companyId = String.valueOf(result.get("busCompanyID"));
+            System.out.println("busID: " + busId + " / companyId: " + companyId +
+                    " / companyName: " + companyName);
 
             return companyName;
 

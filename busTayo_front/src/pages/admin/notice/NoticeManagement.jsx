@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "./NoticeManagement.css";
-import api from "../../../api";
 import { useNavigate } from "react-router-dom";
+import styles from "./NoticeManagement.module.css"; // CSS Module 임포트
+import api from "../../../api";
 
 function formatDate(dateStr) {
   if (!dateStr) return "";
@@ -14,9 +14,9 @@ function isUpdated(createdAt, updatedAt) {
   return updatedAt && new Date(updatedAt).getTime() !== new Date(createdAt).getTime();
 }
 
-const PAGE_SIZE = 10;  // 추가
+const PAGE_SIZE = 10;
 
-function NoticeManagement({ onDetail }) {
+function NoticeManagement() {
   const navigate = useNavigate();
   const [noticeList, setNoticeList] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -32,7 +32,7 @@ function NoticeManagement({ onDetail }) {
   }, []);
 
   const fetchList = () => {
-    api.get("/notice")
+    api.get("/api/notice")
       .then(r => r.data)
       .then(data => {
         const sorted = [...data].reverse();
@@ -65,9 +65,9 @@ function NoticeManagement({ onDetail }) {
       return;
     }
     if (editTarget) {
-      await api.put(`/admin/notice/${editTarget.noticeId}`, form);
+      await api.put(`/api/admin/notice/${editTarget.noticeId}`, form);
     } else {
-      await api.post(`/admin/notice`, form);
+      await api.post(`/api/admin/notice`, form);
     }
     closeModal();
     fetchList();
@@ -87,7 +87,7 @@ function NoticeManagement({ onDetail }) {
 
   const handleDelete = async (id) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
-    await api.delete(`/admin/notice/${id}`);
+    await api.delete(`/api/admin/notice/${id}`);
     const updated = noticeList.filter(n => n.noticeId !== id);
     setNoticeList(updated);
     setFiltered(updated.filter(n => n.noticeTitle.includes(titleInput)));
@@ -97,15 +97,16 @@ function NoticeManagement({ onDetail }) {
   const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="page-container">
+    <div className={styles.pageContainer}>
 
-      <div className="page-header">
+      <div className={styles.pageHeader}>
         <h2>공지사항 관리</h2>
-        <button className="add-btn" onClick={openAdd}>+ 공지 작성</button>
+        <button className={styles.addBtn} onClick={openAdd}>+ 공지 작성</button>
       </div>
 
-      <div className="search-card">
-        <div className="search-row">
+      {/* 검색 카드 */}
+      <div className={styles.searchCard}>
+        <div className={styles.searchRow}>
           <label>제목</label>
           <input
             type="text"
@@ -115,18 +116,19 @@ function NoticeManagement({ onDetail }) {
             onKeyDown={e => e.key === "Enter" && handleSearch()}
           />
         </div>
-        <div className="search-btn-box">
-          <button className="reset-btn" onClick={handleReset}>초기화</button>
-          <button className="search-btn" onClick={handleSearch}>검색</button>
+        <div className={styles.searchBtnBox}>
+          <button className={styles.resetBtn} onClick={handleReset}>초기화</button>
+          <button className={styles.searchBtn} onClick={handleSearch}>검색</button>
         </div>
       </div>
 
-      <div className="table-card">
-        <div className="table-top">
+      {/* 테이블 카드 */}
+      <div className={styles.tableCard}>
+        <div className={styles.tableTop}>
           <span>공지 목록</span>
-          <span className="total-pill">총 {filtered.length}건</span>
+          <span className={styles.totalPill}>총 {filtered.length}건</span>
         </div>
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>번호</th>
@@ -138,39 +140,41 @@ function NoticeManagement({ onDetail }) {
           <tbody>
             {paged.length === 0 ? (
               <tr>
-                <td colSpan="4" className="empty">등록된 공지사항이 없습니다.</td>
+                <td colSpan="4" className={styles.empty}>등록된 공지사항이 없습니다.</td>
               </tr>
             ) : (
               paged.map(notice => (
                 <tr key={notice.noticeId}>
                   <td>{notice.noticeId}</td>
                   <td
-                    style={{ textAlign: "left", cursor: "pointer", color: "#1d4ed8" }}
+                    className={styles.titleLink}
                     onClick={() => navigate(`/admin/notices/${notice.noticeId}`)}
                   >
                     {notice.noticeTitle}
                     {isUpdated(notice.createdAt, notice.updatedAt) && (
-                      <span style={{ fontSize: "11px", color: "#9ca3af", marginLeft: "6px" }}>
+                      <span className={styles.updatedBadge}>
                         (수정됨)
                       </span>
                     )}
                   </td>
                   <td>{formatDate(notice.createdAt)}</td>
                   <td>
-                    <button className="edit-btn" onClick={() => openEdit(notice)}>수정</button>
-                    <button className="delete-btn" onClick={() => handleDelete(notice.noticeId)}>삭제</button>
+                    <button className={styles.editBtn} onClick={() => openEdit(notice)}>수정</button>
+                    <button className={styles.deleteBtn} onClick={() => handleDelete(notice.noticeId)}>삭제</button>
                   </td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
-        <div className="pagination">
+        
+        {/* 페이지네이션 */}
+        <div className={styles.pagination}>
           <button onClick={() => setPage(p => Math.max(1, p - 1))}>{"<"}</button>
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i + 1}
-              className={page === i + 1 ? "active" : ""}
+              className={page === i + 1 ? styles.active : ""}
               onClick={() => setPage(i + 1)}
             >
               {i + 1}
@@ -180,15 +184,16 @@ function NoticeManagement({ onDetail }) {
         </div>
       </div>
 
+      {/* 모달 영역 */}
       {showModal && (
-        <div className="notice-modal-backdrop" onClick={closeModal}>
-          <div className="notice-modal-box" onClick={e => e.stopPropagation()}>
-            <div className="notice-modal-header">
-              <span className="notice-modal-title">{editTarget ? "공지 수정" : "공지 작성"}</span>
-              <button className="notice-modal-close" onClick={closeModal}>✕</button>
+        <div className={styles.noticeModalBackdrop} onClick={closeModal}>
+          <div className={styles.noticeModalBox} onClick={e => e.stopPropagation()}>
+            <div className={styles.noticeModalHeader}>
+              <span className={styles.noticeModalTitle}>{editTarget ? "공지 수정" : "공지 작성"}</span>
+              <button className={styles.noticeModalClose} onClick={closeModal}>✕</button>
             </div>
-            <div className="notice-modal-body">
-              <div className="notice-modal-row">
+            <div className={styles.noticeModalBody}>
+              <div className={styles.noticeModalRow}>
                 <label>제목</label>
                 <input
                   type="text"
@@ -197,7 +202,7 @@ function NoticeManagement({ onDetail }) {
                   onChange={e => setForm(p => ({ ...p, noticeTitle: e.target.value }))}
                 />
               </div>
-              <div className="notice-modal-row align-top">
+              <div className={`${styles.noticeModalRow} ${styles.noticeAlignTop}`}>
                 <label>내용</label>
                 <textarea
                   rows={6}
@@ -207,9 +212,9 @@ function NoticeManagement({ onDetail }) {
                 />
               </div>
             </div>
-            <div className="notice-modal-footer">
-              <button className="reset-btn" onClick={closeModal}>취소</button>
-              <button className="add-btn" onClick={handleSave}>저장</button>
+            <div className={styles.noticeModalFooter}>
+              <button className={styles.resetBtn} onClick={closeModal}>취소</button>
+              <button className={styles.addBtn} onClick={handleSave}>저장</button>
             </div>
           </div>
         </div>

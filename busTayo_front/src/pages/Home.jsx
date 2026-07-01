@@ -26,7 +26,7 @@ function Home() {
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    api.get("/notice")
+    api.get("/api/notice")
       .then(r => r.data)
       .then(data => {
         const sorted = [...data].reverse();

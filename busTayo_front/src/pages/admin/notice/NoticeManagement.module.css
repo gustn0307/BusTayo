@@ -1,8 +1,20 @@
-* {
-  box-sizing: border-box;
+.pageContainer {
+  padding: 0px;
 }
 
-.add-btn {
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pageHeader h2 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.addBtn {
   background: #1d4ed8;
   color: white;
   border: none;
@@ -13,12 +25,12 @@
   font-weight: 600;
 }
 
-.add-btn:hover {
+.addBtn:hover {
   background: #1e40af;
 }
 
 /* 검색 카드 */
-.search-card {
+.searchCard {
   background: white;
   padding: 22px 24px;
   border-radius: 14px;
@@ -26,21 +38,20 @@
   margin-bottom: 18px;
 }
 
-.search-row {
+.searchRow {
   display: flex;
   align-items: center;
   margin-bottom: 13px;
 }
 
-.search-row label {
+.searchRow label {
   width: 72px;
   font-size: 13px;
   font-weight: 600;
   color: #374151;
 }
 
-.search-row input,
-.search-row select {
+.searchRow input {
   width: 230px;
   padding: 9px 13px;
   border: 1px solid #d1d9e6;
@@ -51,21 +62,20 @@
   transition: border-color 0.15s, background 0.15s;
 }
 
-.search-row input:focus,
-.search-row select:focus {
+.searchRow input:focus {
   outline: none;
   border-color: #1d4ed8;
   background: white;
 }
 
-.search-btn-box {
+.searchBtnBox {
   margin-top: 16px;
   display: flex;
   justify-content: flex-end;
   gap: 8px;
 }
 
-.reset-btn {
+.resetBtn {
   padding: 8px 18px;
   border: 1px solid #d1d9e6;
   background: white;
@@ -75,11 +85,11 @@
   font-size: 13px;
 }
 
-.reset-btn:hover {
+.resetBtn:hover {
   background: #f3f6fb;
 }
 
-.search-btn {
+.searchBtn {
   padding: 8px 18px;
   border: none;
   background: #1d4ed8;
@@ -90,19 +100,19 @@
   font-weight: 600;
 }
 
-.search-btn:hover {
+.searchBtn:hover {
   background: #1e40af;
 }
 
 /* 테이블 카드 */
-.table-card {
+.tableCard {
   background: white;
   border-radius: 14px;
   border: 1px solid #e5e9f0;
   overflow: hidden;
 }
 
-.table-top {
+.tableTop {
   padding: 14px 20px;
   display: flex;
   align-items: center;
@@ -110,13 +120,13 @@
   border-bottom: 1px solid #f0f4f9;
 }
 
-.table-top span {
+.tableTop span {
   font-size: 13px;
   font-weight: 600;
   color: #6b7280;
 }
 
-.total-pill {
+.totalPill {
   background: #eff6ff;
   color: #1d4ed8;
   padding: 3px 11px;
@@ -125,16 +135,16 @@
   font-weight: 600;
 }
 
-table {
+.table {
   width: 100%;
   border-collapse: collapse;
 }
 
-thead {
+.table thead {
   background: #0f1f3d;
 }
 
-th {
+.table th {
   padding: 12px 15px;
   font-size: 12px;
   font-weight: 500;
@@ -143,7 +153,7 @@ th {
   letter-spacing: 0.04em;
 }
 
-td {
+.table td {
   padding: 13px 15px;
   border-top: 1px solid #f0f4f9;
   text-align: center;
@@ -151,8 +161,20 @@ td {
   color: #374151;
 }
 
-tbody tr:hover td {
+.table tbody tr:hover td {
   background: #f5f8ff;
+}
+
+.titleLink {
+  text-align: left !important;
+  cursor: pointer;
+  color: #1d4ed8;
+}
+
+.updatedBadge {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-left: 6px;
 }
 
 .empty {
@@ -162,25 +184,7 @@ tbody tr:hover td {
   font-size: 14px;
 }
 
-.badge {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.badge-admin {
-  background: #dbeafe;
-  color: #1d4ed8;
-}
-
-.badge-user {
-  background: #f3f4f6;
-  color: #6b7280;
-}
-
-.edit-btn {
+.editBtn {
   padding: 5px 12px;
   border: none;
   background: #eff6ff;
@@ -192,11 +196,11 @@ tbody tr:hover td {
   margin-right: 5px;
 }
 
-.edit-btn:hover {
+.editBtn:hover {
   background: #dbeafe;
 }
 
-.delete-btn {
+.deleteBtn {
   padding: 5px 12px;
   border: none;
   background: #fef2f2;
@@ -207,7 +211,7 @@ tbody tr:hover td {
   font-weight: 500;
 }
 
-.delete-btn:hover {
+.deleteBtn:hover {
   background: #fee2e2;
 }
 
@@ -243,7 +247,8 @@ tbody tr:hover td {
   border-color: #1d4ed8;
 }
 
-.lost-modal-backdrop {
+/* 모달 컴포넌트 */
+.noticeModalBackdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -253,29 +258,30 @@ tbody tr:hover td {
   z-index: 1000;
 }
 
-.lost-modal-box {
+.noticeModalBox {
   background: white;
-  border-radius: 14px;
-  width: 560px;
+  border-radius: 10px;
+  width: 640px;
   max-width: 90vw;
   overflow: hidden;
+  margin: 24px;
 }
 
-.lost-modal-header {
+.noticeModalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: 16px 24px;
   border-bottom: 1px solid #e5e9f0;
 }
 
-.lost-modal-title {
+.noticeModalTitle {
   font-size: 15px;
   font-weight: 600;
   color: #111827;
 }
 
-.lost-modal-close {
+.noticeModalClose {
   background: none;
   border: none;
   font-size: 16px;
@@ -283,37 +289,37 @@ tbody tr:hover td {
   cursor: pointer;
 }
 
-.lost-modal-close:hover {
+.noticeModalClose:hover {
   color: #111827;
 }
 
-.lost-modal-body {
-  padding: 20px;
+.noticeModalBody {
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
-.lost-modal-row {
+.noticeModalRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
-.lost-modal-row.align-top {
+.noticeModalRow.noticeAlignTop {
   align-items: flex-start;
 }
 
-.lost-modal-row label {
-  width: 60px;
+.noticeModalRow label {
+  width: 36px;
   font-size: 13px;
   font-weight: 600;
   color: #374151;
   flex-shrink: 0;
 }
 
-.lost-modal-row input,
-.lost-modal-row textarea {
+.noticeModalRow input,
+.noticeModalRow textarea {
   flex: 1;
   padding: 9px 13px;
   border: 1px solid #d1d9e6;
@@ -324,17 +330,17 @@ tbody tr:hover td {
   resize: vertical;
 }
 
-.lost-modal-row input:focus,
-.lost-modal-row textarea:focus {
+.noticeModalRow input:focus,
+.noticeModalRow textarea:focus {
   outline: none;
   border-color: #1d4ed8;
   background: white;
 }
 
-.lost-modal-footer {
+.noticeModalFooter {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  padding: 14px 20px;
+  padding: 20px;
   border-top: 1px solid #e5e9f0;
 }
