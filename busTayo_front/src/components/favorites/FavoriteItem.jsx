@@ -14,30 +14,34 @@ function FavoriteItem({ item, onDelete, onMove, groups }) {
   // 아이템 클릭 시 길찾기 페이지로 이동 (출발지/도착지 자동 입력)
   const handleClick = () => {
     navigate("/route", {
-      state: {
-        start: item.start,
-        startX: item.startX,
-        startY: item.startY,
-        end: item.end,
-        endX: item.endX,
-        endY: item.endY,
-      },
-    });
+  state: {
+    favorite: {
+      start: item.start,
+      startX: item.startX,
+      startY: item.startY,
+      end: item.end,
+      endX: item.endX,
+      endY: item.endY,
+    },
+  },
+});
   };
 
   // 보기 버튼 클릭 시 길찾기 페이지로 이동
   const handleView = (e) => {
     e.stopPropagation(); // 부모 ListGroup.Item onClick 전파 방지
     navigate("/route", {
-      state: {
-        start: item.start,
-        startX: item.startX,
-        startY: item.startY,
-        end: item.end,
-        endX: item.endX,
-        endY: item.endY,
-      },
-    });
+  state: {
+    favorite: {
+      start: item.start,
+      startX: item.startX,
+      startY: item.startY,
+      end: item.end,
+      endX: item.endX,
+      endY: item.endY,
+    },
+  },
+});
   };
 
   // [추가] 그룹 이동 처리
