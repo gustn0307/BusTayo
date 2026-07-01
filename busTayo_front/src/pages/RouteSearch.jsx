@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 import KakaoMap from "../components/navigation/KakaoMap";
 import RouteSearchPanel from "../components/navigation/RouteSearchPanel";
@@ -59,6 +60,27 @@ function RouteSearch() {
   // RouteSearchPanel에서 /api/navigating/history 응답을 받아 저장한다.
   const [history, setHistory] = useState([]);
 
+  const location = useLocation();
+  const favorite = location.state;
+  
+
+  useEffect(() => {}, [selectedStation]);
+  useEffect(() => {
+    if (!favorite) return;
+
+    setStartPlace({
+      name: favorite.start,
+      lat: favorite.startY,
+      lng: favorite.startX,
+    });
+
+    setEndPlace({
+      name: favorite.end,
+      lat: favorite.endY,
+      lng: favorite.endX,
+    });
+  }, [favorite]);
+
   return (
     // 전체 길찾기 화면 높이를 브라우저 높이로 고정한다.
     // overflow hidden을 주어 페이지 전체가 스크롤되지 않고,
@@ -111,6 +133,7 @@ function RouteSearch() {
       </Col>
     </Row>
   );
+  
 }
 
 export default RouteSearch;
