@@ -16,8 +16,12 @@ public class FavoritesPlace extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY) // default : EAGER, 왠만하면 그냥 LAZY 사용하면 됨
-    @JoinColumn(name = "group_id", nullable = false) // group_id 컬럼을 FavoritesGroup의 @Id가 붙은 PK와 연결(FK)
+    // default : EAGER, 왠만하면 그냥 LAZY 사용하면 됨
+    // 그룹 미지정 즐겨찾기는 group_id가 null로 저장됨
+    @ManyToOne(fetch = FetchType.LAZY)
+    // group_id 컬럼을 FavoritesGroup의 @Id가 붙은 PK와 연결(FK)
+    // nullable을 지정하지 않아서 그룹 없는 즐겨찾기도 저장 가능
+    @JoinColumn(name = "group_id")
     private FavoritesGroup group;
 
     @ManyToOne(fetch = FetchType.LAZY) // default : EAGER, 왠만하면 그냥 LAZY 사용하면 됨
