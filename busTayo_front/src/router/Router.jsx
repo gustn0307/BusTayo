@@ -10,7 +10,7 @@ import Home from "../pages/Home";
 import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
-import LostFound from "../pages/LostFound";
+import Lost from "../pages/Lost";
 import Board from "../pages/board/Board"
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
@@ -55,16 +55,14 @@ function Router() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
-        <Route path="/lostfound" element={<LostFound />} />
+        <Route path="/lost" element={<Lost />} />
         <Route path="/board" element={<Board />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
-
         {/* 게시판 */}
         <Route path="/board/:id" element={<BoardDetail />} />
         <Route path="/board/write" element={<BoardWrite />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
       </Route>

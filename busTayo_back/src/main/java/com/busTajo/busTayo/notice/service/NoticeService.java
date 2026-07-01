@@ -5,6 +5,7 @@ import com.busTajo.busTayo.notice.dto.NoticeDto;
 import com.busTajo.busTayo.notice.repository.NoticeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +17,15 @@ public class NoticeService {
 
     public List<NoticeDto> findAllNotice() {
         return noticeRepository
-                .findAll()
+                .findAllByDeletedFalse()
                 .stream()
                 .map(x->NoticeDto.toNoticeDto(x))
                 .toList();
     }
 
     public NoticeDto findNoticeById(Long id) {
-        Notice notice = noticeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("공지 없음"));
+        Notice notice = noticeRepository.findByIdAndDeletedFalse(id)
+                .orElseThrow(() -> new RuntimeException("공지사항 없음"));
         return NoticeDto.toNoticeDto(notice);
     }
 
@@ -43,9 +44,11 @@ public class NoticeService {
         notice.setContent(noticeDto.getNoticeContent());
     }
 
+    @Transactional
     public void deleteNotice(Long id) {
-        Notice notice = noticeRepository.findById(id)
+        Notice notice = noticeRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new RuntimeException("공지 없음"));
-        noticeRepository.delete(notice);
+        notice.setDeleted(true);
+        noticeRepository.save(notice);
     }
 }

@@ -1,0 +1,341 @@
+* {
+  box-sizing: border-box;
+}
+
+/* 검색 카드 */
+.searchCard {
+  background: white;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 0.5px solid #e2e8f0;
+  margin-bottom: 14px;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.searchRow label {
+  width: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.searchRow input {
+  flex: 1;
+  max-width: 300px;
+  height: 36px;
+  padding: 0 12px;
+  border: 0.5px solid #d1d9e6;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #111827;
+  background: #f8fafc;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.searchRow input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  background: white;
+}
+
+.searchRow input::placeholder {
+  color: #9ca3af;
+}
+
+.searchBtnBox {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.resetBtn {
+  height: 32px;
+  padding: 0 14px;
+  border: 0.5px solid #d1d9e6;
+  background: white;
+  color: #6b7280;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.resetBtn:hover {
+  background: #f3f6fb;
+}
+
+.searchBtn {
+  height: 32px;
+  padding: 0 16px;
+  border: none;
+  background: #1d4ed8;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.searchBtn:hover {
+  background: #1e40af;
+}
+
+/* 테이블 카드 */
+.tableCard {
+  background: white;
+  border-radius: 12px;
+  border: 0.5px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.tableTop {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 0.5px solid #e2e8f0;
+}
+
+.tableTopTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.totalPill {
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 0.5px solid #bfdbfe;
+}
+
+.tableCard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableCard thead {
+  background: #0d1b38;
+}
+
+.tableCard th {
+  padding: 11px 16px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #7eb3e8;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.tableCard td {
+  padding: 13px 16px;
+  border-top: 0.5px solid #f0f4f9;
+  text-align: center;
+  font-size: 13px;
+  color: #374151;
+}
+
+.tableCard tbody tr:hover td {
+  background: #f5f8ff;
+}
+
+.empty {
+  color: #9ca3af;
+  height: 100px;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+/* 조회 버튼 */
+.queryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 13px;
+  border: 0.5px solid #bfdbfe;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.queryBtn:hover {
+  background: #1d4ed8;
+  color: white;
+  border-color: #1d4ed8;
+}
+
+/* 페이지네이션 */
+.pagination {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-top: 0.5px solid #f0f4f9;
+}
+
+.pagination button {
+  width: 30px;
+  height: 30px;
+  border: 0.5px solid #e2e8f0;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #6b7280;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.pagination button:hover {
+  border-color: #1d4ed8;
+  color: #1d4ed8;
+}
+
+.pagination button.active {
+  background: #1d4ed8;
+  color: white;
+  border-color: #1d4ed8;
+}
+
+/* 모달 */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalBox {
+  background: white;
+  border-radius: 14px;
+  width: 480px;
+  max-width: 90vw;
+  overflow: hidden;
+  border: 0.5px solid #e2e8f0;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 0.5px solid #e2e8f0;
+  background: #0d1b38;
+}
+
+.modalTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e0eaf8;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: #7eb3e8;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modalClose:hover {
+  color: white;
+}
+
+.modalBody {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.busRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border: 0.5px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.busRow:hover {
+  background: #f5f8ff;
+}
+
+.busNo {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.expandIcon {
+  font-size: 11px;
+  color: #1d4ed8;
+}
+
+.busDetail {
+  padding: 10px 14px;
+  background: #f8fafc;
+  border: 0.5px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  font-size: 13px;
+  margin-top: -6px;
+  margin-bottom: 2px;
+}
+
+.busDetailRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.busDetailRow + .busDetailRow {
+  border-top: 0.5px solid #f0f4f9;
+}
+
+.busDetailLabel {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.busDetailValue {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 0.5px solid #e2e8f0;
+}
