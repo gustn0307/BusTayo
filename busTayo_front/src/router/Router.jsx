@@ -9,7 +9,11 @@ import Home from "../pages/Home";
 import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
+<<<<<<< HEAD
 import BoardingAlarm from "../pages/BoardingAlarm";
+=======
+import LostFound from "../pages/LostFound";
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
 import FreeBoard from "../pages/FreeBoard";
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
@@ -22,7 +26,6 @@ import UserManagement from "../pages/admin/UserManagement";
 import NoticeManagement from "../pages/admin/notice/NoticeManagement";
 import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail";
 import Statistics from "../pages/admin/Statistics";
-import BusHistory from "../pages/BusHistory";
 
 function Router() {
   return (
@@ -35,10 +38,8 @@ function Router() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
-        <Route path="/alarm" element={<BoardingAlarm />} />
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/history" element={<BusHistory />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
         <Route path="/lost" element={<Lost />} />

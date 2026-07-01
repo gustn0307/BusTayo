@@ -20,17 +20,20 @@ const NAV_SECTIONS = [
   {
     label: "버스 서비스",
     items: [
-      { to: "/nearby",  icon: BsGeoAltFill,    label: "내 주변 검색" },
-      { to: "/route",   icon: BsSignpostFill,   label: "길찾기" },
-      { to: "/alarm",   icon: BsBellFill,       label: "승하차 알림" },
+      { to: "/nearby", icon: BsGeoAltFill, label: "내 주변 검색" },
+      {
+        to: "/route",
+        state: { reset: true },
+        icon: BsSignpostFill,
+        label: "길찾기",
+      },
     ],
   },
   {
     label: "내 정보",
     items: [
-      { to: "/favorite", icon: BsStarFill,     label: "즐겨찾기" },
-      { to: "/mypage",   icon: BsPersonFill,   label: "마이페이지" },
-      { to: "/history",  icon: BsClockHistory, label: "이용 내역" },
+      { to: "/favorite", icon: BsStarFill, label: "즐겨찾기" },
+      { to: "/mypage", icon: BsPersonFill, label: "마이페이지" },
     ],
   },
   {
@@ -329,21 +332,43 @@ function UserSidebar() {
           {NAV_SECTIONS.map((section) => (
             <div className="sidebar-section" key={section.label}>
               <div className="sidebar-section-label">{section.label}</div>
-              {section.items.map(({ to, icon: Icon, label }) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  className={({ isActive }) =>
-                    "sidebar-nav-item" + (isActive ? " active" : "")
-                  }
-                >
-                  <div className="nav-icon-wrap">
-                    <Icon size={17} />
+              {section.items.map(({ to, icon: Icon, label }) =>
+                to === "/route" ? (
+                  <div
+                    key={to}
+                    className="sidebar-nav-item"
+                    onClick={() =>
+                      navigate("/route", {
+                        replace: true,
+                        state: {
+                          reset: Date.now(),
+                        },
+                      })
+                    }
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="nav-icon-wrap">
+                      <Icon size={17} />
+                    </div>
+                    <span>{label}</span>
+                    <BsChevronRight size={13} className="nav-chevron" />
                   </div>
-                  <span>{label}</span>
-                  <BsChevronRight size={13} className="nav-chevron" />
-                </NavLink>
-              ))}
+                ) : (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    className={({ isActive }) =>
+                      "sidebar-nav-item" + (isActive ? " active" : "")
+                    }
+                  >
+                    <div className="nav-icon-wrap">
+                      <Icon size={17} />
+                    </div>
+                    <span>{label}</span>
+                    <BsChevronRight size={13} className="nav-chevron" />
+                  </NavLink>
+                ),
+              )}
             </div>
           ))}
 
@@ -356,7 +381,10 @@ function UserSidebar() {
                   <BsShieldLockFill size={17} />
                 </div>
                 <span>관리자 페이지</span>
-                <BsChevronRight size={13} style={{ marginLeft: "auto", opacity: 0.5 }} />
+                <BsChevronRight
+                  size={13}
+                  style={{ marginLeft: "auto", opacity: 0.5 }}
+                />
               </NavLink>
             </>
           )}

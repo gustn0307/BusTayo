@@ -224,7 +224,7 @@ function RouteSearchPanel({
   return (
     // 오른쪽 길찾기 패널
     // 페이지 전체가 아니라 패널 내부만 스크롤되도록 overflowY를 지정한다.
-    <div className="h-100 border-start bg-white p-3">
+    <div className="h-100 overflow-auto border-start bg-white p-3">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h3 className="mb-0">길찾기</h3>
         <button
