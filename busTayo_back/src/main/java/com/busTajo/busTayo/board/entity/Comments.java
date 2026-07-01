@@ -5,6 +5,8 @@ import com.busTajo.busTayo.users.entity.Users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 // 댓글 테이블
 @Entity
@@ -21,6 +23,7 @@ public class Comments extends BaseEntity {
     // ddl-auto를 create로 설정 후 아래처럼 맵핑해주면 자동으로 FK 설정도 해줌
     @ManyToOne(fetch = FetchType.LAZY) // default : EAGER, 왠만하면 그냥 LAZY 사용하면 됨
     @JoinColumn(name = "board_id", nullable = false) // id 컬럼을 Board의 @Id가 붙은 PK와 연결(FK)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Board board; // 댓글 작성한 게시글 ID(FK)
 
     @ManyToOne(fetch = FetchType.LAZY) // default : EAGER, 왠만하면 그냥 LAZY 사용하면 됨
@@ -29,4 +32,12 @@ public class Comments extends BaseEntity {
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content; // 댓글 내용
+
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false; // 삭제 여부
+
+    // 대댓글
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private Comments parent; // 부모 댓글 (null이면 일반 댓글, 값 있으면 대댓글)
 }

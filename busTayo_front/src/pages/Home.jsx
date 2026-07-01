@@ -36,19 +36,6 @@ function Home() {
       .catch(err => console.error("공지사항 조회 실패:", err));
   }, []);
 
-  useEffect(() => {
-    api.get("/lost/my", {
-    headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(r => r.data)
-      .then(data => {
-        const sorted = [...data];
-        setBusNameInput(sorted); 
-        setBusNameInput(sorted.slice(0, 1));
-      })
-      .catch(err => console.error("이용내역 조회 실패:", err));
-  }, []);
-  
   return (
     <div>
       {/* 인사말 */}

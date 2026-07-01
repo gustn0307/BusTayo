@@ -9,22 +9,29 @@ import Home from "../pages/Home";
 import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
-import FreeBoard from "../pages/FreeBoard";
+import Lost from "../pages/Lost";
+import Board from "../pages/board/Board"
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
-import Lost from "../pages/Lost";
-import Login from "../auth/login";
-import Join from "../auth/join";
-
 import UserManagement from "../pages/admin/UserManagement";
 import NoticeManagement from "../pages/admin/notice/NoticeManagement";
 import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail";
 import Statistics from "../pages/admin/Statistics";
+import Login from "../auth/login";
+import Join from "../auth/join";
+
+// 게시판
+import BoardDetail from "../pages/board/BoardDetail";
+import BoardWrite from "../pages/board/BoardWrite";
 
 function Router() {
   return (
     <Routes>
+
+    <Route path="/login" element={<Login />} />
+    <Route path="/join" element={<Join />} />
+      
       {/* 사용자 */}
 
       <Route element={<UserLayout />}>
@@ -33,11 +40,14 @@ function Router() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
-        <Route path="/board" element={<FreeBoard />} />
+        <Route path="/lost" element={<Lost />} />
+        <Route path="/board" element={<Board />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
-        <Route path="/lost" element={<Lost />} />
+        {/* 게시판 */}
+        <Route path="/board/:id" element={<BoardDetail />} />
+        <Route path="/board/write" element={<BoardWrite />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
       </Route>
