@@ -1,0 +1,96 @@
+.board-write-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.board-write-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 30px;
+}
+
+.board-write-form {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.board-write-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board-write-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.board-write-field input {
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.board-write-field input:focus {
+  border-color: #1a6fd4;
+}
+
+.board-write-field textarea {
+  padding: 12px 14px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 14px;
+  height: 300px;
+  resize: none;
+  outline: none;
+}
+
+.board-write-field textarea:focus {
+  border-color: #1a6fd4;
+}
+
+.board-write-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-cancel {
+  padding: 8px 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-cancel:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-submit {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1a6fd4;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-submit:hover {
+  background-color: #155ab5;
+}
