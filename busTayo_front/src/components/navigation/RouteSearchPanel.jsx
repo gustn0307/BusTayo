@@ -1,4 +1,5 @@
 import { Card, Button } from "react-bootstrap";
+import { BsStar, BsStarFill } from "react-icons/bs";
 import api from "../../api";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
@@ -64,6 +65,31 @@ function RouteSearchPanel({
   // 새 검색 시 초기화하고, RouteBusCard에서 차량 위치를 받아 갱신한다.
   setBusMarkers,
 }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const saveFavorite = async () => {
+    if (!startPlace || !endPlace) {
+      alert("출발지와 도착지를 먼저 입력하세요.");
+      return;
+    }
+    try {
+      await api.post("/api/favorites/navigating", {
+        name: `${startPlace.name} → ${endPlace.name}`,
+        start: startPlace.name,
+        startX: startPlace.lng,
+        startY: startPlace.lat,
+        end: endPlace.name,
+        endX: endPlace.lng,
+        endY: endPlace.lat,
+      });
+      setIsFavorite(true);
+      alert("즐겨찾기에 저장되었습니다.");
+    } catch (error) {
+      console.error(error);
+      alert("즐겨찾기 저장에 실패했습니다.");
+    }
+  };
+
   // 경로 검색 진행 여부
   // true이면 검색 버튼을 비활성화하고 "경로 탐색 중..." 문구를 표시한다.
   const [loading, setLoading] = useState(false);
@@ -187,15 +213,31 @@ function RouteSearchPanel({
       })
       .catch(console.error);
   }, []);
+  useEffect(() => {
+    setIsFavorite(false);
+    if (startPlace && endPlace) {
+      searchRoute();
+    }
+  }, [startPlace, endPlace]);
 
+  
   return (
     // 오른쪽 길찾기 패널
     // 페이지 전체가 아니라 패널 내부만 스크롤되도록 overflowY를 지정한다.
-    <div
-      className="h-100 border-start bg-white p-3"
-      style={{ overflowY: "auto" }}
-    >
-      <h3 className="mb-4">길찾기</h3>
+    <div className="h-100 overflow-auto border-start bg-white p-3">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h3 className="mb-0">길찾기</h3>
+        <button
+          onClick={saveFavorite}
+          className="btn btn-link p-0 text-warning"
+          title="즐겨찾기 저장"
+          style={{ fontSize: "1.5rem" }}
+        >
+          {isFavorite ? <BsStarFill /> : <BsStar />}
+        </button>
+      </div>
+    
+    
 
       {/* 현재 위치를 출발지로 설정 */}
       <Button

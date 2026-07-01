@@ -33,10 +33,8 @@ function PlaceSearchInput({
   // 부모에서 선택 장소가 바뀌면 입력창 텍스트도 같이 변경한다.
   // 예: 최근 길찾기 클릭, 내 위치 출발지 설정 등
   useEffect(() => {
-    if (value?.name) {
-      setKeyword(value.name);
-    }
-  }, [value]);
+  setKeyword(value?.name ?? "");
+}, [value]);
 
   // 사용자가 입력할 때마다 장소 검색 실행
   const searchPlaces = (value) => {

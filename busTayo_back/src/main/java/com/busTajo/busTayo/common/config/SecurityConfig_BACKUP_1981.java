@@ -38,7 +38,6 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
 
-    // 생성자 주입
     public SecurityConfig(
             AuthenticationConfiguration authenticationConfiguration,
             JWTUtil jwtUtil,
@@ -54,9 +53,7 @@ public class SecurityConfig {
     // AuthenticationManager Bean 등록
     // LoginFilter에서 로그인 인증 처리 시 사용
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration
-    ) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
@@ -80,6 +77,7 @@ public class SecurityConfig {
         http.formLogin((auth) -> auth.disable());
         http.httpBasic((auth) -> auth.disable());
 
+<<<<<<< HEAD
         // 3. OAuth2 소셜 로그인 기능 활성화 및 설정
         http
                 .oauth2Login((oauth2) -> oauth2
@@ -87,6 +85,47 @@ public class SecurityConfig {
                         .successHandler(customSuccessHandler)
                         .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                                 .userService(customOAuth2UserService))
+=======
+
+        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
+        http
+                .authorizeHttpRequests((auth) ->
+                        auth
+
+                                .requestMatchers(
+                                        "/login",
+                                        "/",
+                                        "/join",
+                                        "/api/admin/**",
+                                        "/notice",
+                                        "/notice/**"
+                                        ).permitAll()
+                                .requestMatchers(
+                                        "/user",
+                                        "/api/navigating/**",
+                                        "/api/bus/**",
+                                        "/api/path/**",
+                                        "/api/favorites/**"
+                                ).hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
+                                .anyRequest().authenticated()
+                );
+
+        // JWTFilter 등록
+        // LoginFilter보다 먼저 실행되어 요청의 JWT 토큰을 검사한다.
+        http.addFilterBefore(
+                new JWTFilter(jwtUtil),
+                LoginFilter.class
+        );
+
+        // LoginFilter 생성
+        // /login 요청에서 아이디/비밀번호 인증 후 JWT 발급
+        LoginFilter loginFilter =
+                new LoginFilter(
+                        authenticationManager(authenticationConfiguration),
+                        jwtUtil
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
                 );
 
         // 4. 경로별 인가 작업

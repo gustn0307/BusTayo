@@ -27,7 +27,7 @@ function MyPage() {
       return;
     }
 
-    axios.get("http://localhost:8080/api/mypage", {
+    axios.get("http://localhost:8080/api/my-info", {
       headers: {
         Authorization: `Bearer ${token}` 
       }

@@ -29,8 +29,13 @@ import UserManagement from "../pages/admin/UserManagement";
 import NoticeManagement from "../pages/admin/notice/NoticeManagement";
 import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail";
 import Statistics from "../pages/admin/Statistics";
+<<<<<<< HEAD
 
 // 인증 검문소
+=======
+import Login from "../auth/login";
+import Join from "../auth/join";
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
 
 function Router() {
   return (
@@ -55,6 +60,14 @@ function Router() {
         <Route path="/lostfound" element={<LostFound />} />
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
+<<<<<<< HEAD
+        <Route path="/history" element={<BusHistory />} />
+=======
+        <Route path="/notice" element={<Notice />} />
+        <Route path="/notice/:id" element={<NoticeDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
       </Route>
 
       {/* 관리자 경로 */}

@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
+import BoardingAlarm from "../pages/BoardingAlarm";
 import LostFound from "../pages/LostFound";
 import FreeBoard from "../pages/FreeBoard";
 import MyPage from "../pages/MyPage";
@@ -52,9 +53,11 @@ function Router() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
+        <Route path="/alarm" element={<BoardingAlarm />} />
         <Route path="/lostfound" element={<LostFound />} />
         <Route path="/board" element={<FreeBoard />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/history" element={<BusHistory />} />
       </Route>
 
       {/* 관리자 경로 */}

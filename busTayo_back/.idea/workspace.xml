@@ -15,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/RestTemplateConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
@@ -23,6 +24,11 @@
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" afterDir="false" />
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +53,7 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Gradle.Build busTayo_back.executor&quot;: &quot;Run&quot;,
@@ -59,6 +66,19 @@
     &quot;git-widget-placeholder&quot;: &quot;feature/passwordupdate&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BusTayoApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature/admin",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm"
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
   }
 }</component>
   <component name="RunManager">

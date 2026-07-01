@@ -1,4 +1,5 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Badge, Button } from "react-bootstrap";
+import { Star, StarFill } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import api from "../../api";
 import RouteBusCard from "./RouteBusCard";
@@ -41,6 +42,9 @@ function RouteDetail({
   // key = path index
   // value = 해당 버스 구간의 차량 위치 배열
   const [busLocationMap, setBusLocationMap] = useState({});
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
 
   // 특정 정류장의 도착 정보 조회
   const loadArrival = async (stationId, cityCode, routeId, ord, pathIndex) => {
@@ -196,6 +200,96 @@ function RouteDetail({
     return () => clearInterval(interval);
   }, [openStops, route]);
 
+  const handleFavorite = async () => {
+
+  try {
+
+    if (!route?.subPath?.length) {
+      alert("경로 없음");
+      return;
+    }
+
+
+    // 출발 정보 있는 첫 경로 찾기
+    const startPath =
+      route.subPath.find(
+        path => path.startName
+      );
+
+
+    // 도착 정보 있는 마지막 경로 찾기
+    const endPath =
+      [...route.subPath]
+      .reverse()
+      .find(
+        path => path.endName
+      );
+
+
+    if(!startPath || !endPath){
+      alert("출발/도착 정보 없음");
+      return;
+    }
+
+
+
+    const data = {
+
+      name:
+        `${startPath.startName} → ${endPath.endName}`,
+
+
+      description:
+        `${route.info.totalTime}분 경로`,
+
+
+      start:
+        startPath.startName,
+
+      startX:
+        Number(startPath.startX),
+
+      startY:
+        Number(startPath.startY),
+
+
+      end:
+        endPath.endName,
+
+      endX:
+        Number(endPath.endX),
+
+      endY:
+        Number(endPath.endY)
+
+    };
+
+
+    console.log(
+      "저장 데이터",
+      data
+    );
+
+
+    await api.post(
+      "/api/favorites/navigating",
+      data
+    );
+
+
+    setIsFavorite(true);
+
+    alert("저장 완료");
+
+
+  } catch(e){
+
+    console.error(e);
+    console.log(e.response?.data);
+
+  }
+
+};
   if (!route) return null;
 
   return (

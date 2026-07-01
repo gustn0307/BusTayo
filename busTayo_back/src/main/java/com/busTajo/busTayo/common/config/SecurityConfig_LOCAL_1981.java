@@ -38,7 +38,6 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
 
-    // 생성자 주입
     public SecurityConfig(
             AuthenticationConfiguration authenticationConfiguration,
             JWTUtil jwtUtil,
@@ -54,9 +53,7 @@ public class SecurityConfig {
     // AuthenticationManager Bean 등록
     // LoginFilter에서 로그인 인증 처리 시 사용
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration
-    ) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 

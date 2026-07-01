@@ -18,9 +18,8 @@ public class UserController {
         return "USER OK";
     }
 
-    // 🟢 마이페이지 조회 ➡️ /api/mypage
-    @GetMapping("/api/mypage")
-    public String mypage() {
+    @GetMapping("/api/my-info")
+    public String myInfo() {
         String email = SecurityContextHolder
                 .getContext().getAuthentication().getName();
         return "로그인한 사용자의 이메일은: " + email + "입니다.";
