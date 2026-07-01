@@ -1,0 +1,153 @@
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 30px 0px;
+}
+
+/* 브레드크럼 */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.sep {
+  color: #d1d5db;
+}
+
+.link {
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.link:hover {
+  color: #1d4ed8;
+}
+
+.current {
+  color: #374151;
+  font-weight: 500;
+}
+
+/* 아티클 카드 */
+.article {
+  background: white;
+  border: 0.5px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 헤더 */
+.header {
+  padding: 22px 24px 18px;
+  border-bottom: 0.5px solid #f0f4f9;
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 0.5px solid #bfdbfe;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.metaItem {
+  font-size: 12px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.updated {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* 본문 */
+.body {
+  padding: 28px 24px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.9;
+  min-height: 200px;
+  border-bottom: 0.5px solid #f0f4f9;
+}
+
+.body p {
+  margin: 0 0 8px 0;
+}
+
+/* 푸터 */
+.footer {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafbfc;
+}
+
+.btnGhost {
+  height: 32px;
+  padding: 0 10px;
+  border: 0.5px solid #d1d9e6;
+  border-radius: 8px;
+  background: white;
+  color: #374151;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btnGhost:hover {
+  background: #f3f6fb;
+}
+
+.btnTop {
+  height: 32px;
+  padding: 0 10px;
+  border: 0.5px solid #bfdbfe;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btnTop:hover {
+  background: #dbeafe;
+}

@@ -32,10 +32,8 @@ function Login() {
         if (authHeader && authHeader.startsWith("Bearer ")) {
           token = authHeader.replace("Bearer ", "");
         }
-
         const payload = JSON.parse(atob(token.split(".")[1]));
         const userRole = payload.role;
-
         localStorage.setItem("accessToken", token);
         localStorage.setItem("role", userRole);
 

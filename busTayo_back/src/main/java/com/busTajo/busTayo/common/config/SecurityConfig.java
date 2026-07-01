@@ -86,9 +86,9 @@ public class SecurityConfig {
                                 "/login",
                                 "/",
                                 "/join",
-                                "/admin/**",
-                                "/notice",
-                                "/notice/**",
+                                "api/admin/**",
+                                "api/notice",
+                                "api/notice/**",
                                 "/api/editor/upload",
                                 "/uploads/**",
                                 "/smarteditor2-2.8"
