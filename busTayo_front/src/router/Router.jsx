@@ -11,7 +11,7 @@ import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
 import LostFound from "../pages/LostFound";
-import FreeBoard from "../pages/FreeBoard";
+import Board from "../pages/board/Board"
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
@@ -30,6 +30,10 @@ import NoticeManagementDetail from "../pages/admin/notice/NoticeManagementDetail
 import Statistics from "../pages/admin/Statistics";
 
 // 인증 검문소
+
+// 게시판
+import BoardDetail from "../pages/board/BoardDetail";
+import BoardWrite from "../pages/board/BoardWrite";
 
 function Router() {
   return (
@@ -52,12 +56,29 @@ function Router() {
         <Route path="/nearby" element={<NearbyBus />} />
         <Route path="/route" element={<RouteSearch />} />
         <Route path="/lostfound" element={<LostFound />} />
-        <Route path="/board" element={<FreeBoard />} />
+        <Route path="/board" element={<Board />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/notice" element={<Notice />} />
+        <Route path="/notice/:id" element={<NoticeDetail />} />
+
+        {/* 게시판 */}
+        <Route path="/board/:id" element={<BoardDetail />} />
+        <Route path="/board/write" element={<BoardWrite />} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
       </Route>
 
-      {/* 관리자 경로 */}
-      <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+      {/* 관리자 */}
+
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
         <Route index element={<UserManagement />} />
         <Route path="users" element={<UserManagement />} />
         <Route path="notices" element={<NoticeManagement />} />
