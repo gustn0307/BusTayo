@@ -1,9 +1,10 @@
 import { Card, Button } from "react-bootstrap";
-import axios from "axios";
+import { BsStar, BsStarFill } from "react-icons/bs";
+import api from "../../api";
 import PlaceSearchInput from "./PlaceSearchInput";
 import SearchResultList from "./SearchResultList";
 import RouteDetail from "./RouteDetail";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function RouteSearchPanel({
   currentLocation,
@@ -20,6 +21,31 @@ function RouteSearchPanel({
   history,
   setHistory,
 }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const saveFavorite = async () => {
+    if (!startPlace || !endPlace) {
+      alert("출발지와 도착지를 먼저 입력하세요.");
+      return;
+    }
+    try {
+      await api.post("/api/favorites/navigating", {
+        name: `${startPlace.name} → ${endPlace.name}`,
+        start: startPlace.name,
+        startX: startPlace.lng,
+        startY: startPlace.lat,
+        end: endPlace.name,
+        endX: endPlace.lng,
+        endY: endPlace.lat,
+      });
+      setIsFavorite(true);
+      alert("즐겨찾기에 저장되었습니다.");
+    } catch (error) {
+      console.error(error);
+      alert("즐겨찾기 저장에 실패했습니다.");
+    }
+  };
+
   const searchRoute = async () => {
     if (!startPlace || !endPlace) {
       alert("출발지와 도착지를 선택하세요.");
@@ -27,24 +53,16 @@ function RouteSearchPanel({
     }
 
     try {
-      const token = localStorage.getItem("accessToken");
-
-      const response = await axios.get(
-        "http://localhost:8080/api/path/search",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            sx: startPlace.lng,
-            sy: startPlace.lat,
-            ex: endPlace.lng,
-            ey: endPlace.lat,
-            startName: startPlace.name,
-            endName: endPlace.name,
-          },
+      const response = await api.get("/api/path/search", {
+        params: {
+          sx: startPlace.lng,
+          sy: startPlace.lat,
+          ex: endPlace.lng,
+          ey: endPlace.lat,
+          startName: startPlace.name,
+          endName: endPlace.name,
         },
-      );
+      });
 
       setRoutes(response.data.result.path);
     } catch (error) {
@@ -54,27 +72,18 @@ function RouteSearchPanel({
 
   const loadHistoryRoute = async (history) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const response = await api.get("/api/path/search", {
+        params: {
+          sx: history.startX,
+          sy: history.startY,
 
-      const response = await axios.get(
-        "http://localhost:8080/api/path/search",
-        {
-          params: {
-            sx: history.startX,
-            sy: history.startY,
+          ex: history.endX,
+          ey: history.endY,
 
-            ex: history.endX,
-            ey: history.endY,
-
-            startName: history.start,
-            endName: history.end,
-          },
-
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          startName: history.start,
+          endName: history.end,
         },
-      );
+      });
 
       setRoutes(response.data.result.path);
 
@@ -99,23 +108,33 @@ function RouteSearchPanel({
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-
-    axios
-      .get("http://localhost:8080/api/navigating/history", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    api
+      .get("/api/navigating/history")
       .then((res) => {
         setHistory(res.data);
       })
       .catch(console.error);
   }, []);
+  useEffect(() => {
+    setIsFavorite(false);
+    if (startPlace && endPlace) {
+      searchRoute();
+    }
+  }, [startPlace, endPlace]);
 
   return (
     <div className="h-100 border-start bg-white p-3">
-      <h3 className="mb-4">길찾기</h3>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h3 className="mb-0">길찾기</h3>
+        <button
+          onClick={saveFavorite}
+          className="btn btn-link p-0 text-warning"
+          title="즐겨찾기 저장"
+          style={{ fontSize: "1.5rem" }}
+        >
+          {isFavorite ? <BsStarFill /> : <BsStar />}
+        </button>
+      </div>
 
       <PlaceSearchInput
         placeholder="출발지 입력"
@@ -159,6 +178,8 @@ function RouteSearchPanel({
         <>
           <RouteDetail
             route={selectedRoute}
+            setSelectedRoute={setSelectedRoute}
+            setSelectedStation={setSelectedStation}
             setSelectedRoute={setSelectedRoute}
             setSelectedStation={setSelectedStation}
           />

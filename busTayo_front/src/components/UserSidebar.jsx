@@ -1,19 +1,47 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { Nav, Card, Button } from "react-bootstrap";
-import { PiMegaphoneSimpleThin } from "react-icons/pi";
 import {
-  BsBusFront,
-  BsHouse,
-  BsGeoAlt,
-  BsSignpost,
-  BsBell,
-  BsStar,
-  BsPerson,
-  BsChatDots,
-  BsBriefcase,
-  BsShieldLock,
+  BsBusFrontFill,
+  BsHouseFill,
+  BsGeoAltFill,
+  BsSignpostFill,
+  BsBellFill,
+  BsStarFill,
+  BsPersonFill,
+  BsChatDotsFill,
+  BsBriefcaseFill,
+  BsShieldLockFill,
   BsClockHistory,
+  BsMegaphoneFill,
+  BsBoxArrowRight,
+  BsChevronRight,
 } from "react-icons/bs";
+
+const NAV_SECTIONS = [
+  {
+    label: "버스 서비스",
+    items: [
+      { to: "/nearby",  icon: BsGeoAltFill,    label: "내 주변 검색" },
+      { to: "/route",   icon: BsSignpostFill,   label: "길찾기" },
+      { to: "/alarm",   icon: BsBellFill,       label: "승하차 알림" },
+    ],
+  },
+  {
+    label: "내 정보",
+    items: [
+      { to: "/favorite", icon: BsStarFill,     label: "즐겨찾기" },
+      { to: "/mypage",   icon: BsPersonFill,   label: "마이페이지" },
+      { to: "/history",  icon: BsClockHistory, label: "이용 내역" },
+    ],
+  },
+  {
+    label: "커뮤니티",
+    items: [
+      { to: "/board",     icon: BsChatDotsFill,  label: "자유게시판" },
+      { to: "/lostfound", icon: BsBriefcaseFill, label: "분실물 찾기" },
+      { to: "/notice",    icon: BsMegaphoneFill, label: "공지사항" },
+    ],
+  },
+];
 
 function UserSidebar() {
   const role = localStorage.getItem("role");
@@ -22,204 +50,334 @@ function UserSidebar() {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("role");
-    alert("로그아웃 되었습니다.");
     navigate("/home");
     window.location.reload();
   };
 
-  // 💡 중복되는 NavLink 스타일을 한 곳에서 깔끔하게 관리합니다.
-  const getNavLinkStyle = ({ isActive }) => ({
-    backgroundColor: isActive ? "#0d6efd" : "transparent",
-    color: isActive ? "#ffffff" : "#495057",
-    fontWeight: isActive ? "600" : "500",
-    transition: "all 0.2s ease-in-out",
-  });
-
   return (
-    <div
-      className="bg-white border-end d-flex flex-column"
-      style={{
-        width: "280px",
-        minHeight: "100vh",
-        padding: "24px 20px",
-        position: "sticky",
-        top: 0,
-      }}
-    >
-      {/* 🚀 상단 로고 영역: 그라데이션으로 더욱 세련되게 */}
-      <Card 
-        className="border-0 mb-4 overflow-hidden" 
-        style={{ 
-          background: "linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%)",
-          borderRadius: "16px",
-          boxShadow: "0 4px 12px rgba(13, 110, 253, 0.15)"
-        }}
-      >
-        <Card.Body className="p-3 text-white text-center text-sm-start">
-          <h4 className="fw-black mb-1 d-flex align-items-center justify-content-center justify-content-sm-start gap-2">
-            <BsBusFront size={22} />
-            <span style={{ letterSpacing: "1px" }}>BUS TAYO</span>
-          </h4>
-          <small className="text-white-50 fw-light">스마트 버스 플랫폼</small>
-        </Card.Body>
-      </Card>
+    <>
+      <style>{`
+        .sidebar-root {
+          width: 300px;
+          min-height: 100vh;
+          background: #ffffff;
+          border-right: 1px solid #e9ecef;
+          display: flex;
+          flex-direction: column;
+          position: sticky;
+          top: 0;
+          overflow-y: auto;
+        }
 
-      {/* 📜 메뉴 리스트 영역 */}
-      <Nav className="flex-column gap-1 flex-grow-1 custom-sidebar-nav">
-        {/* 기본 홈 */}
-        <Nav.Link
-          as={NavLink}
-          to="/home"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsHouse size={18} className="nav-icon" />
-          <span>홈</span>
-        </Nav.Link>
+        /* ── 로고 ── */
+        .sidebar-logo {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 28px 24px 22px;
+          border-bottom: 1px solid #f1f3f5;
+        }
+        .sidebar-logo-icon {
+          width: 46px;
+          height: 46px;
+          border-radius: 13px;
+          background: #1971c2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          flex-shrink: 0;
+        }
+        .sidebar-logo-text {
+          line-height: 1.25;
+        }
+        .sidebar-logo-text .brand {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #1a1a2e;
+          letter-spacing: 0.3px;
+        }
+        .sidebar-logo-text .tagline {
+          font-size: 0.82rem;
+          color: #868e96;
+          font-weight: 400;
+        }
 
-        {/* 섹션: 버스 서비스 */}
-        <div className="mt-3 mb-1 text-muted fw-bold px-3" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-          버스 서비스
+        /* ── 섹션 ── */
+        .sidebar-nav {
+          flex: 1;
+          padding: 16px 14px 0;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .sidebar-section {
+          margin-bottom: 6px;
+        }
+        .sidebar-section-label {
+          font-size: 0.73rem;
+          font-weight: 600;
+          color: #adb5bd;
+          text-transform: uppercase;
+          letter-spacing: 0.9px;
+          padding: 12px 10px 6px;
+        }
+
+        /* ── 홈 링크 ── */
+        .sidebar-home-link {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          padding: 11px 12px;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #495057;
+          font-size: 1rem;
+          font-weight: 500;
+          transition: background 0.15s, color 0.15s;
+          margin-bottom: 4px;
+        }
+        .sidebar-home-link:hover {
+          background: #f1f3f5;
+          color: #1a1a2e;
+          text-decoration: none;
+        }
+        .sidebar-home-link.active {
+          background: #e7f5ff;
+          color: #1971c2;
+          font-weight: 600;
+        }
+        .sidebar-home-link .nav-icon-wrap {
+          width: 34px;
+          height: 34px;
+          border-radius: 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f1f3f5;
+          flex-shrink: 0;
+          transition: background 0.15s;
+        }
+        .sidebar-home-link.active .nav-icon-wrap {
+          background: #d0ebff;
+        }
+
+        /* ── 개별 nav 아이템 ── */
+        .sidebar-nav-item {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          padding: 11px 12px;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #495057;
+          font-size: 1rem;
+          font-weight: 500;
+          transition: background 0.15s, color 0.15s;
+          position: relative;
+        }
+        .sidebar-nav-item:hover {
+          background: #f1f3f5;
+          color: #1a1a2e;
+          text-decoration: none;
+        }
+        .sidebar-nav-item.active {
+          background: #e7f5ff;
+          color: #1971c2;
+          font-weight: 600;
+        }
+        .sidebar-nav-item.active .nav-chevron {
+          opacity: 1;
+        }
+        .nav-chevron {
+          margin-left: auto;
+          opacity: 0;
+          transition: opacity 0.15s;
+          color: #74c0fc;
+        }
+        .nav-icon-wrap {
+          width: 34px;
+          height: 34px;
+          border-radius: 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f1f3f5;
+          flex-shrink: 0;
+          transition: background 0.15s;
+        }
+        .sidebar-nav-item.active .nav-icon-wrap {
+          background: #d0ebff;
+        }
+        .sidebar-nav-item:hover .nav-icon-wrap {
+          background: #e9ecef;
+        }
+
+        /* ── 구분선 ── */
+        .sidebar-divider {
+          height: 1px;
+          background: #f1f3f5;
+          margin: 10px 8px;
+        }
+
+        /* ── 관리자 링크 ── */
+        .admin-link {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          padding: 11px 12px;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #5c7cfa;
+          font-size: 1rem;
+          font-weight: 600;
+          background: #edf2ff;
+          transition: background 0.15s, color 0.15s;
+        }
+        .admin-link:hover {
+          background: #dbe4ff;
+          color: #3b5bdb;
+          text-decoration: none;
+        }
+        .admin-link .nav-icon-wrap {
+          background: #dbe4ff;
+        }
+
+        /* ── 하단 영역 ── */
+        .sidebar-footer {
+          padding: 16px;
+          border-top: 1px solid #f1f3f5;
+          margin-top: auto;
+        }
+
+        .logout-btn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+          padding: 12px 16px;
+          border-radius: 10px;
+          background: transparent;
+          border: 1px solid #dee2e6;
+          color: #868e96;
+          font-size: 0.95rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.15s;
+        }
+        .logout-btn:hover {
+          background: #fff5f5;
+          border-color: #ffc9c9;
+          color: #e03131;
+        }
+
+        .login-btn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+          padding: 12px 16px;
+          border-radius: 10px;
+          background: #1971c2;
+          border: none;
+          color: #fff;
+          font-size: 0.95rem;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          transition: background 0.15s;
+        }
+        .login-btn:hover {
+          background: #1864ab;
+          color: #fff;
+          text-decoration: none;
+        }
+      `}</style>
+
+      <div className="sidebar-root">
+        {/* 로고 */}
+        <div className="sidebar-logo">
+          <div className="sidebar-logo-icon">
+            <BsBusFrontFill size={24} />
+          </div>
+          <div className="sidebar-logo-text">
+            <div className="brand">BusTayo</div>
+            <div className="tagline">스마트 버스 플랫폼</div>
+          </div>
         </div>
 
-        <Nav.Link
-          as={NavLink}
-          to="/nearby"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsGeoAlt size={18} className="nav-icon" />
-          <span>내 주변 검색</span>
-        </Nav.Link>
+        {/* 네비게이션 */}
+        <nav className="sidebar-nav">
+          {/* 홈 */}
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              "sidebar-home-link" + (isActive ? " active" : "")
+            }
+          >
+            <div className="nav-icon-wrap">
+              <BsHouseFill size={17} />
+            </div>
+            <span>홈</span>
+          </NavLink>
 
-        <Nav.Link
-          as={NavLink}
-          to="/route"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsSignpost size={18} className="nav-icon" />
-          <span>길찾기</span>
-        </Nav.Link>
+          <div className="sidebar-divider" />
 
-        <Nav.Link
-          as={NavLink}
-          to="/alarm"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsBell size={18} className="nav-icon" />
-          <span>승하차 알림</span>
-        </Nav.Link>
+          {/* 섹션별 메뉴 */}
+          {NAV_SECTIONS.map((section) => (
+            <div className="sidebar-section" key={section.label}>
+              <div className="sidebar-section-label">{section.label}</div>
+              {section.items.map(({ to, icon: Icon, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  className={({ isActive }) =>
+                    "sidebar-nav-item" + (isActive ? " active" : "")
+                  }
+                >
+                  <div className="nav-icon-wrap">
+                    <Icon size={17} />
+                  </div>
+                  <span>{label}</span>
+                  <BsChevronRight size={13} className="nav-chevron" />
+                </NavLink>
+              ))}
+            </div>
+          ))}
 
-        {/* 섹션: 내 정보 */}
-        <div className="mt-3 mb-1 text-muted fw-bold px-3" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-          내 정보
+          {/* 관리자 */}
+          {role === "ROLE_ADMIN" && (
+            <>
+              <div className="sidebar-divider" />
+              <NavLink to="/admin" className="admin-link">
+                <div className="nav-icon-wrap">
+                  <BsShieldLockFill size={17} />
+                </div>
+                <span>관리자 페이지</span>
+                <BsChevronRight size={13} style={{ marginLeft: "auto", opacity: 0.5 }} />
+              </NavLink>
+            </>
+          )}
+        </nav>
+
+        {/* 하단 버튼 */}
+        <div className="sidebar-footer">
+          {role ? (
+            <button className="logout-btn" onClick={handleLogout}>
+              <BsBoxArrowRight size={16} />
+              로그아웃
+            </button>
+          ) : (
+            <Link to="/login" className="login-btn">
+              로그인
+            </Link>
+          )}
         </div>
-
-        <Nav.Link
-          as={NavLink}
-          to="/favorite"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsStar size={18} className="nav-icon" />
-          <span>즐겨찾기</span>
-        </Nav.Link>
-
-        <Nav.Link
-          as={NavLink}
-          to="/mypage"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsPerson size={18} className="nav-icon" />
-          <span>마이페이지</span>
-        </Nav.Link>
-
-        <Nav.Link
-          as={NavLink}
-          to="/history"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsClockHistory size={18} className="nav-icon" />
-          <span>이용 내역</span>
-        </Nav.Link>
-
-        {/* 섹션: 커뮤니티 */}
-        <div className="mt-3 mb-1 text-muted fw-bold px-3" style={{ fontSize: "0.75rem", letterSpacing: "0.5px" }}>
-          커뮤니티
-        </div>
-
-        <Nav.Link
-          as={NavLink}
-          to="/board"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsChatDots size={18} className="nav-icon" />
-          <span>자유게시판</span>
-        </Nav.Link>
-
-        <Nav.Link
-          as={NavLink}
-          to="/lostfound"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <BsBriefcase size={18} className="nav-icon" />
-          <span>분실물 찾기</span>
-        </Nav.Link>
-
-        <Nav.Link
-          as={NavLink}
-          to="/notice"
-          className="rounded-3 py-2.5 px-3 d-flex align-items-center gap-2"
-          style={getNavLinkStyle}
-        >
-          <PiMegaphoneSimpleThin size={18} className="nav-icon" />
-          <span>공지사항</span>
-        </Nav.Link>
-
-        {/* 관리자 특수 버튼 */}
-        {role === "ROLE_ADMIN" && (
-          <Button
-            as={NavLink}
-            to="/admin"
-            variant="outline-primary"
-            className="mt-3 rounded-3 py-2 d-flex align-items-center justify-content-center gap-2 fw-semibold"
-            style={{ fontSize: "0.9rem" }}
-          >
-            <BsShieldLock size={16} />
-            관리자 페이지
-          </Button>
-        )}
-      </Nav>
-
-      {/* 🚪 하단 인증 영역 (로그인/로그아웃) */}
-      <div className="mt-4 pt-3 border-top">
-        {role ? (
-          <Button 
-            variant="light" 
-            className="w-100 rounded-3 fw-semibold text-danger border-0 py-2.5"
-            style={{ backgroundColor: "#fff5f5", transition: "all 0.2s" }}
-            onClick={handleLogout}
-          >
-            로그아웃
-          </Button>
-        ) : (
-          <Button 
-            as={Link} 
-            to="/login" 
-            variant="primary" 
-            className="w-100 rounded-3 fw-semibold py-2.5 shadow-sm"
-          >
-            로그인 하러가기
-          </Button>
-        )}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -10,7 +10,7 @@ function UserManagement() {
 
   const loadUsers = async () => {
     try {
-      const res = await api.get("/admin/users");
+      const res = await api.get("/api/admin/users");
       setUsers(res.data);
     } catch (error) {
       console.error(error);
@@ -33,7 +33,7 @@ function UserManagement() {
     }
 
     try {
-      await api.delete(`/admin/users/${id}`);
+      await api.delete(`/api/admin/users/${id}`);
       loadUsers();
     } catch (error) {
       console.error(error);
@@ -49,7 +49,7 @@ function UserManagement() {
     }
 
     try {
-      await api.put(`/admin/users/${user.id}/role`, {
+      await api.put(`/api/admin/users/${user.id}/role`, {
         role: nextRole,
       });
       loadUsers();
@@ -71,7 +71,7 @@ function UserManagement() {
     }
 
     try {
-      await api.put(`/admin/users/${user.id}/status`, status);
+      await api.put(`/api/admin/users/${user.id}/status`, status);
       loadUsers();
     } catch (error) {
       console.error(error);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 import KakaoMap from "../components/navigation/KakaoMap";
 import RouteSearchPanel from "../components/navigation/RouteSearchPanel";
@@ -21,8 +22,26 @@ function RouteSearch() {
 
   const [history, setHistory] = useState([]);
 
+  const location = useLocation();
+  const favorite = location.state;
+  
+
+  useEffect(() => {}, [selectedStation]);
   useEffect(() => {
-  }, [selectedStation]);
+    if (!favorite) return;
+
+    setStartPlace({
+      name: favorite.start,
+      lat: favorite.startY,
+      lng: favorite.startX,
+    });
+
+    setEndPlace({
+      name: favorite.end,
+      lat: favorite.endY,
+      lng: favorite.endX,
+    });
+  }, [favorite]);
 
   return (
     <Row className="g-0 h-100">
@@ -48,12 +67,13 @@ function RouteSearch() {
           setSelectedRoute={setSelectedRoute}
           selectedStation={selectedStation}
           setSelectedStation={setSelectedStation}
-          history = {history}
+          history={history}
           setHistory={setHistory}
         />
       </Col>
     </Row>
   );
+  
 }
 
 export default RouteSearch;

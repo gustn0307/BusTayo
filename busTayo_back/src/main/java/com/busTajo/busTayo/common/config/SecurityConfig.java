@@ -72,7 +72,7 @@ public class SecurityConfig {
                                         "/login",
                                         "/",
                                         "/join",
-                                        "/admin/**",
+                                        "/api/admin/**",
                                         "/notice",
                                         "/notice/**"
                                         ).permitAll()
@@ -80,7 +80,8 @@ public class SecurityConfig {
                                         "/user",
                                         "/api/navigating/**",
                                         "/api/bus/**",
-                                        "/api/path/**"
+                                        "/api/path/**",
+                                        "/api/favorites/**"
                                 ).hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()

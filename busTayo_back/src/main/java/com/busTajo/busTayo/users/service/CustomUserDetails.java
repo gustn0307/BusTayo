@@ -19,6 +19,9 @@ public class CustomUserDetails implements UserDetails {
     public String getEmail() {
         return users.getUserId();
     }
+    public Users getUser() {
+        return users;
+    }
 
     // 권한 받아오기
     @Override

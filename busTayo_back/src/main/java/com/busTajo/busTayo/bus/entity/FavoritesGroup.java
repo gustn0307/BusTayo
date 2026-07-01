@@ -35,5 +35,19 @@ public class FavoritesGroup extends BaseEntity {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<FavoritesBus> buses = new ArrayList<>();
+    private List<FavoritesStop> stops = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "group",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+
+    )
+    private List<FavoritesPlace> places = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "group",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            orphanRemoval = false)
+    private List<FavoritesNavigating> navigating = new ArrayList<>();
 }

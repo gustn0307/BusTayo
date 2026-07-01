@@ -1,8 +1,15 @@
 import { Card, Badge, Button } from "react-bootstrap";
+import { Star, StarFill } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../api";
 
-function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
+function RouteDetail({
+  route,
+  startPlace,
+  endPlace,
+  setSelectedRoute,
+  setSelectedStation,
+}) {
   const getCrowdedBadge = (crowded) => {
     switch (Number(crowded)) {
       case 1:
@@ -27,17 +34,14 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
   const [busLocationMap, setBusLocationMap] = useState({});
 
+  const [isFavorite, setIsFavorite] = useState(false);
   // 특정 정류장 도착 정보 조회
   const loadArrival = async (stationId, cityCode, pathIndex) => {
-    console.log("token", localStorage.getItem("accessToken"));
     try {
-      const res = await axios.get("http://localhost:8080/api/bus/arrival", {
+      const res = await api.get("/api/bus/arrival", {
         params: {
           stationId,
           cityCode,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
 
@@ -56,12 +60,9 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
 
   const loadBusLocation = async (routeId, pathIndex) => {
     try {
-      const res = await axios.get("http://localhost:8080/api/bus/location", {
+      const res = await api.get("/api/bus/location", {
         params: {
           routeId,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
 
@@ -122,6 +123,96 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
     return () => clearInterval(interval);
   }, [openStops, route]);
 
+  const handleFavorite = async () => {
+
+  try {
+
+    if (!route?.subPath?.length) {
+      alert("경로 없음");
+      return;
+    }
+
+
+    // 출발 정보 있는 첫 경로 찾기
+    const startPath =
+      route.subPath.find(
+        path => path.startName
+      );
+
+
+    // 도착 정보 있는 마지막 경로 찾기
+    const endPath =
+      [...route.subPath]
+      .reverse()
+      .find(
+        path => path.endName
+      );
+
+
+    if(!startPath || !endPath){
+      alert("출발/도착 정보 없음");
+      return;
+    }
+
+
+
+    const data = {
+
+      name:
+        `${startPath.startName} → ${endPath.endName}`,
+
+
+      description:
+        `${route.info.totalTime}분 경로`,
+
+
+      start:
+        startPath.startName,
+
+      startX:
+        Number(startPath.startX),
+
+      startY:
+        Number(startPath.startY),
+
+
+      end:
+        endPath.endName,
+
+      endX:
+        Number(endPath.endX),
+
+      endY:
+        Number(endPath.endY)
+
+    };
+
+
+    console.log(
+      "저장 데이터",
+      data
+    );
+
+
+    await api.post(
+      "/api/favorites/navigating",
+      data
+    );
+
+
+    setIsFavorite(true);
+
+    alert("저장 완료");
+
+
+  } catch(e){
+
+    console.error(e);
+    console.log(e.response?.data);
+
+  }
+
+};
   if (!route) return null;
 
   return (
@@ -134,7 +225,10 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
         ← 경로 목록
       </Button>
       <Card.Body>
-        <h4>{route.info.totalTime}분</h4>
+        <div className="d-flex justify-content-between align-items-center">
+          <h4 className="mb-0">{route.info.totalTime}분</h4>
+
+        </div>
 
         <hr />
 
@@ -266,7 +360,6 @@ function RouteDetail({ route, setSelectedRoute, setSelectedStation }) {
                   </div>
                 )}
 
-                
                 <div className="text-center my-2">↓</div>
                 <div
                   className="fw-bold text-danger"

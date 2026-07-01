@@ -23,7 +23,7 @@ function Statistics() {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    api.get("/admin/statistics").then((res) => {
+    api.get("/api/admin/statistics").then((res) => {
       setData(res.data);
     });
   }, []);
