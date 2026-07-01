@@ -74,33 +74,6 @@ public class SecurityConfig {
         // HTTP Basic 인증 비활성화
         // Authorization Basic 방식 대신 JWT Bearer Token 사용
         http.httpBasic((auth) -> auth.disable());
-
-
-        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
-        http
-                .authorizeHttpRequests((auth) ->
-                        auth
-
-                                .requestMatchers(
-                                        "/login",
-                                        "/",
-                                        "/join",
-                                        "/api/admin/**",
-                                        "/api/notice",
-                                        "/api/notice/**"
-                                        ).permitAll()
-                                .requestMatchers(
-                                        "/user",
-                                        "/api/navigating/**",
-                                        "/api/bus/**",
-                                        "/api/path/**",
-                                        "/api/favorites/**"
-                                ).hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/admin").hasRole("ADMIN")
-                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
-                                .anyRequest().authenticated()
-                );
-
         // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
         http
                 .authorizeHttpRequests((auth) ->

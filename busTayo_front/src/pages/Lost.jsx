@@ -37,7 +37,7 @@ function Lost() {
       return;
     }
     axios
-      .get("http://localhost:8080/my-info", {
+      .get("http://localhost:8080/api/my-info", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

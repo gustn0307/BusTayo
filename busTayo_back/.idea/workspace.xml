@@ -4,158 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="" />
-=======
-    <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
+    <list default="true" id="b05eb11f-5fb6-4133-9672-2e61362c21b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" afterDir="false" />
     </list>
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-<<<<<<< HEAD
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="busTayo" type="f1a62948:ProjectNode" />
-              </path>
-<<<<<<< HEAD
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="busTayo" type="f1a62948:ProjectNode" />
-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
-              </path>
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-<<<<<<< HEAD
-        <option value="package-info" />
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1,
-=======
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7,
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3FFON9lngQzAreBYUrGmLJvVgpG" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="3FtBo1ovksLUCb8EJHmKsTRnSHS" />
   <component name="ProjectViewState">
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build busTayo_back.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/YOOJIHUN/Bustayo2/busTayo_back.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/lost&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/YOOJIHUN/Bustayo2/busTayo_back&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
-  }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.busTajo.busTayo.lost.controller" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <envs>
-        <env name="BUS_INFO_API_KEY" value="ff0c8b8b9951c2f9bae1f1574af703e7884674daa3b9dde73902c15badf7f964" />
-        <env name="DB_PW" value="1111" />
-        <env name="DB_USER" value="root" />
-        <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
-      </envs>
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BusTayoApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BusTayoApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/admin",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "feature/lost",
     "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "C:/YOOJIHUN/Bustayo2/busTayo_back"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.BusTayoApplication">
-    <configuration name="BusTayoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="BUS_INFO_API_KEY" value="e9ba4241a2305206d93f14e2886d5be6c074902f0f76c18ec93794d7e3cfbdf3" />
         <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
       </envs>
-      <option name="MAIN_CLASS_NAME" value="com.busTajo.busTayo.BusTayoApplication" />
-      <module name="busTayo.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.busTajo.busTayo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="busTayo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.busTajo.busTayo.BusTayoApplication" />
@@ -169,41 +58,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.BusTayoApplication" />
       </list>
     </recent_temporary>
   </component>
-=======
-    <list>
-      <item itemvalue="Application.BusTayoApplication" />
-      <item itemvalue="Spring Boot.BusTayoApplication" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.BusTayoApplication" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="" />
-      <created>1781667308062</created>
+      <changelist id="b05eb11f-5fb6-4133-9672-2e61362c21b3" name="Changes" comment="" />
+      <created>1782884660023</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1781667308062</updated>
+      <updated>1782884660023</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

@@ -37,7 +37,7 @@ const NAV_SECTIONS = [
     label: "커뮤니티",
     items: [
       { to: "/board",     icon: BsChatDotsFill,  label: "자유게시판" },
-      { to: "/lostfound", icon: BsBriefcaseFill, label: "분실물 찾기" },
+      { to: "/lost", icon: BsBriefcaseFill, label: "분실물 찾기" },
       { to: "/notice",    icon: BsMegaphoneFill, label: "공지사항" },
     ],
   },
