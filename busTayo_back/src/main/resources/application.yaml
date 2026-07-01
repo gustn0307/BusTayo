@@ -2,6 +2,23 @@ spring:
   application:
     name: busTayo
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: sylith89@gmail.com
+    # 주의: 일반 계정 비밀번호가 아니라 구글 앱 비밀번호 16자리를 공백 없이
+    password: ucxwsmfenwfohhfl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bustayo_db
@@ -10,7 +27,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 
     properties:
       hibernate:
@@ -19,6 +36,24 @@ spring:
 
     database-platform: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - profile
+              - email
+            # 🟢 [추가] 구글 로그인 성공 후 백엔드로 돌아오는 리다이렉트 주소에도 /api를 정확히 심어줍니다.
+            redirect-uri: "{baseUrl}/api/login/oauth2/code/{registrationId}"
+
+        provider:
+          google:
+            # 🟢 [수정] 프론트엔드 로그인 버튼이 /api/oauth2/authorization/google로 찌를 수 있도록 베이스 주소를 변경합니다.
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth?prompt=select_account
 
     #  sql:
     #    init:
@@ -35,3 +70,12 @@ spring:
 logging:
   level:
     org.hibernate.orm.jdbc.bind: trace
+
+busStop:
+  data:
+    api:
+      key: ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14
+
+kakao:
+  api:
+    key: ba356e0a5d0c0ea286f466cfbc5142dd

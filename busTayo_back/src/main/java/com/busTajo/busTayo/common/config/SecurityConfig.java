@@ -1,8 +1,10 @@
 package com.busTajo.busTayo.common.config;
 
+import com.busTajo.busTayo.users.handler.CustomSuccessHandler;
 import com.busTajo.busTayo.users.jwt.JWTFilter;
 import com.busTajo.busTayo.users.jwt.JWTUtil;
 import com.busTajo.busTayo.users.jwt.LoginFilter;
+import com.busTajo.busTayo.users.service.CustomOAuth2UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,99 +19,88 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
-
 @Configuration
-@EnableWebSecurity //스프링 부트의 기본 보안 설정이 비활성화되고, 개발자가 직접 작성한 보안 구성이 적용되도록 하는 어노테이션
+@EnableWebSecurity
 public class SecurityConfig {
 
-    // 우리가 만든 필터를 등록하는 작업
-    //AuthenticationManager가 인자로 받을 AuthenticationConfiguration 객체 생성자 주입
     private final AuthenticationConfiguration authenticationConfiguration;
-
-    // 토큰 유틸리티를 가져온다.
     private final JWTUtil jwtUtil;
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomSuccessHandler customSuccessHandler;
 
-    // 생성자 주입 방식
-    public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil) {
+    public SecurityConfig(
+            AuthenticationConfiguration authenticationConfiguration,
+            JWTUtil jwtUtil,
+            CustomOAuth2UserService customOAuth2UserService,
+            CustomSuccessHandler customSuccessHandler
+    ) {
         this.authenticationConfiguration = authenticationConfiguration;
         this.jwtUtil = jwtUtil;
+        this.customOAuth2UserService = customOAuth2UserService;
+        this.customSuccessHandler = customSuccessHandler;
     }
 
-    // AuthenticationManager를 Bean으로 등록
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        //csrf(Cross-Site Request Forgery) 사이트 간 요청 위조 disable
-        // 사용자가 자신의 의지와 무관하게 공격자가 의도한 행위(수정, 삭제, 전송 등)를 특정 웹사이트에 요청하게 만드는 해킹 기법
-        http
-                .csrf((auth) -> auth.disable());
-
-        // Form 로그인 방식 disable
-        http
-                .formLogin((auth) -> auth.disable());
-
-        // http basic 인증 방식 disable
-        http
-                .httpBasic((auth) -> auth.disable());
-
-
-        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
-        http
-                .authorizeHttpRequests((auth) ->
-                        auth
-                                .requestMatchers("/login", "/", "/join").permitAll()
-                                .requestMatchers("/user").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/admin").hasRole("ADMIN")
-                                .anyRequest().authenticated()
-                );
-
-        // LoginFilter 앞에 JWTFilter 등록
-        http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
-
-        // 필터 추가 LoginFilter()는 인자를 받음
-        http
-                .addFilterAt(new LoginFilter(
-                                authenticationManager(authenticationConfiguration), jwtUtil),
-                        UsernamePasswordAuthenticationFilter.class
-                );
-
-        // 세션 설정
-        // JWT를 통한 인증/인가를 위해 세션을 STATELESS 상태로 설정하는 것이 중요
-        http
-                .sessionManagement((session) ->
-                        session.
-                                sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
+        // 1. CORS 설정
         http
                 .cors(cors -> cors.configurationSource(request -> {
-
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(
-                            List.of("http://localhost:3000")
-                    );
-                    config.setAllowedMethods(
-                            List.of("*")
-                    );
-                    config.setAllowedHeaders(
-                            List.of("*")
-                    );
-                    config.setExposedHeaders(
-                            List.of("Authorization")
-                    );
+                    config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173"));
+                    config.setAllowedMethods(List.of("*"));
+                    config.setAllowedHeaders(List.of("*"));
+                    config.setExposedHeaders(List.of("Authorization"));
                     config.setAllowCredentials(true);
                     return config;
                 }));
 
+        // 2. 취약점 및 기본 로그인 비활성화
+        http.csrf((auth) -> auth.disable());
+        http.formLogin((auth) -> auth.disable());
+        http.httpBasic((auth) -> auth.disable());
+
+        // 3. OAuth2 소셜 로그인 기능 활성화 및 설정
+        http
+                .oauth2Login((oauth2) -> oauth2
+                        .loginPage("/login") // 🟢 리액트 화면 주소 규격인 원래대로 /login 유지
+                        .successHandler(customSuccessHandler)
+                        .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
+                                .userService(customOAuth2UserService))
+                );
+
+        // 4. 경로별 인가 작업
+        http
+                .authorizeHttpRequests((auth) ->
+                        auth
+                                // 🟢 기존 허용 경로들 앞에 /api 붙인 것 아주 좋습니다! 단, "/"는 메인 홈 화면 타겟이므로 그대로 유지하거나 제외해도 좋습니다.
+                                .requestMatchers("/api/auth/check-email", "/api/auth/email/send", "/api/auth/email/verify", "/api/login", "/", "/api/join", "/api/auth/**" , "/api/nearby/**" , "/api/admin/**", "/api/notice", "/api/notice/**").permitAll()
+
+                                // 🟢 구글 소셜 로그인 내부 통로 방어벽 해제 (기존 규격과 /api 규격을 모두 열어두어 확실하게 가로채도록 안전장치)
+                                .requestMatchers("/login/oauth2/**", "/oauth2/**", "/api/login/oauth2/**", "/api/oauth2/**").permitAll()
+
+                                .requestMatchers("/api/user").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/api/admin").hasRole("ADMIN")
+                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/api/delete-account").permitAll()
+                                .anyRequest().authenticated()
+                );
+
+        // 5. 필터 배치 순서 정돈
+        LoginFilter loginFilter = new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil);
+        loginFilter.setFilterProcessesUrl("/api/login"); // 💡 [교정] 일반 POST /login 요청만 잡아가도록 주소를 명확하게 제한합니다.
+
+        http.addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAt(loginFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // 6. 세션 STATELESS 설정
+        http
+                .sessionManagement((session) ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }

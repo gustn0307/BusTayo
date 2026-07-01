@@ -15,6 +15,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 public class JWTFilter extends OncePerRequestFilter {
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        // /api/join이거나 /api/auth/로 시작하는 주소는 JWT 검문 패스!
+        return "/api/join".equals(path) || path.startsWith("/api/auth/");
+    }
+
     private final JWTUtil jwtUtil;
 
 

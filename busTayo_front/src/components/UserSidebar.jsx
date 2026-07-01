@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate import 수정
 import { Nav, Card, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useAuth } from "../auth/AuthProvider";
+import axios from "axios"; // 💡 axios import 추가 (중요)
 
 import {
   BsBusFront,
@@ -14,26 +17,38 @@ import {
   BsShieldLock,
   BsClockHistory,
 } from "react-icons/bs";
+import { PiMegaphoneSimpleThin } from "react-icons/pi";
 
 function UserSidebar() {
-  const role = localStorage.getItem("role");
+  const { token } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!sessionStorage.getItem("token"));
+  const role = sessionStorage.getItem("role");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsLoggedIn(!!token);
+  }, [token]);
+
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    // 1. 백엔드 세션 종료 요청
+    axios.post("http://localhost:8080/api/logout").catch(console.error);
+
+    // 2. 마스터 로그아웃 키 호출 (데이터 청소 + 알림창 + 로그인 이동을 한방에 처리)
+    logout(); 
+  };
 
   return (
     <div
       className="bg-white border-end"
-      style={{
-        width: "280px",
-        minHeight: "100vh",
-        padding: "20px",
-      }}
+      style={{ width: "280px", minHeight: "100vh", padding: "20px" }}
     >
       <Card className="border-0 shadow-sm mb-4" bg="primary" text="white">
         <Card.Body>
           <h4 className="fw-bold mb-1">
-            <BsBusFront className="me-2" />
-            BUS TAYO
+            <BsBusFront className="me-2" /> BUS TAYO
           </h4>
-
           <small>스마트 버스 서비스</small>
         </Card.Body>
       </Card>
@@ -46,9 +61,7 @@ function UserSidebar() {
         >
           <BsHouse className="me-2" />홈
         </Nav.Link>
-
         <div className="mt-3 text-secondary fw-bold small">버스 서비스</div>
-
         <Nav.Link
           as={Link}
           to="/nearby"
@@ -56,7 +69,6 @@ function UserSidebar() {
         >
           <BsGeoAlt className="text-primary me-2" />내 주변 검색
         </Nav.Link>
-
         <Nav.Link
           as={Link}
           to="/route"
@@ -65,7 +77,6 @@ function UserSidebar() {
           <BsSignpost className="text-primary me-2" />
           길찾기
         </Nav.Link>
-
         <Nav.Link
           as={Link}
           to="/alarm"
@@ -74,9 +85,7 @@ function UserSidebar() {
           <BsBell className="text-primary me-2" />
           승하차 알림
         </Nav.Link>
-
         <div className="mt-3 text-secondary fw-bold small">내 정보</div>
-
         <Nav.Link
           as={Link}
           to="/favorite"
@@ -85,7 +94,6 @@ function UserSidebar() {
           <BsStar className="text-primary me-2" />
           즐겨찾기
         </Nav.Link>
-
         <Nav.Link
           as={Link}
           to="/mypage"
@@ -102,9 +110,7 @@ function UserSidebar() {
           <BsClockHistory className="text-primary me-2" />
           이용 내역
         </Nav.Link>
-
         <div className="mt-3 text-secondary fw-bold small">커뮤니티</div>
-
         <Nav.Link
           as={Link}
           to="/board"
@@ -113,7 +119,6 @@ function UserSidebar() {
           <BsChatDots className="text-primary me-2" />
           자유게시판
         </Nav.Link>
-
         <Nav.Link
           as={Link}
           to="/lostfound"
@@ -121,6 +126,14 @@ function UserSidebar() {
         >
           <BsBriefcase className="text-primary me-2" />
           분실물 찾기
+        </Nav.Link>
+        <Nav.Link
+          as={Link}
+          to="/notice"
+          className="bg-light rounded-4 py-3 px-3"
+        >
+          <PiMegaphoneSimpleThin className="text-primary me-2" />
+          공지사항
         </Nav.Link>
 
         {role === "ADMIN" && (
@@ -135,6 +148,27 @@ function UserSidebar() {
           </Button>
         )}
       </Nav>
+
+      <div className="mt-5 pt-3 border-top">
+        {isLoggedIn ? (
+          <Button
+            variant="danger"
+            className="w-100 rounded-4 fw-bold"
+            onClick={handleLogout}
+          >
+            로그아웃
+          </Button>
+        ) : (
+          <Button
+            as={Link}
+            to="/login"
+            variant="primary"
+            className="w-100 rounded-4 fw-bold"
+          >
+            로그인 하러가기
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

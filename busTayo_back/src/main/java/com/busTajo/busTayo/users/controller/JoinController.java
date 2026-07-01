@@ -19,7 +19,7 @@ public class JoinController {
         this.joinService = joinService;
     }
 
-    @PostMapping("/join")
+    @PostMapping("/api/join")
     public String joinProcess(@RequestBody JoinDTO joinDTO) {
         // 리액트에서 json으로 post 요청할 때는 컨트롤러에 @RequestBody로 처리한다.
 
