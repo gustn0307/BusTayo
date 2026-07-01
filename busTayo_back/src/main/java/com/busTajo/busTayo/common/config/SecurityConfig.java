@@ -5,6 +5,7 @@ import com.busTajo.busTayo.users.jwt.JWTUtil;
 import com.busTajo.busTayo.users.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -85,8 +86,13 @@ public class SecurityConfig {
                                 "/join",
                                 "/admin/**",
                                 "/notice",
-                                "/notice/**"
+                                "/notice/**",
+                                "/api/editor/upload",
+                                "/uploads/**",
+                                "/smarteditor2-2.8"
                         ).permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/api/board", "/api/board/**").permitAll()
 
                         // 로그인한 USER 또는 ADMIN만 접근 가능한 API
                         .requestMatchers(
@@ -95,6 +101,10 @@ public class SecurityConfig {
                                 "/api/bus/**",
                                 "/api/path/**"
                         ).hasAnyRole("USER", "ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
 
                         // ADMIN 권한만 접근 가능
                         .requestMatchers("/admin").hasRole("ADMIN")
