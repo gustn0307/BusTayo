@@ -3,6 +3,7 @@ package com.busTajo.busTayo.bus.entity;
 import com.busTajo.busTayo.common.entity.BaseEntity;
 import com.busTajo.busTayo.users.entity.Users;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
