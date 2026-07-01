@@ -77,31 +77,7 @@ public class SecurityConfig {
         http.httpBasic((auth) -> auth.disable());
 
 
-        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
-        http
-                .authorizeHttpRequests((auth) ->
-                        auth
 
-                                .requestMatchers(
-                                        "/login",
-                                        "/",
-                                        "/join",
-                                        "/api/admin/**",
-                                        "/notice",
-                                        "/notice/**"
-
-                                        ).permitAll()
-                                .requestMatchers(
-                                        "/user",
-                                        "/api/navigating/**",
-                                        "/api/bus/**",
-                                        "/api/path/**",
-                                        "/api/favorites/**"
-                                ).hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/admin").hasRole("ADMIN")
-                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
-                                .anyRequest().authenticated()
-                );
         // URL별 접근 권한 설정
         http.authorizeHttpRequests((auth) ->
                 auth

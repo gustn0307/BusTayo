@@ -21,7 +21,7 @@ function BoardWrite() {
     // 에디터에서 내용 꺼내기
     oEditors.current[0].exec("UPDATE_CONTENTS_FIELD", []);
     const editorContent = document.getElementById("editorTxt").value;
-    
+
     api
       .post("/api/board", { title, content: editorContent })
       .then(() => {
@@ -35,18 +35,56 @@ function BoardWrite() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (window.nhn) {
-        window.nhn.husky.EZCreator.createInIFrame({
-          oAppRef: oEditors.current,
-          elPlaceHolder: "editorTxt",
-          sSkinURI: "/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
-          fCreator: "createSEditor2",
-        });
-      }
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
+  const timer = setTimeout(() => {
+    if (window.nhn) {
+      window.nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors.current,
+        elPlaceHolder: "editorTxt",
+        sSkinURI: "/smarteditor2-2.8.2.3/SmartEditor2Skin.html",
+        fCreator: "createSEditor2",
+        fOnAppLoad: function () {
+          blockPhotoButtonClick();
+        },
+      });
+    }
+  }, 500);
+  return () => clearTimeout(timer);
+}, []);
+
+const blockPhotoButtonClick = () => {
+  setTimeout(() => {
+    const container = document.getElementById("smarteditor");
+    if (!container) return;
+
+    const iframe = container.querySelector("iframe");
+    const iframeDoc = iframe
+      ? iframe.contentDocument || iframe.contentWindow.document
+      : null;
+
+    const attachBlocker = (root) => {
+      if (!root) return;
+      // capture:true → 버튼 자체의 클릭 핸들러보다 먼저 실행됨
+      root.addEventListener(
+        "click",
+        (e) => {
+          const target = e.target;
+          const isPhotoBtn =
+            target.closest &&
+            target.closest("a, li, span")?.textContent?.includes("사진");
+          if (isPhotoBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+          }
+        },
+        true // 캡처 단계
+      );
+    };
+
+    attachBlocker(iframeDoc);
+    attachBlocker(document);
+  }, 500);
+};
 
   return (
     <div className="board-write-container">
