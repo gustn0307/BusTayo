@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PageService {
     private final BoardRepository boardRepository;
     private final CommentsRepository commentsRepository;
+    private final CommentsService commentsService;
 
     public PageResponseDto<BoardResponseDto> boardFindAll(Pageable pageable) {
         Page<Board> board = boardRepository.findByIsDeletedFalse(pageable);
@@ -42,7 +43,7 @@ public class PageService {
 
     public PageResponseDto<CommentsResponseDto> commentsFindAll(Long boardId, Pageable pageable) {
         Page<Comments> comments = commentsRepository.findByBoardIdAndParentIsNullAndIsDeletedFalse(boardId, pageable);
-        Page<CommentsResponseDto> commentsResponseDto = comments.map(comment -> new CommentsResponseDto(comment));
+        Page<CommentsResponseDto> commentsResponseDto = comments.map(comment -> commentsService.toResponseDtoWithReplies(comment));
         return new PageResponseDto<>(commentsResponseDto);
     }
 }

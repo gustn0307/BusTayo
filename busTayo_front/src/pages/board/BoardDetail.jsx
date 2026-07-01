@@ -18,6 +18,9 @@ function BoardDetail() {
   const [editContent, setEditContent] = useState("");
   // 댓글 작성
   const [newComment, setNewComment] = useState("");
+  // 대댓글 작성
+  const [replyingTo, setReplyingTo] = useState(null); // 답글 다는 중인 댓글 id
+  const [replyContent, setReplyContent] = useState(""); // 답글 내용
   // 댓글 수정
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentContent, setEditCommentContent] = useState("");
@@ -136,6 +139,27 @@ function BoardDetail() {
       .catch((err) => console.log(err));
   };
 
+  // 대댓글 작성
+  const handleReplySubmit = (parentId) => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
+    api
+      .post(`/api/board/${id}/comments`, {
+        content: replyContent,
+        parentId: parentId,
+      })
+      .then(() => {
+        setReplyContent("");
+        setReplyingTo(null);
+        fetchComments();
+      })
+      .catch((err) => console.log(err));
+  };
+
   const fetchComments = () => {
     api
       .get(`/api/board/${id}/comments?page=${currentPage}&size=5`)
@@ -144,6 +168,117 @@ function BoardDetail() {
         setTotalPages(res.data.totalPages);
       });
   };
+
+  // 특정 댓글의 답글 개수 (대댓글의 대댓글까지 포함)
+  const countReplies = (comment) => {
+    if (!comment.replies || comment.replies.length === 0) return 0;
+    return comment.replies.reduce(
+      (total, reply) => total + 1 + countReplies(reply),
+      0,
+    );
+  };
+
+  // 댓글 + 대댓글 재귀 렌더링
+  const renderComment = (comment, depth = 0) => (
+    <div
+      key={comment.id}
+      className="comment"
+      style={{ marginLeft: depth * 30 }} // depth(대댓글 단계)만큼 들여쓰기
+    >
+      <div className="comment-userId">
+        {maskUserId(comment.userId)}
+        {depth === 0 && countReplies(comment) > 0 && (
+          <span className="comment-reply-count">
+            {" "}
+            · 답글 {countReplies(comment)}개
+          </span>
+        )}
+      </div>
+
+      {editCommentId === comment.id ? (
+        <div>
+          <textarea
+            className="edit-comment-textarea"
+            value={editCommentContent}
+            onChange={(e) => setEditCommentContent(e.target.value)}
+          />
+          <button
+            className="btn-save"
+            onClick={() => handleCommentEditSubmit(comment.id)}
+          >
+            저장
+          </button>
+          <button className="btn-cancel" onClick={() => setEditCommentId(null)}>
+            취소
+          </button>
+        </div>
+      ) : (
+        <div className="comment-content">{comment.content}</div>
+      )}
+
+      <div className="comment-createdAt">{comment.createdAt.slice(0, 10)}</div>
+
+      <div className="comment-buttons">
+        {comment.userId === currentUserId && (
+          <>
+            <button
+              className="btn-comment-edit"
+              onClick={() => handleCommentEdit(comment)}
+            >
+              수정
+            </button>
+            <button
+              className="btn-comment-delete"
+              onClick={() => handleCommentDelete(comment.id)}
+            >
+              삭제
+            </button>
+          </>
+        )}
+        <button
+          className="btn-comment-reply"
+          onClick={() =>
+            setReplyingTo(replyingTo === comment.id ? null : comment.id)
+          }
+        >
+          답글
+        </button>
+      </div>
+
+      {/* 답글 입력창 (답글 버튼 눌렀을 때만 표시) */}
+      {replyingTo === comment.id && (
+        <div className="reply-write">
+          <textarea
+            placeholder="답글을 입력하세요"
+            value={replyContent}
+            onChange={(e) => setReplyContent(e.target.value)}
+          />
+          <button
+            className="btn-comment-submit"
+            onClick={() => handleReplySubmit(comment.id)}
+          >
+            작성
+          </button>
+          <button
+            className="btn-cancel"
+            onClick={() => {
+              setReplyingTo(null);
+              setReplyContent("");
+            }}
+          >
+            취소
+          </button>
+        </div>
+      )}
+
+      {/* 대댓글 재귀 렌더링 */}
+      {comment.replies && comment.replies.length > 0 && (
+        <div className="comment-replies">
+          {comment.replies.map((reply) => renderComment(reply, depth + 1))}
+        </div>
+      )}
+    </div>
+  );
 
   // 댓글 수정
 
@@ -163,7 +298,14 @@ function BoardDetail() {
         setEditCommentContent("");
         fetchComments();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response?.status === 403) {
+          alert("본인 댓글만 수정할 수 있습니다.");
+        } else {
+          alert("수정에 실패했습니다.");
+        }
+        console.log(err);
+      });
   };
 
   // 댓글 삭제
@@ -176,7 +318,14 @@ function BoardDetail() {
           alert("삭제되었습니다.");
           fetchComments();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if (err.response?.status === 403) {
+            alert("본인 댓글만 수정할 수 있습니다.");
+          } else {
+            alert("수정에 실패했습니다.");
+          }
+          console.log(err);
+        });
     }
   };
 
@@ -249,53 +398,7 @@ function BoardDetail() {
 
         {/* 댓글 목록 */}
         {comments.length > 0 ? (
-          comments.map((comment) => (
-            <div key={comment.id} className="comment">
-              <div className="comment-userId">{maskUserId(comment.userId)}</div>
-              {editCommentId === comment.id ? (
-                <div>
-                  <textarea
-                    className="edit-comment-textarea"
-                    value={editCommentContent}
-                    onChange={(e) => setEditCommentContent(e.target.value)}
-                  />
-                  <button
-                    className="btn-save"
-                    onClick={() => handleCommentEditSubmit(comment.id)}
-                  >
-                    저장
-                  </button>
-                  <button
-                    className="btn-cancel"
-                    onClick={() => setEditCommentId(null)}
-                  >
-                    취소
-                  </button>
-                </div>
-              ) : (
-                <div className="comment-content">{comment.content}</div>
-              )}
-              <div className="comment-createdAt">
-                {comment.createdAt.slice(0, 10)}
-              </div>
-              {comment.userId === currentUserId && (
-                <div className="comment-buttons">
-                  <button
-                    className="btn-comment-edit"
-                    onClick={() => handleCommentEdit(comment)}
-                  >
-                    수정
-                  </button>
-                  <button
-                    className="btn-comment-delete"
-                    onClick={() => handleCommentDelete(comment.id)}
-                  >
-                    삭제
-                  </button>
-                </div>
-              )}
-            </div>
-          ))
+          comments.map((comment) => renderComment(comment))
         ) : (
           <div className="comment-empty">첫 댓글을 작성해보세요!</div>
         )}

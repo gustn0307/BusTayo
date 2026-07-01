@@ -46,8 +46,9 @@ public class CommentsController {
     // 댓글 수정
     @PutMapping("/{cid}")
     public ResponseEntity<CommentsResponseDto> editComments(@PathVariable("cid") Long id,
-                                                            @RequestBody CommentsRequestDto commentsRequestDto) {
-        CommentsResponseDto result = commentsService.editComments(id, commentsRequestDto);
+                                                            @RequestBody CommentsRequestDto commentsRequestDto,
+                                                            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        CommentsResponseDto result = commentsService.editComments(id, commentsRequestDto, userDetails.getEmail());
         if (result == null) {
             return ResponseEntity.notFound().build();
         }
@@ -56,9 +57,10 @@ public class CommentsController {
 
     // 댓글 삭제
     @DeleteMapping("/{cid}")
-    public ResponseEntity<String> deleteComments(@PathVariable("cid") Long id) {
+    public ResponseEntity<String> deleteComments(@PathVariable("cid") Long id,
+                                                 @AuthenticationPrincipal CustomUserDetails userDetails) {
         System.out.println("삭제 요청 들어옴! id: " + id);
-        boolean result = commentsService.deleteComments(id);
+        boolean result = commentsService.deleteComments(id, userDetails.getEmail());
         System.out.println("삭제 결과: " + result);
         if (!result) {
             return ResponseEntity.notFound().build();
