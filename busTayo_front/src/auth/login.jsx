@@ -36,7 +36,7 @@ function Login() {
         const payload = JSON.parse(atob(token.split(".")[1]));
         const userRole = payload.role;
 
-        localStorage.setItem("token", token);
+        localStorage.setItem("accessToken", token);
         localStorage.setItem("role", userRole);
 
         alert("로그인이 성공적으로 완료되었습니다!");

@@ -47,7 +47,7 @@ public class JoinService {
         // 기본 즐겨찾기 그룹 생성
         FavoritesGroup group = new FavoritesGroup();
 
-        group.setName("기본그룹");
+        group.setName("미분류");
         group.setUser(savedUser);
 
         favoritesGroupRepository.save(group);

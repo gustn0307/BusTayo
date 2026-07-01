@@ -302,41 +302,45 @@ public class FavoritesService {
     }
 
     @Transactional
-    public void deleteGroup(
-            Long groupId,
-            Users user
-    ){
+    public void deleteGroup(Long groupId, Users user) {
 
         Users findUser =
-                userRepository.findByUserId(
-                        user.getUserId()
-                );
-
+                userRepository.findByUserId(user.getUserId());
 
         FavoritesGroup group =
-                favoritesGroupRepository
-                        .findById(groupId)
+                favoritesGroupRepository.findById(groupId)
                         .orElseThrow();
 
-
-        // 본인 그룹 체크
-        if(!group.getUser().getId()
-                .equals(findUser.getId())){
-
-            throw new RuntimeException(
-                    "삭제 권한 없음"
-            );
+        // 본인 그룹인지 확인
+        if (!group.getUser().getId().equals(findUser.getId())) {
+            throw new RuntimeException("삭제 권한 없음");
         }
 
-        // 그룹에 속한 길찾기 즐겨찾기의 group 참조를 null로 변경 (데이터는 유지)
+        // 미분류 그룹은 삭제 불가
+        if ("미분류".equals(group.getName())) {
+            throw new RuntimeException("미분류 그룹은 삭제할 수 없습니다.");
+        }
+
+        // 회원가입 시 생성된 미분류 그룹 조회
+        FavoritesGroup ungrouped =
+                favoritesGroupRepository.findByUserIdAndName(
+                        findUser.getId(),
+                        "미분류"
+                );
+
+        if (ungrouped == null) {
+            throw new RuntimeException("미분류 그룹이 존재하지 않습니다.");
+        }
+
+        // 해당 그룹의 즐겨찾기를 모두 미분류로 이동
         List<FavoritesNavigating> navList =
                 favoritesNavigatingRepository.findByGroupId(groupId);
 
         for (FavoritesNavigating nav : navList) {
-            nav.setGroup(null);
+            nav.setGroup(ungrouped);
         }
 
-
+        // 그룹 삭제
         favoritesGroupRepository.delete(group);
     }
 

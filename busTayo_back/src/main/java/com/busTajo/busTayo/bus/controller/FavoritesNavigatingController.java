@@ -66,7 +66,7 @@ public class FavoritesNavigatingController {
             @PathVariable Long id,
             @AuthenticationPrincipal CustomUserDetails userDetails
     ){
-
+        System.out.println("deleteGroup 진입");
         favoritesService.deleteGroup(
                 id,
                 userDetails.getUser()
