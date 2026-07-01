@@ -9,11 +9,6 @@ import Home from "../pages/Home";
 import Favorite from "../pages/Favorite";
 import NearbyBus from "../pages/NearbyBus";
 import RouteSearch from "../pages/RouteSearch";
-<<<<<<< HEAD
-import BoardingAlarm from "../pages/BoardingAlarm";
-=======
-import LostFound from "../pages/LostFound";
->>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
 import FreeBoard from "../pages/FreeBoard";
 import MyPage from "../pages/MyPage";
 import Notice from "../pages/Notice";

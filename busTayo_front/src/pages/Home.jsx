@@ -10,6 +10,7 @@ import {
   BsStar,
   BsChatDots,
   BsMegaphone,
+  BsPersonFill
 } from "react-icons/bs";
 
 function formatDateTime(dateStr) {
@@ -102,15 +103,15 @@ function Home() {
         <Col md={6}>
           <Card className="border-0 shadow-sm h-100">
             <Card.Body>
-              <BsBell size={28} className="text-primary mb-3" />
+              <BsPersonFill size={28} className="text-primary mb-3" />
 
-              <h5>승하차 알림</h5>
+              <h5>마이페이지</h5>
 
               <p className="text-secondary small">
-                목적지 도착 전 알림을 받을 수 있습니다.
+                비밀번호 수정, 회원 탈퇴
               </p>
 
-              <Button as={Link} to="/alarm" variant="primary" size="sm">
+              <Button as={Link} to="/mypage" variant="primary" size="sm">
                 이동
               </Button>
             </Card.Body>
@@ -135,53 +136,6 @@ function Home() {
           </Card>
         </Col>
       </Row>
-      {/* 이용 정보 */}
-
-      <Row className="g-3 mb-4">
-        <Col md={6}>
-          <Card className="border-0 shadow-sm h-100">
-            <Card.Body>
-              <h5 className="fw-bold mb-3">🚌 최근 이용 버스</h5>
-              <ListGroup variant="flush">
-                {recentBusHistory.length === 0 ? (
-                <ListGroup.Item className="text-secondary">
-                최근 이용내역이 없습니다.
-                </ListGroup.Item>
-              ) : (
-              recentBusHistory.map((lost) => (
-                <ListGroup.Item>
-                  <div className="fs-4 fw-bold text-primary"
-                   key={lost.id}>{lost.busName}</div>
-                  <div className="text-secondary" 
-                  key={lost.id}>{lost.start} → {lost.end}</div>
-                  <small className="text-muted"
-                  key={lost.id}>
-                    {formatDateTime(lost.boardingTime)} ~ {formatDateTime(lost.alightingTime)}
-                  </small>
-                </ListGroup.Item>
-                ))
-              )}
-            </ListGroup>
-            </Card.Body>
-            <Button as={Link} to="/history" variant="outline-primary" size="sm">
-              전체 보기
-            </Button>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card className="border-0 shadow-sm h-100">
-            <Card.Body>
-              <h5 className="fw-bold mb-3">📊 이번 달 이용 통계</h5>
-
-              <div className="fs-2 fw-bold text-success">18회</div>
-
-              <div className="text-secondary">버스 이용</div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      {/* 공지사항 + 게시판 */}
 
       <Row className="g-3">
         <Col lg={6}>

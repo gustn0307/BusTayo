@@ -74,7 +74,7 @@ export default function NoticeDetail() {
             className={styles.btnGhost}
             onClick={() => navigate("/notice")}
           >
-            ← 이전 글
+            ← 이전
           </button>
           <button
             className={styles.btnTop}

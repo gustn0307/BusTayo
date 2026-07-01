@@ -35,7 +35,9 @@ function NoticeManagement() {
     api.get("/api/notice")
       .then(r => r.data)
       .then(data => {
-        const sorted = [...data].reverse();
+        const sorted = [...data].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
         setNoticeList(sorted);
         setFiltered(sorted);
       });
