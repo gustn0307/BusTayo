@@ -43,18 +43,13 @@ public class BusArrivalService {
                             + "&format=json";
         }
 
-        System.out.println(url);
-
-        String result = restTemplate.getForObject(url, String.class);
-
-        System.out.println("result: " + result);
-
-        return result;
+        return restTemplate.getForObject(url, String.class);
     }
 
     // 버스 위치 API
     public String getBusLocation(Integer cityCode, Long routeId) {
         RestTemplate restTemplate = new RestTemplate();
+
         String url;
 
         if (cityCode == 1000) { // 서울
@@ -62,14 +57,11 @@ public class BusArrivalService {
                     "http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid"
                             + "?serviceKey=" + busApiConfig.getServiceKey()
                             + "&busRouteId=" + routeId;
-            System.out.println(url);
 
             String result = restTemplate.getForObject(
                     url,
                     String.class
             );
-
-            System.out.println("서울 차량위치 결과 XML : " + result); // xml 형식
 
             // xml -> json으로 변환
             try {
@@ -88,8 +80,6 @@ public class BusArrivalService {
 
                 response.set("busLocationList", itemList);
 
-                System.out.println("서울 차량위치 결과 JSON : " + response.toString()); // json 형식
-
                 return response.toString();
 
             } catch (Exception e) {
@@ -103,16 +93,11 @@ public class BusArrivalService {
                     + "&routeId=" + routeId
                     + "&format=json";
 
-            System.out.println(url);
 
-            String result = restTemplate.getForObject(
+            return restTemplate.getForObject(
                     url,
                     String.class
             );
-
-            System.out.println("경기 차량위치 결과 : " + result);
-
-            return result;
         }
     }
 }
