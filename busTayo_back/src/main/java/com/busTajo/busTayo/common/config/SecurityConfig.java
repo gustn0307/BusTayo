@@ -75,8 +75,11 @@ public class SecurityConfig {
                                         "/notice",
                                         "/notice/**",
                                         "/api/board",
-                                        "/api/board/**"
-                                        ).permitAll()
+                                        "/api/board/**",
+                                        "/api/editor/upload",
+                                        "/uploads/**",
+                                        "/smarteditor2-2.8.2.3/**"
+                                ).permitAll()
                                 .requestMatchers(
                                         "/user",
                                         "/api/navigating/**",
