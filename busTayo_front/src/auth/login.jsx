@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // useEffect(() => {
+  //   if (location.state?.needLogin) {
+  //     alert("로그인이 필요한 페이지입니다.");
+
+  //     // state를 비워 새로고침하거나 다시 렌더링되어도 alert가 또 뜨지 않도록 처리
+  //     navigate(location.pathname, { replace: true, state: {} });
+  //   }
+  // }, [location, navigate]);
 
   const handleLogin = () => {
     if(!email){
@@ -25,15 +35,16 @@ function Login() {
     })
     .then((response) => {
       console.log("로그인 성공 반응 전체 데이터: ", response);
-      
-      const authHeader = response.headers['authorization']; 
+
+      const authHeader = response.headers['authorization'];
       let token = authHeader;
-      
+
       if (authHeader && authHeader.startsWith("Bearer ")) {
         token = authHeader.replace("Bearer ", "");
       }
 
-      const userRole = "USER"; 
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const userRole = payload.role;
 
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("role", userRole);
@@ -51,8 +62,26 @@ function Login() {
 
   return (
     <div className="app-container" style={{ padding: "20px" }}>
+
+       {location.state?.needLogin && (
+    <div
+      style={{
+        backgroundColor: "#fff3cd",
+        color: "#856404",
+        border: "1px solid #ffeeba",
+        padding: "12px",
+        borderRadius: "6px",
+        marginBottom: "20px",
+        textAlign: "center",
+        fontWeight: "bold"
+      }}
+    >
+      ⚠ 로그인이 필요한 페이지입니다.
+    </div>
+  )}
+
       <h2>BUS TAYO 로그인</h2>
-      
+
       <div className="input-group" style={{ marginBottom: "15px" }}>
         <label style={{ display: "block", marginBottom: "5px" }}>이메일 주소</label>
         <input
@@ -75,13 +104,16 @@ function Login() {
         />
       </div>
 
-      <Button variant="primary" style={{ width: "100%", padding: "10px", fontWeight: "bold" }}
-      onClick={handleLogin}>
+      <Button
+        variant="primary"
+        style={{ width: "100%", padding: "10px", fontWeight: "bold" }}
+        onClick={handleLogin}
+      >
         로그인 하기
       </Button>
 
       {/* 구글 로그인 버튼 구역 */}
-      <div style={{ display: "flex", alignItems: "center", margin: "25px 0 15px 0" }}>
+      {/* <div style={{ display: "flex", alignItems: "center", margin: "25px 0 15px 0" }}>
         <hr style={{ flex: 1, margin: "0 10px", border: "1px solid #eee" }} />
         <span style={{ color: "#999", fontSize: "14px" }}>또는 소셜 계정으로</span>
         <hr style={{ flex: 1, margin: "0 10px", border: "1px solid #eee" }} />
@@ -96,21 +128,21 @@ function Login() {
         }}
       >
         Google로 시작하기
-      </Button>
+      </Button> */}
 
       <div style={{ marginTop: "20px", textAlign: "center", fontSize: "14px", color: "#666" }}>
         아직 회원이 아니신가요?{" "}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '25px', fontSize: '14px' }}>
-        <Link to="/join" style={{ color: "#0d6efd", textDecoration: "none", fontWeight: "bold" }}>
-          회원가입
-        </Link>
-        <span style={{ color: '#ccc' }}>|</span>
-        <Link to="/find-password" style={{ color: "#0d6efd", textDecoration: "none", fontWeight: "bold" }}>
-          비밀번호 찾기
-        </Link>
+          <Link to="/join" style={{ color: "#0d6efd", textDecoration: "none", fontWeight: "bold" }}>
+            회원가입
+          </Link>
+          <span style={{ color: '#ccc' }}>|</span>
+          <Link to="/find-password" style={{ color: "#0d6efd", textDecoration: "none", fontWeight: "bold" }}>
+            비밀번호 찾기
+          </Link>
+        </div>
       </div>
-      </div>
-      
+
       {/* <p style={{ color: "gray" }}>입력 중인 이메일: {email}</p> */}
     </div>
   );

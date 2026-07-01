@@ -26,15 +26,18 @@ const api = axios.create({
 // 모든 API 요청 전에 accessToken 자동 첨부
 //
 // 흐름:
-// localStorage → accessToken 조회
+// sessionStorage → accessToken 조회
 // → 있으면 Authorization Header 추가
 api.interceptors.request.use((config) => {
-    // localStorage에 저장된 JWT access token 조회
-    const token = localStorage.getItem("accessToken");
+    // 🟢 [보안] localStorage → sessionStorage로 변경
+    const token = sessionStorage.getItem("token");
 
-    // 토큰 존재 시 Authorization 헤더 추가
+    // 🟢 [도배 방지] 토큰 존재 시 Authorization 헤더 추가
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
+    } else {
+        // 🟢 [보안] 토큰이 없으면 헤더 제거하여 불필요한 요청 방지
+        delete config.headers.Authorization;
     }
 
     return config;
@@ -48,6 +51,9 @@ api.interceptors.response.use(
       // 현재 주소가 로그인 페이지가 아닐 때만 리다이렉트 (무한 루프 방지)
       if (window.location.pathname !== "/login") {
         alert("인증이 필요하거나 권한이 없습니다.");
+        // 🟢 [데이터 정리] 만료된 토큰 청소
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("role");
         window.location.href = "/login";
       }
     }

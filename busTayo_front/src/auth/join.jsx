@@ -279,7 +279,7 @@ function Join() {
         </Button>
 
         {/* 일반 가입 상태일 때만 소셜 가입 링크 유도 버튼 노출 */}
-        {!isGoogleUser && (
+        {/* {!isGoogleUser && (
           <>
             <div style={{ display: "flex", alignItems: "center", margin: "25px 0 15px 0" }}>
               <hr style={{ flex: 1, margin: "0 10px", border: "1px solid #eee" }} />
@@ -298,7 +298,7 @@ function Join() {
               Google 계정으로 가입하기
             </Button>
           </>
-        )}
+        )} */}
       </form>
     </div>
   );
