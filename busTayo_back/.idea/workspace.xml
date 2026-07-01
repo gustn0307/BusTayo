@@ -4,221 +4,304 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
+    <list default="true" id="c125f70f-a05c-4cac-b203-c122724d07fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/controller/BoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/controller/CommentsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/controller/FileUploadController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/dto/BoardRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/dto/BoardResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/dto/CommentsRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/dto/CommentsResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/dto/PageResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/repository/BoardRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/repository/CommentsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/service/BoardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/service/CommentsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/service/PageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/0339fa17-27bd-4bf0-946c-9b34d793c626_main_character.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/2fd65d75-83c4-4015-b19e-e6a503358081_main_character.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/37cafe54-1b63-43f3-b164-4c5d93831518_main_character.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/4c537fc1-8816-4e5f-9641-45dd9a6f4d19_result_character1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/5674ca41-27b5-475b-989b-3a415803bc59_main_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/6699458d-567c-4a7f-bde2-e2e9995f5a31_result_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/66fc3093-fc61-480a-9535-2bf2612f48d6_main_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/7b94a870-bce2-4bab-abbb-75258d6f27b5_result_star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/9d6bc088-6dfe-4117-bcd8-ee0d6dcc6d35_result_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/9f195bdc-a010-43b2-934e-810e9abf7e61_questions_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/c910d11c-64e1-48b4-b960-433873531247_questions_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/cef5df63-78bf-4467-86f7-a8de61816b1c_result_character2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/d21306fb-1fb6-4a15-b35c-5d7807f9b47c_main_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/e0256fd4-c1b0-470d-abfb-252d9e2a9b50_result_character2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/e1f9f990-58c4-4bc7-9655-90d71f55dc9d_result_lecture3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/f3be6957-afab-4ffa-975d-263cc4404914_main_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/ff535e02-76ad-49a1-af0c-330d7eb75ebc_thumbnail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/SmartEditor2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/SmartEditor2Skin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/SmartEditor2_noframe.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/css/smart_editor2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/css/smart_editor2_in.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/css/smart_editor2_items.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/css/smart_editor2_out.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_b1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_button.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_button_left.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_button_right.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_find_h3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_help.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_icon_tool.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_line1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_quote2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_set.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_text_tool.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/bg_tool2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/editor_guideline_698.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/editor_guideline_890.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/ico_extend.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/icon_set.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/ko_KR/btn_set.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/ko_KR/bx_set_110302.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/ko_KR/text_tool_set.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/img/text_tool_set2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/HuskyEZCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/SE2BasicCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/SE2M_Configuration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/lib/jindo2.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/lib/jindo_component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/smarteditor2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/js/smarteditor2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/release_notes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/js/plugin/hp_SE2M_AttachQuickPhoto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/attach_photo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/callback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/file_uploader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/file_uploader_html5.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/img/bg_drag_image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/img/btn_cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/img/btn_confirm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/img/btn_confirm2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/img/btn_del.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/img/btn_find.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/jindo.fileuploader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/jindo.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/photo_uploader/photo_uploader.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/HTMLPurifier.standalone.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Builder/ConfigSchema.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Builder/Xml.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Exception.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Interchange.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Interchange/Directive.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Interchange/Id.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/InterchangeBuilder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/Validator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/ValidatorAtom.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.AllowedClasses.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.AllowedFrameTargets.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.AllowedRel.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.AllowedRev.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.ClassUseCDATA.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.DefaultImageAlt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.DefaultInvalidImage.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.DefaultInvalidImageAlt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.DefaultTextDir.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.EnableID.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.ForbiddenClasses.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.ID.HTML5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.IDBlacklist.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.IDBlacklistRegexp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.IDPrefix.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Attr.IDPrefixLocal.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.AutoParagraph.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.Custom.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.DisplayLinkURI.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.Linkify.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.PurifierLinkify.DocURL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.PurifierLinkify.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.Predicate.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.RemoveNbsp.Exceptions.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.RemoveNbsp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveSpansWithoutAttributes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.AllowDuplicates.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.AllowImportant.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.AllowTricky.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.AllowedFonts.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.AllowedProperties.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.DefinitionRev.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.ForbiddenProperties.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.MaxImgLength.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.Proprietary.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/CSS.Trusted.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Cache.DefinitionImpl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Cache.SerializerPath.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Cache.SerializerPermissions.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.AggressivelyFixLt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.AllowHostnameUnderscore.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.CollectErrors.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.ColorKeywords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.ConvertDocumentToFragment.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.DirectLexLineNumberSyncInterval.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.DisableExcludes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.EnableIDNA.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.Encoding.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.EscapeInvalidChildren.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.EscapeInvalidTags.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.EscapeNonASCIICharacters.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.HiddenElements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.Language.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.LexerImpl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.MaintainLineNumbers.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.NormalizeNewlines.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.RemoveInvalidImg.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.RemoveProcessingInstructions.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Core.RemoveScriptContents.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.Custom.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.Escaping.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.Scope.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.TidyImpl.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.YouTube.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Allowed.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.AllowedAttributes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.AllowedComments.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.AllowedCommentsRegexp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.AllowedElements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.AllowedModules.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Attr.Name.UseCDATA.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.BlockWrapper.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.CoreModules.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.CustomDoctype.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.DefinitionID.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.DefinitionRev.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Doctype.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.FlashAllowFullScreen.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.ForbiddenAttributes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.ForbiddenElements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.MaxImgLength.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Nofollow.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Parent.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Proprietary.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.SafeEmbed.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.SafeIframe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.SafeObject.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.SafeScripting.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Strict.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.TargetBlank.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.TargetNoreferrer.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.TidyAdd.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.TidyLevel.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.TidyRemove.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.Trusted.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.XHTML.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Output.CommentScriptContents.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Output.FixInnerHTML.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Output.FlashCompat.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Output.Newline.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Output.SortAttr.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Output.TidyFormat.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Test.ForceNoIconv.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.AllowedSchemes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.Base.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.DefaultScheme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.DefinitionID.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.DefinitionRev.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.Disable.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.DisableExternal.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.DisableExternalResources.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.DisableResources.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.Host.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.HostBlacklist.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.MakeAbsolute.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.Munge.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.MungeResources.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.MungeSecretKey.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.OverrideAllowedSchemes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/URI.SafeIframeRegexp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/info.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/DefinitionCache/Serializer/HTML/4.8.0,b6889960956c877d241a7e8f87e613efc7a3611d,1.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/EntityLookup/entities.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Filter/ExtractStyleBlocks.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Filter/YouTube.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Language/classes/en-x-test.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Language/messages/en-x-test.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Language/messages/en-x-testmini.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Language/messages/en.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Lexer/PH5P.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Printer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Printer/CSSDefinition.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Printer/ConfigForm.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Printer/ConfigForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Printer/ConfigForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/htmlpurifier/standalone/HTMLPurifier/Printer/HTMLDefinition.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/sample/viewer/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/smart_editor2_inputarea.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/public/smarteditor2-2.8.2.3/smart_editor2_inputarea_ie8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/Board.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/Board.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardDetail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardDetail.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardWrite.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/board/BoardWrite.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router_BACKUP_730.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router_BASE_730.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router_LOCAL_730.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router_REMOTE_730.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_21_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_21_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/busTayo.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusArrivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/PathController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/PathController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/NavigatingHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/NavigatingHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusArrivalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/BusService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/OdsayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/OdsayService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/entity/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/entity/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/entity/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/board/entity/Comments.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/BusApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/BusApiConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/controller/NavigatingHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/controller/NavigatingHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/dto/NavigatingHistoryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/dto/NavigatingHistoryResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/repository/NavigatingHistoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/repository/NavigatingHistoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/service/NavigatingHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/navigating/service/NavigatingHistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api/busApi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusInfoCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusInfoCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusStopList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/BusStopList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/KakaoMap.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/KakaoMap.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/PlaceSearchInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/PlaceSearchInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteBusCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteSearchPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteSearchPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteWalkCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/RouteWalkCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/SearchResultList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/SearchResultList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/util/loadKakaoMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/util/loadKakaoMap.js" afterDir="false" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" afterDir="false" />
->>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/FreeBoard.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-<<<<<<< HEAD
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="busTayo" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-<<<<<<< HEAD
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;minxxnn&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/gustn0307/BusTayo.git&quot;,
-    &quot;accountId&quot;: &quot;2959285c-aed2-4b53-8769-aca4cab0d012&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1,
-=======
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7,
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3FFON9lngQzAreBYUrGmLJvVgpG" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3FtqR7QacVkD2mwoX07Mj11Z92H" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
-<<<<<<< HEAD
-    <option name="flattenModules" value="true" />
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build busTayo_back.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.busTayo_back [build].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/board&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/BusTayo/busTayo_back&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15429688&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
-  }
-}</component>
-  <component name="RunManager" selected="Spring Boot.BusTayoApplication">
-    <configuration name="BusTayoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.busTajo.busTayo.BusTayoApplication" />
-=======
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.BusTayoApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Gradle.Build busTayo_back.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BusTayoApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/admin",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm"
+    "git-widget-placeholder": "Merging feature/lost",
+    "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.BusTayoApplication">
-    <configuration name="BusTayoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="BUS_INFO_API_KEY" value="e9ba4241a2305206d93f14e2886d5be6c074902f0f76c18ec93794d7e3cfbdf3" />
         <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
       </envs>
-      <option name="MAIN_CLASS_NAME" value="com.busTajo.busTayo.BusTayoApplication" />
-      <module name="busTayo.main" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.busTajo.busTayo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-<<<<<<< HEAD
-    <configuration name="busTayo_back [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <envs>
-        <env name="BUS_INFO_API_KEY" value="1be21f8cf6e878d9fffde8e1f2ea8291c3ca86bddb8aba03f0a732fe89ae97d1" />
-        <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
-      </envs>
-=======
-    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="busTayo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.busTajo.busTayo.BusTayoApplication" />
@@ -232,45 +315,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.BusTayoApplication" />
-<<<<<<< HEAD
-      <item itemvalue="Gradle.busTayo_back [build]" />
-=======
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
-      <item itemvalue="Spring Boot.BusTayoApplication" />
-    </list>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
         <item itemvalue="Spring Boot.BusTayoApplication" />
-        <item itemvalue="Application.BusTayoApplication" />
-        <item itemvalue="Gradle.busTayo_back [build]" />
       </list>
     </recent_temporary>
   </component>
-=======
-        <item itemvalue="Application.BusTayoApplication" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
->>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="" />
-      <created>1781667308062</created>
+      <changelist id="c125f70f-a05c-4cac-b203-c122724d07fd" name="Changes" comment="" />
+      <created>1782904704968</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1781667308062</updated>
+      <updated>1782904704968</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

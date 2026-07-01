@@ -39,9 +39,9 @@ const NAV_SECTIONS = [
   {
     label: "커뮤니티",
     items: [
-      { to: "/board", icon: BsChatDotsFill, label: "자유게시판" },
-      { to: "/lostfound", icon: BsBriefcaseFill, label: "분실물 찾기" },
-      { to: "/notice", icon: BsMegaphoneFill, label: "공지사항" },
+      { to: "/board",     icon: BsChatDotsFill,  label: "자유게시판" },
+      { to: "/lost", icon: BsBriefcaseFill, label: "분실물 찾기" },
+      { to: "/notice",    icon: BsMegaphoneFill, label: "공지사항" },
     ],
   },
 ];
@@ -311,7 +311,6 @@ function UserSidebar() {
             <div className="tagline">스마트 버스 플랫폼</div>
           </div>
         </div>
-
         {/* 네비게이션 */}
         <nav className="sidebar-nav">
           {/* 홈 */}
