@@ -7,6 +7,7 @@
     <list default="true" id="57cb694a-b29f-4422-a5f0-bcdddc2e9e8b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusArrivalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/BusController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/PathController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/PathController.java" afterDir="false" />
@@ -35,6 +36,11 @@
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/RouteSearch.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/util/loadKakaoMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/util/loadKakaoMap.js" afterDir="false" />
 >>>>>>> 92627a93eab0e276df03bb5ec4ff84ff9f72317d
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/controller/FavoritesNavigatingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/service/FavoritesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/service/JoinService.java" afterDir="false" />
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,11 +156,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.BusTayoApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/route",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "feature/admin",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RunManager" selected="Application.BusTayoApplication">

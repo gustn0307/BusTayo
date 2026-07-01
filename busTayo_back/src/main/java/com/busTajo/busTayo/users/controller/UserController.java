@@ -17,7 +17,7 @@ public class UserController {
         return "USER OK";
     }
 
-    @GetMapping("/my-info")
+    @GetMapping("/api/my-info")
     public String myInfo() {
         String email = SecurityContextHolder
                 .getContext().getAuthentication().getName();

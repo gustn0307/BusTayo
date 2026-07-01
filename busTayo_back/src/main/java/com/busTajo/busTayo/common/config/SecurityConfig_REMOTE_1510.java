@@ -5,7 +5,6 @@ import com.busTajo.busTayo.users.jwt.JWTUtil;
 import com.busTajo.busTayo.users.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -89,7 +88,6 @@ public class SecurityConfig {
                                         "/api/admin/**",
                                         "/notice",
                                         "/notice/**"
-
                                         ).permitAll()
                                 .requestMatchers(
                                         "/user",
@@ -102,48 +100,6 @@ public class SecurityConfig {
                                 .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
                                 .anyRequest().authenticated()
                 );
-        // URL별 접근 권한 설정
-        http.authorizeHttpRequests((auth) ->
-                auth
-                        // 로그인 없이 접근 가능한 경로
-                        .requestMatchers(
-                                "/login",
-                                "/",
-                                "/join",
-                                "/admin/**",
-                                "/notice",
-                                "/notice/**",
-                                "/api/editor/upload",
-                                "/uploads/**",
-                                "/smarteditor2-2.8"
-                        ).permitAll()
-
-                        .requestMatchers(HttpMethod.GET, "/api/board", "/api/board/**").permitAll()
-
-                        // 로그인한 USER 또는 ADMIN만 접근 가능한 API
-                        .requestMatchers(
-                                "/user",
-                                "/api/navigating/**",
-                                "/api/bus/**",
-                                "/api/path/**"
-                        ).hasAnyRole("USER", "ADMIN")
-
-                        .requestMatchers(HttpMethod.POST, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
-
-                        // ADMIN 권한만 접근 가능
-                        .requestMatchers("/admin").hasRole("ADMIN")
-
-                        // 회원 탈퇴 요청 허용
-                        .requestMatchers(
-                                org.springframework.http.HttpMethod.DELETE,
-                                "/delete-account"
-                        ).permitAll()
-
-                        // 나머지 모든 요청은 인증 필요
-                        .anyRequest().authenticated()
-        );
 
         // JWTFilter 등록
         // LoginFilter보다 먼저 실행되어 요청의 JWT 토큰을 검사한다.

@@ -5,7 +5,6 @@ import com.busTajo.busTayo.users.jwt.JWTUtil;
 import com.busTajo.busTayo.users.jwt.LoginFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -76,32 +75,6 @@ public class SecurityConfig {
         // Authorization Basic 방식 대신 JWT Bearer Token 사용
         http.httpBasic((auth) -> auth.disable());
 
-
-        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
-        http
-                .authorizeHttpRequests((auth) ->
-                        auth
-
-                                .requestMatchers(
-                                        "/login",
-                                        "/",
-                                        "/join",
-                                        "/api/admin/**",
-                                        "/notice",
-                                        "/notice/**"
-
-                                        ).permitAll()
-                                .requestMatchers(
-                                        "/user",
-                                        "/api/navigating/**",
-                                        "/api/bus/**",
-                                        "/api/path/**",
-                                        "/api/favorites/**"
-                                ).hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/admin").hasRole("ADMIN")
-                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
-                                .anyRequest().authenticated()
-                );
         // URL별 접근 권한 설정
         http.authorizeHttpRequests((auth) ->
                 auth
@@ -112,13 +85,8 @@ public class SecurityConfig {
                                 "/join",
                                 "/admin/**",
                                 "/notice",
-                                "/notice/**",
-                                "/api/editor/upload",
-                                "/uploads/**",
-                                "/smarteditor2-2.8"
+                                "/notice/**"
                         ).permitAll()
-
-                        .requestMatchers(HttpMethod.GET, "/api/board", "/api/board/**").permitAll()
 
                         // 로그인한 USER 또는 ADMIN만 접근 가능한 API
                         .requestMatchers(
@@ -127,10 +95,6 @@ public class SecurityConfig {
                                 "/api/bus/**",
                                 "/api/path/**"
                         ).hasAnyRole("USER", "ADMIN")
-
-                        .requestMatchers(HttpMethod.POST, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/board", "/api/board/**").hasAnyRole("USER", "ADMIN")
 
                         // ADMIN 권한만 접근 가능
                         .requestMatchers("/admin").hasRole("ADMIN")

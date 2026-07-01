@@ -76,32 +76,7 @@ public class SecurityConfig {
         // Authorization Basic 방식 대신 JWT Bearer Token 사용
         http.httpBasic((auth) -> auth.disable());
 
-
-        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
-        http
-                .authorizeHttpRequests((auth) ->
-                        auth
-
-                                .requestMatchers(
-                                        "/login",
-                                        "/",
-                                        "/join",
-                                        "/api/admin/**",
-                                        "/notice",
-                                        "/notice/**"
-
-                                        ).permitAll()
-                                .requestMatchers(
-                                        "/user",
-                                        "/api/navigating/**",
-                                        "/api/bus/**",
-                                        "/api/path/**",
-                                        "/api/favorites/**"
-                                ).hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/admin").hasRole("ADMIN")
-                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
-                                .anyRequest().authenticated()
-                );
+<<<<<<< HEAD
         // URL별 접근 권한 설정
         http.authorizeHttpRequests((auth) ->
                 auth
@@ -144,6 +119,33 @@ public class SecurityConfig {
                         // 나머지 모든 요청은 인증 필요
                         .anyRequest().authenticated()
         );
+=======
+
+        // 경로별 인가 작업 (프로젝트에 맞게 수정 필요)
+        http
+                .authorizeHttpRequests((auth) ->
+                        auth
+
+                                .requestMatchers(
+                                        "/login",
+                                        "/",
+                                        "/join",
+                                        "/api/admin/**",
+                                        "/notice",
+                                        "/notice/**"
+                                        ).permitAll()
+                                .requestMatchers(
+                                        "/user",
+                                        "/api/navigating/**",
+                                        "/api/bus/**",
+                                        "/api/path/**",
+                                        "/api/favorites/**"
+                                ).hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/delete-account").permitAll()
+                                .anyRequest().authenticated()
+                );
+>>>>>>> d5a8e37ff4c1188093d82480ec48324f57fa7105
 
         // JWTFilter 등록
         // LoginFilter보다 먼저 실행되어 요청의 JWT 토큰을 검사한다.
