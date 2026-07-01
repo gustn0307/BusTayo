@@ -13,7 +13,6 @@ import RouteSearch from "../pages/RouteSearch";
 import LostFound from "../pages/LostFound";
 import FreeBoard from "../pages/FreeBoard";
 import MyPage from "../pages/MyPage";
-import BusHistory from "../pages/BusHistory";
 import Notice from "../pages/Notice";
 import NoticeDetail from "../pages/NoticeDetail";
 

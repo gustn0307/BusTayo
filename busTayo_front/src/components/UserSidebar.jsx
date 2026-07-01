@@ -53,8 +53,9 @@ function UserSidebar() {
   const { logout } = useAuth();
   
   // 인증 체크 로직 삭제: 단순히 현재 로그인 여부만 판단
-  const isLoggedIn = !!sessionStorage.getItem("token");
+  const isLoggedIn = !!sessionStorage.getItem("accessToken");
   const role = sessionStorage.getItem("role");
+  const navigate = useNavigate();
 
 
   return (
