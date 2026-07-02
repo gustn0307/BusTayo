@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
     setToken(null);
 
     if (isExpired) {
-      alert("로그인 세션이 만료되어 자동으로 로그아웃 되었습니다.");
+      alert("로그아웃 되었습니다.");
     } else {
       alert("로그아웃이 성공적으로 완료되었습니다.");
     }

@@ -5,33 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/lost/controller/LostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/lost/dto/LostDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/lost/repository/LostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/lost/service/LostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Notice.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/NoticeDetail.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagementDetail.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/admin/entity/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/admin/entity/Notice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesBus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesPlace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesStop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/controller/NoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/repository/NoticeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/repository/NoticeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/service/NoticeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/service/NoticeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/UserSidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/jwt/JWTFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/jwt/JWTFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthProvider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/LostFound.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Notice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Notice.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/NoticeDetail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/NoticeDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/NoticeDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagement.css" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagement.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagementDetail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagementDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagementDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/router/Router.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,28 +29,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="3FtxWRXHJ3XHzlEMCEJmdIeQRCb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.BusTayoApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Merging feature/passwordupdate",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Maeng/BusTayo/busTayo_back"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/passwordupdate&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Maeng/BusTayo/busTayo_back&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <envs>

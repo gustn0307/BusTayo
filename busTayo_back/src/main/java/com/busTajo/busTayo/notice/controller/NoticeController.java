@@ -15,23 +15,23 @@ import java.util.List;
 public class NoticeController {
     private final NoticeService noticeService;
 
-    @GetMapping("/api/notice")
+    @GetMapping("/notice")
     public ResponseEntity<List<NoticeDto>> noticeList() {
         return ResponseEntity.ok(noticeService.findAllNotice());
     }
 
-    @GetMapping("/api/notice/{id}")
+    @GetMapping("/notice/{id}")
     public ResponseEntity<NoticeDto> noticeDetail(@PathVariable("id") Long id) {
         return ResponseEntity.ok(noticeService.findNoticeById(id));
     }
 
-    @PostMapping("/api/admin/notice")
+    @PostMapping("/admin/notice")
     public ResponseEntity<Void> noticeInsert(@RequestBody NoticeDto dto) {
         noticeService.insertNotice(dto);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/api/admin/notice/{id}")
+    @PutMapping("/admin/notice/{id}")
     public ResponseEntity<Void> noticeUpdate(@PathVariable("id") Long id,
                                              @RequestBody NoticeDto noticeDto) {
         noticeDto.setNoticeId(id);
@@ -39,7 +39,7 @@ public class NoticeController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/api/admin/notice/{id}")
+    @DeleteMapping("/admin/notice/{id}")
     public ResponseEntity<Void> deleteNotice(@PathVariable("id") Long id) {
         noticeService.deleteNotice(id);
         return ResponseEntity.ok().build();

@@ -26,7 +26,7 @@ function BusHistory() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
 
     if (!token) {
       if (!hasAlerted.current){
@@ -53,8 +53,8 @@ function BusHistory() {
       // console.error("유저 정보 로드 실패: ", error);
       alert("인증이 만료되었거나 에러가 발생했습니다. 다시 로그인해 주세요.");
 
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("role");
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("role");
       navigate("/login");
     });
   }, [navigate]);
@@ -64,7 +64,7 @@ function BusHistory() {
   }, []);
 
   const fetchList = () => {
-  const token = localStorage.getItem("accessToken");
+  const token = sessionStorage.getItem("accessToken");
   api.get("/lost/my", {
     headers: { Authorization: `Bearer ${token}` }
   })

@@ -43,22 +43,22 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    // 401(인증 실패) 또는 403(권한 없음) 발생 시
-    if (error.response?.status === 401 || error.response?.status === 403) {
-      // 현재 주소가 로그인 페이지가 아닐 때만 리다이렉트 (무한 루프 방지)
-      if (window.location.pathname !== "/login") {
-        alert("인증이 필요하거나 권한이 없습니다.");
-        // 🟢 [데이터 정리] 만료된 토큰 청소
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("role");
-        window.location.href = "/login";
-      }
-    }
-    return Promise.reject(error);
-  }
-);
+// api.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     // 401(인증 실패) 또는 403(권한 없음) 발생 시
+//     if (error.response?.status === 401 || error.response?.status === 403) {
+//       // 현재 주소가 로그인 페이지가 아닐 때만 리다이렉트 (무한 루프 방지)
+//       if (window.location.pathname !== "/login") {
+//         alert("인증이 필요하거나 권한이 없습니다.");
+//         // 🟢 [데이터 정리] 만료된 토큰 청소
+//         sessionStorage.removeItem("accessToken");
+//         sessionStorage.removeItem("role");
+//         window.location.href = "/login";
+//       }
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export default api;

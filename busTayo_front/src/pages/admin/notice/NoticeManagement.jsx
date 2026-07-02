@@ -27,9 +27,7 @@ function NoticeManagement() {
   const [editTarget, setEditTarget] = useState(null);
   const [form, setForm] = useState({ noticeTitle: "", noticeContent: "" });
 
-  useEffect(() => {
-    fetchList();
-  }, []);
+  
 
   const fetchList = () => {
     api.get("/api/notice")
@@ -42,6 +40,10 @@ function NoticeManagement() {
         setFiltered(sorted);
       });
   };
+
+  useEffect(() => {
+    fetchList();
+  }, []);
 
   const openAdd = () => {
     setEditTarget(null);

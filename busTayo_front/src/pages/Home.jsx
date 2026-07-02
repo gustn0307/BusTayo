@@ -24,7 +24,7 @@ function formatDateTime(dateStr) {
 function Home() {
   const [recentNotices, setRecentNotices] = useState([]);
   const [recentBusHistory, setBusNameInput] = useState([]);
-  const token = localStorage.getItem("accessToken");
+  const token = sessionStorage.getItem("accessToken");
 
   useEffect(() => {
     api.get("/api/notice")
