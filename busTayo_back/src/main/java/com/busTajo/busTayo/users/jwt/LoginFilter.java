@@ -34,6 +34,13 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+
+        //  구글 소셜 로그인 관련 요청이 들어오면 일반 로그인 필터는 아무것도 하지 않고 그냥 통과시킵니다.
+        String requestURI = request.getRequestURI();
+        if (requestURI.contains("/oauth2") || requestURI.contains("/login/oauth2")) {
+            return null; // 필터 작동을 중단하고 다음 시큐리티 체인으로 토스합니다.
+        }
+
         try {
             // JSON으로 들어오는 email, password를 뽑아내는 작업
             ObjectMapper objectMapper = new ObjectMapper();

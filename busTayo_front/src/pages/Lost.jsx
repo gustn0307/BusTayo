@@ -27,7 +27,7 @@ function Lost() {
   const [selectedBus, setSelectedBus] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
     if (!token) {
       if (!hasAlerted.current) {
         alert("로그인이 필요한 페이지입니다!");
@@ -49,8 +49,8 @@ function Lost() {
       })
       .catch(() => {
         alert("인증이 만료되었거나 에러가 발생했습니다. 다시 로그인해 주세요.");
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("role");
+        sessionStorage.removeItem("accessToken");
+        sessionStorage.removeItem("role");
         navigate("/login");
       });
   }, [navigate]);
@@ -60,7 +60,7 @@ function Lost() {
   }, []);
 
   const fetchList = () => {
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
     api
       .get("/api/navigating/history", {
         headers: { Authorization: `Bearer ${token}` },
@@ -98,7 +98,7 @@ function Lost() {
     setBusLoading(true);
     setCompanyPage(1);
 
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
     api
       .get(`/api/lost/buses?historyId=${item.id}`, {
         headers: { Authorization: `Bearer ${token}` },

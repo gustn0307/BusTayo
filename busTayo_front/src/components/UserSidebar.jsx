@@ -1,4 +1,7 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import { Nav, Card, Button } from "react-bootstrap";
+import { useAuth } from "../auth/AuthProvider";
+
 import {
   BsBusFrontFill,
   BsHouseFill,
@@ -47,15 +50,13 @@ const NAV_SECTIONS = [
 ];
 
 function UserSidebar() {
-  const role = localStorage.getItem("role");
+  const { logout } = useAuth();
+  
+  // 인증 체크 로직 삭제: 단순히 현재 로그인 여부만 판단
+  const isLoggedIn = !!sessionStorage.getItem("accessToken");
+  const role = sessionStorage.getItem("role");
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("role");
-    navigate("/home");
-    window.location.reload();
-  };
 
   return (
     <>
@@ -393,7 +394,7 @@ function UserSidebar() {
         {/* 하단 버튼 */}
         <div className="sidebar-footer">
           {role ? (
-            <button className="logout-btn" onClick={handleLogout}>
+            <button className="logout-btn" onClick={logout}>
               <BsBoxArrowRight size={16} />
               로그아웃
             </button>

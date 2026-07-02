@@ -30,20 +30,9 @@ public class FavoritesGroup extends BaseEntity {
     private String description; // 즐겨찾기 설명
 
     // 그룹 삭제시 하위 즐겨찾기 삭제
-    @OneToMany(
-            mappedBy = "group",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<FavoritesStop> stops = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "group",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
 
-    )
-    private List<FavoritesPlace> places = new ArrayList<>();
+
 
     @OneToMany(
             mappedBy = "group",

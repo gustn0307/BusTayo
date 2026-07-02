@@ -79,7 +79,7 @@ function BoardDetail() {
 
   if (!post) return <div>로딩중...</div>;
 
-  const token = localStorage.getItem("accessToken");
+  const token = sessionStorage.getItem("accessToken");
   const currentUserId = token
     ? JSON.parse(atob(token.split(".")[1])).email
     : null;
@@ -123,7 +123,7 @@ function BoardDetail() {
   // 댓글 작성
 
   const handleCommentSummit = () => {
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
     if (!token) {
       alert("로그인이 필요합니다.");
       navigate("/login");
@@ -141,7 +141,7 @@ function BoardDetail() {
 
   // 대댓글 작성
   const handleReplySubmit = (parentId) => {
-    const token = localStorage.getItem("accessToken");
+    const token = sessionStorage.getItem("accessToken");
     if (!token) {
       alert("로그인이 필요합니다.");
       navigate("/login");
