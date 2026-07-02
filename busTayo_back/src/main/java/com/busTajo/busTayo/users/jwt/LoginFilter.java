@@ -21,7 +21,7 @@ import java.util.Iterator;
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     // 토큰 만료 시간을 상수로 지정
-    public static final long ACCESS_TOKEN_EXPIRE = 1000L * 60 * 30; // 30분
+    public static final long ACCESS_TOKEN_EXPIRE = 1000L * 60 * 60 * 12; // 30분
 
     private final AuthenticationManager authenticationManager;
 
@@ -34,6 +34,13 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+
+        //  구글 소셜 로그인 관련 요청이 들어오면 일반 로그인 필터는 아무것도 하지 않고 그냥 통과시킵니다.
+        String requestURI = request.getRequestURI();
+        if (requestURI.contains("/oauth2") || requestURI.contains("/login/oauth2")) {
+            return null; // 필터 작동을 중단하고 다음 시큐리티 체인으로 토스합니다.
+        }
+
         try {
             // JSON으로 들어오는 email, password를 뽑아내는 작업
             ObjectMapper objectMapper = new ObjectMapper();

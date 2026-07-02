@@ -1,0 +1,346 @@
+.pageContainer {
+  padding: 0px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pageHeader h2 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.addBtn {
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.addBtn:hover {
+  background: #1e40af;
+}
+
+/* 검색 카드 */
+.searchCard {
+  background: white;
+  padding: 22px 24px;
+  border-radius: 14px;
+  border: 1px solid #e5e9f0;
+  margin-bottom: 18px;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+}
+
+.searchRow label {
+  width: 72px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.searchRow input {
+  width: 230px;
+  padding: 9px 13px;
+  border: 1px solid #d1d9e6;
+  border-radius: 9px;
+  font-size: 13px;
+  color: #111827;
+  background: #f8fafc;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.searchRow input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  background: white;
+}
+
+.searchBtnBox {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.resetBtn {
+  padding: 8px 18px;
+  border: 1px solid #d1d9e6;
+  background: white;
+  color: #6b7280;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.resetBtn:hover {
+  background: #f3f6fb;
+}
+
+.searchBtn {
+  padding: 8px 18px;
+  border: none;
+  background: #1d4ed8;
+  color: white;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.searchBtn:hover {
+  background: #1e40af;
+}
+
+/* 테이블 카드 */
+.tableCard {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e5e9f0;
+  overflow: hidden;
+}
+
+.tableTop {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f4f9;
+}
+
+.tableTop span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.totalPill {
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: #0f1f3d;
+}
+
+.table th {
+  padding: 12px 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #93c5fd;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.table td {
+  padding: 13px 15px;
+  border-top: 1px solid #f0f4f9;
+  text-align: center;
+  font-size: 13px;
+  color: #374151;
+}
+
+.table tbody tr:hover td {
+  background: #f5f8ff;
+}
+
+.titleLink {
+  text-align: left !important;
+  cursor: pointer;
+  color: #1d4ed8;
+}
+
+.updatedBadge {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-left: 6px;
+}
+
+.empty {
+  color: #9ca3af;
+  height: 120px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.editBtn {
+  padding: 5px 12px;
+  border: none;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.editBtn:hover {
+  background: #dbeafe;
+}
+
+.deleteBtn {
+  padding: 5px 12px;
+  border: none;
+  background: #fef2f2;
+  color: #ef4444;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.deleteBtn:hover {
+  background: #fee2e2;
+}
+
+/* 페이지네이션 */
+.pagination {
+  padding: 13px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  border-top: 1px solid #f0f4f9;
+}
+
+.pagination button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e5e9f0;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.pagination button:hover {
+  border-color: #1d4ed8;
+  color: #1d4ed8;
+}
+
+.pagination button.active {
+  background: #1d4ed8;
+  color: white;
+  border-color: #1d4ed8;
+}
+
+/* 모달 컴포넌트 */
+.noticeModalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.noticeModalBox {
+  background: white;
+  border-radius: 10px;
+  width: 640px;
+  max-width: 90vw;
+  overflow: hidden;
+  margin: 24px;
+}
+
+.noticeModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e9f0;
+}
+
+.noticeModalTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.noticeModalClose {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.noticeModalClose:hover {
+  color: #111827;
+}
+
+.noticeModalBody {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.noticeModalRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noticeModalRow.noticeAlignTop {
+  align-items: flex-start;
+}
+
+.noticeModalRow label {
+  width: 36px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  flex-shrink: 0;
+}
+
+.noticeModalRow input,
+.noticeModalRow textarea {
+  flex: 1;
+  padding: 9px 13px;
+  border: 1px solid #d1d9e6;
+  border-radius: 9px;
+  font-size: 13px;
+  color: #111827;
+  background: #f8fafc;
+  resize: vertical;
+}
+
+.noticeModalRow input:focus,
+.noticeModalRow textarea:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  background: white;
+}
+
+.noticeModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
+  border-top: 1px solid #e5e9f0;
+}

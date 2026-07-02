@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
 
 function AdminRoute({ children }) {
-  const role = localStorage.getItem("role");
+  const role = sessionStorage.getItem("role");
 
-  if (role !== "ADMIN") {
+  if (role !== "ROLE_ADMIN") {
     return <Navigate to="/" replace />;
   }
 

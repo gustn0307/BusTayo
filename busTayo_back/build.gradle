@@ -34,6 +34,13 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
+	// 이메일 발송 위한 Starter 라이브러리 추가
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// 구글 소셜 로그인 위한 OAuth2 클라이언트 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
 }
 
 tasks.named('test') {

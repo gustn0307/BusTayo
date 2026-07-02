@@ -2,6 +2,23 @@ spring:
   application:
     name: busTayo
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: sylith89@gmail.com
+    # 주의: 일반 계정 비밀번호가 아니라 구글 앱 비밀번호 16자리를 공백 없이
+    password: ucxwsmfenwfohhfl
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bustayo_db
@@ -20,6 +37,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true
 
+
     #  sql:
     #    init:
     #      mode: always  # data.sql\uC744 \uD56D\uC0C1 \uC2E4\uD589
@@ -37,8 +55,17 @@ logging:
     org.hibernate.orm.jdbc.bind: trace
 
 bus:
-  gyeonggi:
+  api:
     service-key: ${BUS_INFO_API_KEY}
 
 odsay:
   api-key: ${ODSAY_API_KEY}
+
+busStop:
+  data:
+    api:
+      key: ${busStop.data.api.key}
+
+kakao:
+  api:
+    key: ${kakao.api.key}

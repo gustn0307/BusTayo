@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // 즐겨찾기 그룹
 @Entity
 @Getter
@@ -25,4 +28,15 @@ public class FavoritesGroup extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String description; // 즐겨찾기 설명
+
+    // 그룹 삭제시 하위 즐겨찾기 삭제
+
+
+
+
+    @OneToMany(
+            mappedBy = "group",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            orphanRemoval = false)
+    private List<FavoritesNavigating> navigating = new ArrayList<>();
 }

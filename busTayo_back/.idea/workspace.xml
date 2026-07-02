@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/uploads/0339fa17-27bd-4bf0-946c-9b34d793c626_main_character.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/2fd65d75-83c4-4015-b19e-e6a503358081_main_character.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/37cafe54-1b63-43f3-b164-4c5d93831518_main_character.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/4c537fc1-8816-4e5f-9641-45dd9a6f4d19_result_character1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/5674ca41-27b5-475b-989b-3a415803bc59_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/6699458d-567c-4a7f-bde2-e2e9995f5a31_result_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/66fc3093-fc61-480a-9535-2bf2612f48d6_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/7b94a870-bce2-4bab-abbb-75258d6f27b5_result_star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/9d6bc088-6dfe-4117-bcd8-ee0d6dcc6d35_result_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/9f195bdc-a010-43b2-934e-810e9abf7e61_questions_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/c910d11c-64e1-48b4-b960-433873531247_questions_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/cef5df63-78bf-4467-86f7-a8de61816b1c_result_character2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/d21306fb-1fb6-4a15-b35c-5d7807f9b47c_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/e0256fd4-c1b0-470d-abfb-252d9e2a9b50_result_character2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/e1f9f990-58c4-4bc7-9655-90d71f55dc9d_result_lecture3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/f3be6957-afab-4ffa-975d-263cc4404914_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/ff535e02-76ad-49a1-af0c-330d7eb75ebc_thumbnail.jpg" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="3FtxWRXHJ3XHzlEMCEJmdIeQRCb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/passwordupdate&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Maeng/BusTayo/busTayo_back&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="BUS_INFO_API_KEY" value="e9ba4241a2305206d93f14e2886d5be6c074902f0f76c18ec93794d7e3cfbdf3" />
+        <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
+        <env name="GOOGLE_CLIENT_ID" value="353259509762-1303tcvdmqd2vq0b1qv2ni8c6uca0krp.apps.googleusercontent.com" />
+        <env name="GOOGLE_CLIENT_SECRET" value="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" />
+        <env name="kakao.api.key" value="ba356e0a5d0c0ea286f466cfbc5142dd" />
+        <env name="busStop.data.api.key" value="ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14" />
+      </envs>
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="busTayo.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.busTajo.busTayo.BusTayoApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.busTajo.busTayo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BusTayoApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="" />
+      <created>1782906947430</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782906947430</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

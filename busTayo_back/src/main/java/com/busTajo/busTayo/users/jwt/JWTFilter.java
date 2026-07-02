@@ -19,7 +19,8 @@ public class JWTFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
-        return "/join".equals(path);
+        // /api/join이거나 /api/auth/로 시작하는 주소는 JWT 검문 패스!
+        return "/api/join".equals(path) || path.startsWith("/api/auth/");
     }
 
     private final JWTUtil jwtUtil;
@@ -72,6 +73,7 @@ public class JWTFilter extends OncePerRequestFilter {
         // 토큰에서 email과 role 획득
         String userEmail = jwtUtil.getEmail(token);
         String role = jwtUtil.getRole(token);
+        System.out.println(jwtUtil.getRole(token));
 
         // Users를 생성하여 값 set
         Users user = new Users();
