@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesBus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesPlace.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/bus/entity/FavoritesStop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/notice/controller/NoticeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/jwt/JWTFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/users/jwt/JWTFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/AuthProvider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/admin/notice/NoticeManagement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/0339fa17-27bd-4bf0-946c-9b34d793c626_main_character.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/2fd65d75-83c4-4015-b19e-e6a503358081_main_character.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/37cafe54-1b63-43f3-b164-4c5d93831518_main_character.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/4c537fc1-8816-4e5f-9641-45dd9a6f4d19_result_character1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/5674ca41-27b5-475b-989b-3a415803bc59_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/6699458d-567c-4a7f-bde2-e2e9995f5a31_result_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/66fc3093-fc61-480a-9535-2bf2612f48d6_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/7b94a870-bce2-4bab-abbb-75258d6f27b5_result_star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/9d6bc088-6dfe-4117-bcd8-ee0d6dcc6d35_result_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/9f195bdc-a010-43b2-934e-810e9abf7e61_questions_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/c910d11c-64e1-48b4-b960-433873531247_questions_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/cef5df63-78bf-4467-86f7-a8de61816b1c_result_character2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/d21306fb-1fb6-4a15-b35c-5d7807f9b47c_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/e0256fd4-c1b0-470d-abfb-252d9e2a9b50_result_character2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/e1f9f990-58c4-4bc7-9655-90d71f55dc9d_result_lecture3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/f3be6957-afab-4ffa-975d-263cc4404914_main_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/ff535e02-76ad-49a1-af0c-330d7eb75ebc_thumbnail.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
