@@ -10,15 +10,21 @@ import axios from "axios";
 // - RouteSearchPanel.jsx
 // - RouteDetail.jsx
 // - 로그인 / 회원 관련 API (추후)
+const getApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+
+  if (window.location.hostname === "hskang.dev" || window.location.hostname === "www.hskang.dev") {
+    return "https://api.hskang.dev";
+  }
+
+  return "";
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "",
-  withCredentials:true,
-    // 백엔드 서버 기본 주소
-    // 개발 환경: Spring Boot localhost:8080
-    //
-    // 추후 배포 시 변경 필요:
-    // 예)
-    // https://api.bustayo.com
+  baseURL: getApiBaseUrl(),
+  withCredentials: true,
 });
 
 // 요청 인터셉터
