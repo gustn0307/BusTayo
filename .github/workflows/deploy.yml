@@ -4,10 +4,10 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'busTayo_back/**'
-      - 'busTayo_front/**'
-      - 'infra/**'
-      - '.github/workflows/deploy.yml'
+      - "busTayo_back/**"
+      - "busTayo_front/**"
+      - "infra/**"
+      - ".github/workflows/deploy.yml"
 
 jobs:
   build-and-push:
