@@ -11,12 +11,8 @@ import axios from "axios";
 // - RouteDetail.jsx
 // - 로그인 / 회원 관련 API (추후)
 const getApiBaseUrl = () => {
-  if (import.meta.env.VITE_API_BASE_URL) {
+  if (import.meta.env.DEV && import.meta.env.VITE_API_BASE_URL) {
     return import.meta.env.VITE_API_BASE_URL;
-  }
-
-  if (window.location.hostname === "hskang.dev" || window.location.hostname === "www.hskang.dev") {
-    return "https://api.hskang.dev";
   }
 
   return "";
