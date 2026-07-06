@@ -61,11 +61,52 @@ jobs:
 
             cd ~/bustayo
 
+            echo "Pull latest Docker images..."
             docker compose --env-file .env.prod -f docker-compose.prod.yml pull
+
+            echo "Restart services..."
             docker compose --env-file .env.prod -f docker-compose.prod.yml up -d
 
-            echo "Waiting for services..."
-            sleep 20
+            echo "Show running containers..."
+            docker ps
 
-            curl -f https://hskang.dev
-            curl -f https://api.hskang.dev
+            echo "Health check: frontend"
+            for i in {1..10}; do
+              if curl -fsS https://hskang.dev > /dev/null; then
+                echo "Frontend is healthy"
+                break
+              fi
+
+              if [ "$i" -eq 10 ]; then
+                echo "Frontend health check failed"
+                docker logs --tail=100 bustayo-nginx
+                docker logs --tail=100 bustayo-front
+                exit 1
+              fi
+
+              echo "Frontend not ready yet... retry $i/10"
+              sleep 5
+            done
+
+            echo "Health check: backend"
+            for i in {1..10}; do
+              if curl -fsS https://api.hskang.dev > /dev/null; then
+                echo "Backend is healthy"
+                break
+              fi
+
+              if [ "$i" -eq 10 ]; then
+                echo "Backend health check failed"
+                docker logs --tail=100 bustayo-nginx
+                docker logs --tail=100 bustayo-back
+                exit 1
+              fi
+
+              echo "Backend not ready yet... retry $i/10"
+              sleep 5
+            done
+
+            echo "Clean unused Docker images..."
+            docker image prune -f
+
+            echo "Deploy completed successfully"
