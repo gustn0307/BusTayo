@@ -83,6 +83,16 @@ function NearbyBus() {
               position.coords.longitude,
             );
 
+            console.log("현재 위치 정확도(m):", position.coords.accuracy);
+
+            if (position.coords.accuracy > 1000) {
+              alert(
+                `현재 위치 정확도가 낮습니다.\n` +
+                  `오차 범위: 약 ${Math.round(position.coords.accuracy)}m\n\n` +
+                  `실제 위치와 다를 수 있습니다.`,
+              );
+            }
+
             setMyLocation({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
