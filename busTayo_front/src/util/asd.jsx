@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { loadKakaoMap } from "../util/loadKakaoMap";
-import api from "../api";
+import { loadKakaoMap } from "../utils/loadKakaoMap";
+import api from "../api/api";
 
 function NearbyBus() {
   const mapContainer = useRef(null);
@@ -61,10 +61,7 @@ function NearbyBus() {
           return;
         }
 
-        const centerPosition = new kakao.maps.LatLng(
-          37.277226622165564,
-          127.02796336270409,
-        );
+        const centerPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
 
         const mapOptions = {
           center: centerPosition,
@@ -80,7 +77,7 @@ function NearbyBus() {
           (position) => {
             const myPosition = new kakao.maps.LatLng(
               position.coords.latitude,
-              position.coords.longitude,
+              position.coords.longitude
             );
 
             setMyLocation({
@@ -105,45 +102,13 @@ function NearbyBus() {
             marker.setMap(map);
           },
           (error) => {
-            console.error(
-              "현재 위치 조회 실패. fallback 위치를 사용합니다:",
-              error,
-            );
-
-            const fallbackLat = 37.277226622165564;
-            const fallbackLng = 127.02796336270409;
-
-            const fallbackPosition = new kakao.maps.LatLng(
-              fallbackLat,
-              fallbackLng,
-            );
-
-            setMyLocation({
-              lat: fallbackLat,
-              lng: fallbackLng,
-            });
-
-            map.setCenter(fallbackPosition);
-
-            const overlayContent =
-              `<div style="width: 16px; height: 16px; background-color: #0076ff; ` +
-              `border: 3px solid #ffffff; border-radius: 50%; ` +
-              `box-shadow: 0 0 8px rgba(0,118,255,0.6);"></div>`;
-
-            const marker = new kakao.maps.CustomOverlay({
-              position: fallbackPosition,
-              content: overlayContent,
-              xAnchor: 0.5,
-              yAnchor: 0.5,
-            });
-
-            marker.setMap(map);
+            console.error("현재 위치 조회 실패:", error);
           },
           {
             enableHighAccuracy: true,
             timeout: 10000,
             maximumAge: 0,
-          },
+          }
         );
       } catch (error) {
         console.error("카카오 지도 로드 실패:", error);
@@ -239,10 +204,7 @@ function NearbyBus() {
   };
 
   const clearCategory = (category) => {
-    if (
-      drawnItems.current[category] &&
-      drawnItems.current[category].length > 0
-    ) {
+    if (drawnItems.current[category] && drawnItems.current[category].length > 0) {
       drawnItems.current[category].forEach((overlay) => {
         overlay.setMap(null);
       });
@@ -326,14 +288,7 @@ function NearbyBus() {
     <div style={{ padding: "20px" }}>
       <h2>내 주변 검색</h2>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-          marginBottom: "10px",
-          flexWrap: "wrap",
-        }}
-      >
+      <div style={{ display: "flex", gap: "8px", marginBottom: "10px", flexWrap: "wrap" }}>
         {Object.keys(activeModes).map((mode) => {
           const labels = {
             busStop: "주변 버스정류장 검색",

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "../api";
 
 function Login() {
 
@@ -29,7 +29,7 @@ function Login() {
       return;
     }
 
-    axios.post("http://localhost:8080/api/login", {
+    api.post("/api/login", {
       email: email,
       password: password
     })

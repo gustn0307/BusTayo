@@ -11,7 +11,7 @@ import axios from "axios";
 // - RouteDetail.jsx
 // - 로그인 / 회원 관련 API (추후)
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "",
   withCredentials:true,
     // 백엔드 서버 기본 주소
     // 개발 환경: Spring Boot localhost:8080

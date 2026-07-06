@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from '../api';
 import { Button } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom"; // 💡 useLocation 추가
 import { useAuth } from "./AuthProvider"; // 💡 바로 로그인이 되도록 사용
@@ -41,7 +41,7 @@ function Join() {
   // 이메일 인증번호 발송 (일반 유저용)
   const sendAuthCode = async () => {
     try {
-      await axios.post("http://localhost:8080/api/auth/email/send", { email });
+      await api.post("/api/auth/email/send", { email });
       alert("인증번호가 발송되었습니다.");
       setIsEmailSent(true);
     } catch (e) {
@@ -52,7 +52,7 @@ function Join() {
   // 인증번호 검증 (일반 유저용)
   const verifyAuthCode = async () => {
     try {
-      await axios.post("http://localhost:8080/api/auth/email/verify", { email, authCode });
+      await api.post("/api/auth/email/verify", { email, authCode });
       alert("인증 완료!");
       setIsVerified(true);
     } catch (e) {
@@ -71,8 +71,8 @@ function Join() {
 
     // 💡 [분기점] 구글 유저로 진행하는 경우
     if (isGoogleUser) {
-      axios
-        .post("http://localhost:8080/api/join", {
+      api
+        .post("/api/join", {
           email: email,
           password: "GOOGLE_OAUTH_USER", // 백엔드 엔티티의 빈 값 방지용 임시 문자열 지정
         })
@@ -101,8 +101,8 @@ function Join() {
       if (!password && !confirmPassword) { alert("비밀번호를 입력하세요!"); return; }
       if (password !== confirmPassword) { alert("비밀번호가 일치하지 않습니다!"); return; }
 
-      axios
-        .post("http://localhost:8080/api/join", {
+      api
+        .post("/api/join", {
           email: email,
           password: password,
         })
@@ -157,7 +157,7 @@ function Join() {
                 onClick={async () => {
                   if (!email) { alert("이메일을 입력해 주세요!"); return; }
                   try {
-                    const response = await axios.get(`http://localhost:8080/api/auth/check-email?email=${email}`);
+                    const response = await api.get(`/api/auth/check-email?email=${email}`);
                     if (response.data === true) {
                       alert("이미 사용중인 이메일 입니다.");
                       setIsEmailChecked(false);

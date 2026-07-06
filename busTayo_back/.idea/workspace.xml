@@ -5,28 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5c14dcf-a6e0-4061-b30b-75672299011c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/uploads/0339fa17-27bd-4bf0-946c-9b34d793c626_main_character.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/2fd65d75-83c4-4015-b19e-e6a503358081_main_character.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/37cafe54-1b63-43f3-b164-4c5d93831518_main_character.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/4c537fc1-8816-4e5f-9641-45dd9a6f4d19_result_character1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/5674ca41-27b5-475b-989b-3a415803bc59_main_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/6699458d-567c-4a7f-bde2-e2e9995f5a31_result_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/66fc3093-fc61-480a-9535-2bf2612f48d6_main_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/7b94a870-bce2-4bab-abbb-75258d6f27b5_result_star.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/9d6bc088-6dfe-4117-bcd8-ee0d6dcc6d35_result_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/9f195bdc-a010-43b2-934e-810e9abf7e61_questions_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/c910d11c-64e1-48b4-b960-433873531247_questions_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/cef5df63-78bf-4467-86f7-a8de61816b1c_result_character2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/d21306fb-1fb6-4a15-b35c-5d7807f9b47c_main_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/e0256fd4-c1b0-470d-abfb-252d9e2a9b50_result_character2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/e1f9f990-58c4-4bc7-9655-90d71f55dc9d_result_lecture3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/f3be6957-afab-4ffa-975d-263cc4404914_main_bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/ff535e02-76ad-49a1-af0c-330d7eb75ebc_thumbnail.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/busTajo/busTayo/common/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/FindPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/FindPassword.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/join.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/join.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/auth/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/auth/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/KakaoMap.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/components/navigation/KakaoMap.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/BusHistory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/Lost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/MyPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../busTayo_front/src/pages/NearbyBus.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../busTayo_front/src/pages/NearbyBus.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -41,31 +52,38 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BusTayoApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/passwordupdate&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Maeng/BusTayo/busTayo_back&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BusTayoApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Maeng/BusTayo/busTayo_back",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="BusTayoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <envs>
+        <env name="ALLOWED_ORIGINS" value="http://localhost:3000" />
         <env name="BUS_INFO_API_KEY" value="e9ba4241a2305206d93f14e2886d5be6c074902f0f76c18ec93794d7e3cfbdf3" />
+        <env name="BUS_STOP_DATA_API_KEY" value="ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14" />
+        <env name="DB_PW" value="1111" />
+        <env name="DB_USER" value="root" />
+        <env name="JWT_SECRET" value="vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb" />
+        <env name="MAIL_PASSWORD" value="ucxwsmfenwfohhfl" />
+        <env name="MAIL_USER" value="sylith89@gmail.com" />
         <env name="ODSAY_API_KEY" value="Xpmw2DJVYfSkMzbduJW1hjixrVuZY3eb6zO/kzLIJKM" />
-        <env name="GOOGLE_CLIENT_ID" value="353259509762-1303tcvdmqd2vq0b1qv2ni8c6uca0krp.apps.googleusercontent.com" />
-        <env name="GOOGLE_CLIENT_SECRET" value="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" />
-        <env name="kakao.api.key" value="ba356e0a5d0c0ea286f466cfbc5142dd" />
-        <env name="busStop.data.api.key" value="ba018a23d8dec3a1619b0038d0c8a3d4ac590c20611dd443116b9f84bc502f14" />
+        <env name="KAKAO_API_KEY" value="ba356e0a5d0c0ea286f466cfbc5142dd" />
       </envs>
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="busTayo.main" />
+      <module name="com.busTajo.busTayo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.busTajo.busTayo.BusTayoApplication" />
       <extension name="coverage">
         <pattern>
@@ -95,5 +113,8 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
 </project>

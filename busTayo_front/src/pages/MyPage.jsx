@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from '../api';
 
 function MyPage() {
   const [userEmail, setUserEmail] = useState(""); 
@@ -27,7 +27,7 @@ function MyPage() {
       return;
     }
 
-    axios.get("http://localhost:8080/api/my-info", {
+    api.get("/api/my-info", {
       headers: {
         Authorization: `Bearer ${token}` 
       }
@@ -64,7 +64,7 @@ function MyPage() {
     if (!newPassword) { alert("새 비밀번호를 입력해 주세요!"); return; }
     if (newPassword !== confirmPassword) { alert("새 비밀번호 확인이 일치하지 않습니다!"); return; }
 
-    axios.put("http://localhost:8080/api/update-password", {
+    api.put("/api/update-password", {
       currentPassword: currentPassword,
       newPassword: newPassword
     }, {
@@ -89,7 +89,7 @@ function MyPage() {
       // 🟢 [교정] sessionStorage 사용
       const token = sessionStorage.getItem("accessToken");
 
-      axios.delete("http://localhost:8080/api/delete-account", {
+      api.delete("/api/delete-account", {
         headers: {
           Authorization: `Bearer ${token}`
         }

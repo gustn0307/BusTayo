@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./Lost.module.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import api from "../api";
 
 const PAGE_SIZE = 10;
@@ -36,8 +35,8 @@ function Lost() {
       }
       return;
     }
-    axios
-      .get("http://localhost:8080/api/my-info", {
+    api
+      .get("/api/my-info", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

@@ -118,18 +118,33 @@ function KakaoMap({
       (error) => {
         console.error(error);
 
-        // 위치 권한 거부 또는 위치 조회 실패 시 서울시청 좌표로 지도 생성
-        // fallback 좌표: 서울시청
-        window.kakao.maps.load(() => {
-          const map = new window.kakao.maps.Map(mapRef.current, {
-            center: new window.kakao.maps.LatLng(37.5665, 126.978),
-            level: 4,
-          });
+        loadKakaoMap()
+          .then((kakao) => {
+            if (!mapContainerRef.current) return;
 
-          // fallback map도 이후 로직에서 사용할 수 있도록 저장하는 것이 안전하다.
-          // 현재 코드에는 없지만, 필요하면 아래 줄을 추가할 수 있다.
-          // mapInstanceRef.current = map;
-        });
+            const fallbackLat = 37.277226622165564;
+            const fallbackLng = 127.02796336270409;
+
+            setCurrentLocation({
+              lat: fallbackLat,
+              lng: fallbackLng,
+            });
+
+            const map = new kakao.maps.Map(mapContainerRef.current, {
+              center: new kakao.maps.LatLng(fallbackLat, fallbackLng),
+              level: 4,
+            });
+
+            mapInstanceRef.current = map;
+
+            currentLocationMarkerRef.current = new kakao.maps.Marker({
+              map,
+              position: new kakao.maps.LatLng(fallbackLat, fallbackLng),
+            });
+          })
+          .catch((loadError) => {
+            console.error("카카오맵 SDK 로드 실패:", loadError);
+          });
       },
       {
         enableHighAccuracy: true, // GPS 우선 사용

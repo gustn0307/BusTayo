@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 
 function FindPassword() {
@@ -15,7 +15,7 @@ function FindPassword() {
 
     try {
       //  우리가 만든 스프링 부트 컨트롤러 주소로 실제 이메일 데이터 전송
-      const response = await axios.post('http://localhost:8080/api/auth/find-password', {
+      const response = await api.post('/api/auth/find-password', {
         email: email
       });
 

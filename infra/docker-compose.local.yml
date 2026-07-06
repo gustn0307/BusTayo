@@ -1,0 +1,47 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: bustayo-db
+    env_file:
+      - .env.local.db
+    environment:
+      MYSQL_DATABASE: bustayo_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - bustayo_dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p1111 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  backend:
+    build: ../busTayo_back
+    container_name: bustayo-back
+    env_file:
+      - .env.local.back
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bustayo_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=utf8
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1111
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    
+
+  frontend:
+    build: ../busTayo_front
+    container_name: bustayo-front
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  bustayo_dbdata:

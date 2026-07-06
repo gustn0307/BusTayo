@@ -17,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.beans.factory.annotation.Value;
+import java.util.Arrays;
 
 import java.util.List;
 
@@ -38,6 +40,9 @@ public class SecurityConfig {
     private final JWTUtil jwtUtil;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
+
+    @Value("${app.allowed-origins}")
+    private String allowedOrigins;
 
     // 생성자 주입
     public SecurityConfig(
@@ -68,7 +73,9 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173"));
+                    config.setAllowedOrigins(
+                            Arrays.asList(allowedOrigins.split(","))
+                    );
                     config.setAllowedMethods(List.of("*"));
                     config.setAllowedHeaders(List.of("*"));
                     config.setExposedHeaders(List.of("Authorization"));
@@ -95,12 +102,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) ->
                         auth
                                 // 🟢 기존 허용 경로들 앞에 /api 붙인 것 아주 좋습니다! 단, "/"는 메인 홈 화면 타겟이므로 그대로 유지하거나 제외해도 좋습니다.
-                                .requestMatchers("/api/auth/check-email", "/api/auth/email/send", "/api/auth/email/verify", "/api/login", "/", "/api/join", "/api/auth/**", "/api/nearby/**", "/api/notice", "/api/notice/**").permitAll()
+                                .requestMatchers(
+                                        "/api/auth/check-email",
+                                        "/api/auth/email/send",
+                                        "/api/auth/email/verify",
+                                        "/api/login",
+                                        "/",
+                                        "/api/join",
+                                        "/api/auth/**",
+                                        "/api/nearby/**",
+                                        "/api/notice",
+                                        "/api/notice/**").permitAll()
 
                                 // 🟢 구글 소셜 로그인 내부 통로 방어벽 해제 (기존 규격과 /api 규격을 모두 열어두어 확실하게 가로채도록 안전장치)
 //                                .requestMatchers("/login/oauth2/**", "/oauth2/**", "/api/login/oauth2/**", "/api/oauth2/**").permitAll()
 
-                                .requestMatchers("/api/user").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/api/user", "/api/navigating/**", "/api/bus/**", "/api/favorites/**", "/api/path/**").hasAnyRole("USER", "ADMIN")
+
                                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                 .requestMatchers(org.springframework.http.HttpMethod.DELETE, "/api/delete-account").permitAll()
                                 .anyRequest().authenticated()

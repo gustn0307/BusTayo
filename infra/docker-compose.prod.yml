@@ -1,0 +1,21 @@
+services:
+  backend:
+    image: ${BACKEND_IMAGE}
+    container_name: bustayo-back
+    env_file:
+      - .env.prod
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      RDS_ENDPOINT: ${RDS_ENDPOINT}
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: ${FRONTEND_IMAGE}
+    container_name: bustayo-front
+    depends_on:
+      - backend
+    restart: unless-stopped
+    ports:
+      - "80:80"
