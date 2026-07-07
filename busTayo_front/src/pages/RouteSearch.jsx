@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 import KakaoMap from "../components/navigation/KakaoMap";
@@ -63,9 +62,7 @@ function RouteSearch() {
   const location = useLocation();
 
   const favorite = location.state?.favorite;
-  const reset = location.state?.reset;
-
-  useEffect(() => {}, [selectedStation]);
+  
   useEffect(() => {
     if (!favorite) return;
 
@@ -93,58 +90,40 @@ function RouteSearch() {
 }, [location.state?.reset]);
 
   return (
-    
-    // 전체 길찾기 화면 높이를 브라우저 높이로 고정한다.
-    // overflow hidden을 주어 페이지 전체가 스크롤되지 않고,
-    // 오른쪽 패널만 내부 스크롤되도록 만든다.
-    <Row className="g-0" style={{ height: "100vh", overflow: "hidden" }}>
-      {/* 왼쪽/중앙 카카오맵 영역 */}
-      <Col style={{ height: "100vh" }}>
-        <KakaoMap
-          // 현재 위치 좌표와 setter를 전달한다.
-          // KakaoMap에서 geolocation 성공 시 setCurrentLocation으로 값을 갱신한다.
-          currentLocation={currentLocation}
-          setCurrentLocation={setCurrentLocation}
-          // 선택된 정류장/위치로 지도 중심 이동
-          selectedStation={selectedStation}
-          // 선택된 상세 경로를 지도에 polyline과 정류장 마커로 표시
-          selectedRoute={selectedRoute}
-          // 실시간 버스 위치 마커 표시
-          busMarkers={busMarkers}
-        />
-      </Col>
+  <div className="route-page">
+    {/* 지도 영역 */}
+    <div className="route-map-area">
+      <KakaoMap
+        currentLocation={currentLocation}
+        setCurrentLocation={setCurrentLocation}
+        selectedStation={selectedStation}
+        selectedRoute={selectedRoute}
+        busMarkers={busMarkers}
+      />
+    </div>
 
-      {/* 오른쪽 길찾기 검색 패널 영역 */}
-      <Col xs={4} xxl={3} style={{ height: "100vh", overflow: "hidden" }}>
-        <RouteSearchPanel
-          // 현재 위치를 출발지로 설정할 때 사용
-          currentLocation={currentLocation}
-          // 출발지 상태와 setter
-          startPlace={startPlace}
-          setStartPlace={setStartPlace}
-          // 도착지 상태와 setter
-          endPlace={endPlace}
-          setEndPlace={setEndPlace}
-          // 경로 목록 상태와 setter
-          routes={routes}
-          setRoutes={setRoutes}
-          // 선택된 상세 경로 상태와 setter
-          // 검색 목록 ↔ 상세 경로 화면 전환에 사용된다.
-          selectedRoute={selectedRoute}
-          setSelectedRoute={setSelectedRoute}
-          // 지도 중심 이동 대상 상태와 setter
-          selectedStation={selectedStation}
-          setSelectedStation={setSelectedStation}
-          // 최근 길찾기 목록 상태와 setter
-          history={history}
-          setHistory={setHistory}
-          // 지도에 표시할 버스 마커 상태와 setter
-          busMarkers={busMarkers}
-          setBusMarkers={setBusMarkers}
-        />
-      </Col>
-    </Row>
-  );
+    {/* 길찾기 패널 영역 */}
+    <div className="route-panel-area">
+      <RouteSearchPanel
+        currentLocation={currentLocation}
+        startPlace={startPlace}
+        setStartPlace={setStartPlace}
+        endPlace={endPlace}
+        setEndPlace={setEndPlace}
+        routes={routes}
+        setRoutes={setRoutes}
+        selectedRoute={selectedRoute}
+        setSelectedRoute={setSelectedRoute}
+        selectedStation={selectedStation}
+        setSelectedStation={setSelectedStation}
+        history={history}
+        setHistory={setHistory}
+        busMarkers={busMarkers}
+        setBusMarkers={setBusMarkers}
+      />
+    </div>
+  </div>
+);
 }
 
 export default RouteSearch;
