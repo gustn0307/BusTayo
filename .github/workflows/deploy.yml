@@ -65,7 +65,13 @@ jobs:
             docker compose --env-file .env.prod -f docker-compose.prod.yml pull
 
             echo "Restart services..."
-            docker compose --env-file .env.prod -f docker-compose.prod.yml up -d
+            docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --remove-orphans
+
+            echo "Restart nginx to refresh Docker DNS..."
+            docker restart bustayo-nginx
+
+            echo "Wait for nginx..."
+            sleep 3
 
             echo "Show running containers..."
             docker ps
