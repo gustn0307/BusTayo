@@ -17,6 +17,7 @@ import {
   BsMegaphoneFill,
   BsBoxArrowRight,
   BsChevronRight,
+  BsX,
 } from "react-icons/bs";
 
 const NAV_SECTIONS = [
@@ -42,27 +43,27 @@ const NAV_SECTIONS = [
   {
     label: "커뮤니티",
     items: [
-      { to: "/board",     icon: BsChatDotsFill,  label: "자유게시판" },
+      { to: "/board", icon: BsChatDotsFill, label: "자유게시판" },
       { to: "/lost", icon: BsBriefcaseFill, label: "분실물 찾기" },
-      { to: "/notice",    icon: BsMegaphoneFill, label: "공지사항" },
+      { to: "/notice", icon: BsMegaphoneFill, label: "공지사항" },
     ],
   },
 ];
 
-function UserSidebar() {
+function UserSidebar({ isSidebarOpen = false, closeSidebar = () => {} }) {
   const { logout } = useAuth();
-  
+
   // 인증 체크 로직 삭제: 단순히 현재 로그인 여부만 판단
   const isLoggedIn = !!sessionStorage.getItem("accessToken");
   const role = sessionStorage.getItem("role");
   const navigate = useNavigate();
-
 
   return (
     <>
       <style>{`
         .sidebar-root {
           width: 300px;
+          flex: 0 0 300px;
           min-height: 100vh;
           background: #ffffff;
           border-right: 1px solid #e9ecef;
@@ -105,6 +106,25 @@ function UserSidebar() {
           font-size: 0.82rem;
           color: #868e96;
           font-weight: 400;
+        }
+
+        .sidebar-close-button {
+          display: none;
+          margin-left: auto;
+          width: 36px;
+          height: 36px;
+          border: none;
+          border-radius: 10px;
+          background: #f1f3f5;
+          color: #495057;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+
+        .sidebar-close-button:hover {
+          background: #e9ecef;
+          color: #212529;
         }
 
         /* ── 섹션 ── */
@@ -299,24 +319,58 @@ function UserSidebar() {
           color: #fff;
           text-decoration: none;
         }
+        /* ── 모바일 drawer 처리 ── */
+        @media (max-width: 768px) {
+          .sidebar-root {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
+            width: 280px;
+            height: 100dvh;
+            min-height: 100dvh;
+            transform: translateX(-100%);
+            transition: transform 0.2s ease;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.12);
+          }
+
+          .sidebar-root.open {
+            transform: translateX(0);
+          }
+
+          .sidebar-close-button {
+            display: flex;
+          }
+        }
       `}</style>
 
-      <div className="sidebar-root">
+      <div className={`sidebar-root ${isSidebarOpen ? "open" : ""}`}>
         {/* 로고 */}
         <div className="sidebar-logo">
           <div className="sidebar-logo-icon">
             <BsBusFrontFill size={24} />
           </div>
+
           <div className="sidebar-logo-text">
             <div className="brand">BusTayo</div>
             <div className="tagline">스마트 버스 플랫폼</div>
           </div>
+
+          <button
+            type="button"
+            className="sidebar-close-button"
+            onClick={closeSidebar}
+            aria-label="메뉴 닫기"
+          >
+            <BsX size={24} />
+          </button>
         </div>
         {/* 네비게이션 */}
         <nav className="sidebar-nav">
           {/* 홈 */}
           <NavLink
             to="/home"
+            onClick={closeSidebar}
             className={({ isActive }) =>
               "sidebar-home-link" + (isActive ? " active" : "")
             }
@@ -338,14 +392,16 @@ function UserSidebar() {
                   <div
                     key={to}
                     className="sidebar-nav-item"
-                    onClick={() =>
+                    onClick={() => {
+                      closeSidebar();
+
                       navigate("/route", {
                         replace: true,
                         state: {
                           reset: Date.now(),
                         },
-                      })
-                    }
+                      });
+                    }}
                     style={{ cursor: "pointer" }}
                   >
                     <div className="nav-icon-wrap">
@@ -358,6 +414,7 @@ function UserSidebar() {
                   <NavLink
                     key={to}
                     to={to}
+                    onClick={closeSidebar}
                     className={({ isActive }) =>
                       "sidebar-nav-item" + (isActive ? " active" : "")
                     }
@@ -377,7 +434,11 @@ function UserSidebar() {
           {role === "ROLE_ADMIN" && (
             <>
               <div className="sidebar-divider" />
-              <NavLink to="/admin" className="admin-link">
+              <NavLink
+                to="/admin"
+                onClick={closeSidebar}
+                className="admin-link"
+              >
                 <div className="nav-icon-wrap">
                   <BsShieldLockFill size={17} />
                 </div>
@@ -399,7 +460,7 @@ function UserSidebar() {
               로그아웃
             </button>
           ) : (
-            <Link to="/login" className="login-btn">
+            <Link to="/login" onClick={closeSidebar} className="login-btn">
               로그인
             </Link>
           )}
