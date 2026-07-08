@@ -333,3 +333,13 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,intellij+all,visualstudiocode,react,gradle,node,dotenv
 busTayo_back/.idea/
+
+# IntelliJ
+.idea/
+**/.idea/
+
+# Environment files
+.env
+.env.*
+**/.env
+**/.env.*
