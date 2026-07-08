@@ -260,12 +260,8 @@ thumb
 sketch
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode/
+**/.vscode/
 
 # Local History for Visual Studio Code
 .history/
@@ -332,14 +328,18 @@ gradle-app.setting
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,intellij+all,visualstudiocode,react,gradle,node,dotenv
-busTayo_back/.idea/
-
-# IntelliJ
+# Project local files
 .idea/
 **/.idea/
+.vscode/
+**/.vscode/
 
 # Environment files
 .env
 .env.*
 **/.env
 **/.env.*
+
+# Build output
+bin/
+**/bin/
