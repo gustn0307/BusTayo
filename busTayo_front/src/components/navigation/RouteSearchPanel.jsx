@@ -64,6 +64,12 @@ function RouteSearchPanel({
   // 실시간 버스 마커 상태 변경 함수
   // 새 검색 시 초기화하고, RouteBusCard에서 차량 위치를 받아 갱신한다.
   setBusMarkers,
+
+  // 검색 패널 열려있는지 여부
+  isRoutePanelOpen,
+
+  // 검색 패널 열고 닫기
+  setIsRoutePanelOpen,
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -220,116 +226,126 @@ function RouteSearchPanel({
     }
   }, [startPlace, endPlace]);
 
-  
   return (
-    // 오른쪽 길찾기 패널
-    // 페이지 전체가 아니라 패널 내부만 스크롤되도록 overflowY를 지정한다.
-    <div className="h-100 overflow-auto border-start bg-white p-3">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="mb-0">길찾기</h3>
-        <button
-          onClick={saveFavorite}
-          className="btn btn-link p-0 text-warning"
-          title="즐겨찾기 저장"
-          style={{ fontSize: "1.5rem" }}
-        >
-          {isFavorite ? <BsStarFill /> : <BsStar />}
-        </button>
-      </div>
-    
-    
-
-      {/* 현재 위치를 출발지로 설정 */}
-      <Button
-        variant="outline-primary"
-        size="sm"
-        className="w-100 mb-2"
-        onClick={setCurrentLocationAsStart}
+    <div className={`route-panel ${isRoutePanelOpen ? "open" : "closed"}`}>
+      {/* 모바일 Bottom Sheet 손잡이 */}
+      <button
+        type="button"
+        className="route-panel-handle"
+        onClick={() => setIsRoutePanelOpen((prev) => !prev)}
+        aria-label={isRoutePanelOpen ? "길찾기 패널 닫기" : "길찾기 패널 열기"}
       >
-        ⊙ 내 위치를 출발지로 설정
-      </Button>
+        <span className="route-panel-handle-bar" />
+        <span className="route-panel-handle-text">
+          {isRoutePanelOpen ? "길찾기 접기" : "길찾기 열기"}
+        </span>
+      </button>
 
-      {/* 출발지 검색 입력창 */}
-      <PlaceSearchInput
-        placeholder="출발지 입력"
-        value={startPlace}
-        onSelect={setStartPlace}
-      />
-
-      <div className="mb-3"></div>
-
-      {/* 도착지 검색 입력창 */}
-      <PlaceSearchInput
-        placeholder="도착지 입력"
-        value={endPlace}
-        onSelect={setEndPlace}
-      />
-
-      {/* 경로 검색 버튼 */}
-      <Button
-        variant="primary"
-        className="w-100 mt-3"
-        onClick={searchRoute}
-        disabled={loading}
-      >
-        {loading ? "경로 탐색 중..." : "검색"}
-      </Button>
-
-      {/* 경로 검색 로딩 안내 */}
-      {loading && (
-        <div className="small text-muted text-center mt-2">
-          버스 경로를 탐색하고 있습니다.
+      <div className="route-panel-content">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h3 className="mb-0">길찾기</h3>
+          <button
+            onClick={saveFavorite}
+            className="btn btn-link p-0 text-warning"
+            title="즐겨찾기 저장"
+            style={{ fontSize: "1.5rem" }}
+          >
+            {isFavorite ? <BsStarFill /> : <BsStar />}
+          </button>
         </div>
-      )}
 
-      <hr />
-
-      {/* 현재 선택된 출발지 표시 */}
-      {startPlace && (
-        <Card className="mb-2">
-          <Card.Body>출발지: {startPlace.name}</Card.Body>
-        </Card>
-      )}
-
-      {/* 현재 선택된 도착지 표시 */}
-      {endPlace && (
-        <Card className="mb-2">
-          <Card.Body>도착지: {endPlace.name}</Card.Body>
-        </Card>
-      )}
-
-      {/* 경로 목록 또는 상세 경로 조건부 렌더링 */}
-      {!selectedRoute ? (
-        <SearchResultList
-          routes={routes}
-          setSelectedRoute={setSelectedRoute}
-          setSelectedStation={setSelectedStation}
-        />
-      ) : (
-        <RouteDetail
-          route={selectedRoute}
-          setSelectedRoute={setSelectedRoute}
-          setSelectedStation={setSelectedStation}
-          busMarkers={busMarkers}
-          setBusMarkers={setBusMarkers}
-        />
-      )}
-
-      {/* 최근 길찾기 목록 */}
-      <h5 className="mt-4 mb-3">최근 길찾기</h5>
-
-      {history.map((item) => (
-        <Card
-          key={item.id}
-          className="mb-2"
-          style={{ cursor: "pointer" }}
-          onClick={() => loadHistoryRoute(item)}
+        {/* 현재 위치를 출발지로 설정 */}
+        <Button
+          variant="outline-primary"
+          size="sm"
+          className="w-100 mb-2"
+          onClick={setCurrentLocationAsStart}
         >
-          <Card.Body>
-            {item.start} → {item.end}
-          </Card.Body>
-        </Card>
-      ))}
+          ⊙ 내 위치를 출발지로 설정
+        </Button>
+
+        {/* 출발지 검색 입력창 */}
+        <PlaceSearchInput
+          placeholder="출발지 입력"
+          value={startPlace}
+          onSelect={setStartPlace}
+        />
+
+        <div className="mb-3"></div>
+
+        {/* 도착지 검색 입력창 */}
+        <PlaceSearchInput
+          placeholder="도착지 입력"
+          value={endPlace}
+          onSelect={setEndPlace}
+        />
+
+        {/* 경로 검색 버튼 */}
+        <Button
+          variant="primary"
+          className="w-100 mt-3"
+          onClick={searchRoute}
+          disabled={loading}
+        >
+          {loading ? "경로 탐색 중..." : "검색"}
+        </Button>
+
+        {/* 경로 검색 로딩 안내 */}
+        {loading && (
+          <div className="small text-muted text-center mt-2">
+            버스 경로를 탐색하고 있습니다.
+          </div>
+        )}
+
+        <hr />
+
+        {/* 현재 선택된 출발지 표시 */}
+        {startPlace && (
+          <Card className="mb-2">
+            <Card.Body>출발지: {startPlace.name}</Card.Body>
+          </Card>
+        )}
+
+        {/* 현재 선택된 도착지 표시 */}
+        {endPlace && (
+          <Card className="mb-2">
+            <Card.Body>도착지: {endPlace.name}</Card.Body>
+          </Card>
+        )}
+
+        {/* 경로 목록 또는 상세 경로 조건부 렌더링 */}
+        {!selectedRoute ? (
+          <SearchResultList
+            routes={routes}
+            setSelectedRoute={setSelectedRoute}
+            setSelectedStation={setSelectedStation}
+          />
+        ) : (
+          <RouteDetail
+            route={selectedRoute}
+            setSelectedRoute={setSelectedRoute}
+            setSelectedStation={setSelectedStation}
+            busMarkers={busMarkers}
+            setBusMarkers={setBusMarkers}
+          />
+        )}
+
+        {/* 최근 길찾기 목록 */}
+        <h5 className="mt-4 mb-3">최근 길찾기</h5>
+
+        {history.map((item) => (
+          <Card
+            key={item.id}
+            className="mb-2"
+            style={{ cursor: "pointer" }}
+            onClick={() => loadHistoryRoute(item)}
+          >
+            <Card.Body>
+              {item.start} → {item.end}
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

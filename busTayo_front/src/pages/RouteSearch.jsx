@@ -59,10 +59,13 @@ function RouteSearch() {
   // RouteSearchPanel에서 /api/navigating/history 응답을 받아 저장한다.
   const [history, setHistory] = useState([]);
 
+  // 패널 열고 닫기를 위한 state
+  const [isRoutePanelOpen, setIsRoutePanelOpen] = useState(true);
+
   const location = useLocation();
 
   const favorite = location.state?.favorite;
-  
+
   useEffect(() => {
     if (!favorite) return;
 
@@ -79,51 +82,53 @@ function RouteSearch() {
     });
   }, [favorite]);
   useEffect(() => {
-  if (!location.state?.reset) return;
+    if (!location.state?.reset) return;
 
-  setStartPlace(null);
-  setEndPlace(null);
-  setRoutes([]);
-  setSelectedRoute(null);
-  setSelectedStation(null);
-  setBusMarkers([]);
-}, [location.state?.reset]);
+    setStartPlace(null);
+    setEndPlace(null);
+    setRoutes([]);
+    setSelectedRoute(null);
+    setSelectedStation(null);
+    setBusMarkers([]);
+  }, [location.state?.reset]);
 
   return (
-  <div className="route-page">
-    {/* 지도 영역 */}
-    <div className="route-map-area">
-      <KakaoMap
-        currentLocation={currentLocation}
-        setCurrentLocation={setCurrentLocation}
-        selectedStation={selectedStation}
-        selectedRoute={selectedRoute}
-        busMarkers={busMarkers}
-      />
-    </div>
+    <div className="route-page">
+      {/* 지도 영역 */}
+      <div className="route-map-area">
+        <KakaoMap
+          currentLocation={currentLocation}
+          setCurrentLocation={setCurrentLocation}
+          selectedStation={selectedStation}
+          selectedRoute={selectedRoute}
+          busMarkers={busMarkers}
+        />
+      </div>
 
-    {/* 길찾기 패널 영역 */}
-    <div className="route-panel-area">
-      <RouteSearchPanel
-        currentLocation={currentLocation}
-        startPlace={startPlace}
-        setStartPlace={setStartPlace}
-        endPlace={endPlace}
-        setEndPlace={setEndPlace}
-        routes={routes}
-        setRoutes={setRoutes}
-        selectedRoute={selectedRoute}
-        setSelectedRoute={setSelectedRoute}
-        selectedStation={selectedStation}
-        setSelectedStation={setSelectedStation}
-        history={history}
-        setHistory={setHistory}
-        busMarkers={busMarkers}
-        setBusMarkers={setBusMarkers}
-      />
+      {/* 길찾기 패널 영역 */}
+      <div className="route-panel-area">
+        <RouteSearchPanel
+          isRoutePanelOpen={isRoutePanelOpen}
+          setIsRoutePanelOpen={setIsRoutePanelOpen}
+          currentLocation={currentLocation}
+          startPlace={startPlace}
+          setStartPlace={setStartPlace}
+          endPlace={endPlace}
+          setEndPlace={setEndPlace}
+          routes={routes}
+          setRoutes={setRoutes}
+          selectedRoute={selectedRoute}
+          setSelectedRoute={setSelectedRoute}
+          selectedStation={selectedStation}
+          setSelectedStation={setSelectedStation}
+          history={history}
+          setHistory={setHistory}
+          busMarkers={busMarkers}
+          setBusMarkers={setBusMarkers}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default RouteSearch;
